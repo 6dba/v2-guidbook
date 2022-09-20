@@ -1,0 +1,111 @@
+body{
+}
+
+.container-fluid{
+    background-color:#7eecf2;
+    height: 68px;
+    color:white;
+    
+}
+.imgpos{
+    background: #596573;
+    margin-left: -12px;
+    margin-top: -4px;
+    width:100px;
+    height:68px;
+}
+.ul{
+    color:white;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.btn_login{
+    color:white;
+}
+.title{
+    font-size: 20pt;
+    padding-left: 30px;
+    font-weight: 550;
+    cursor:default;
+}
+
+ul {
+    margin-top: unset;
+    margin-bottom: 1rem;
+}
+img{
+    max-width:100%;
+    max-height:100%;
+    display: block;
+    margin: 0 auto;
+}
+li{
+    cursor: pointer;
+}
+.trap{
+    height: auto;
+    overflow-y: auto;
+}
+.container_information{
+    width: 100%;
+    margin-left: 100px;
+    margin-right: 20px;
+}
+
+.guides{
+    width: 100%;
+    border-color: #7eecf2;
+    height:40px;
+}
+.btn_find{
+    color:aqua;
+    border-color:#7eecf2;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 100px;
+    height: 35px;
+    float: right;
+    color:darkgreen;
+}
+.back_title_guide{
+    background-color: #596573;
+    margin-top: 55px;
+    width: 100%;
+    height: 35px;
+}
+.title_guide{
+    color:white;
+    margin-left: 20px;
+}
+
+.add_pos{
+    width: 35px;
+    height: 35px;
+}
+.img_add{
+    height: 35px;
+    max-width: 100%;
+    border: none;
+    background: none;
+ 
+}
+.back_title_element{
+    background-color: #596573;
+    width: 100%;
+    height: 35px;
+    max-width: 85%;
+}
+.title_element{
+    color:white;
+    margin-left: 20px;
+}
+.row{
+    max-width: 100%;
+    
+}
