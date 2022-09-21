@@ -1,5 +1,5 @@
 <?php 
-const API_URL = "http://81.161.220.59:8100/api/";
+const API_URL = "http://81.161.220.59:8100/api";
 
 /** 
  * Получение указанного $resource по $url с указанным $request
@@ -27,13 +27,19 @@ function get($url, $resource = "", $request = "") {
 
     return json_decode($response, true);
 }
-
-function post($url, $resource = "", $request = "", $parameters = array()) {
+/**
+ * Отправка информации ($parameters) по $url на $resource с указанным $id
+ * 
+ * http://81.161.220.59:8100/api/division/3/
+ * |            $url            | $resource | | $id |
+ *
+ */
+function post($url, $resource = "", $id = "", $parameters = array()) {
 
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $url . "/" . $resource . "/" . $request,
+        CURLOPT_URL => $url . "/" . $resource . "/" . $id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -43,16 +49,15 @@ function post($url, $resource = "", $request = "", $parameters = array()) {
         ),
         CURLOPT_POSTFIELDS => http_build_query($parameters),
     ));
-
     $response = curl_exec($curl); curl_close($curl);
-
+    
     return json_decode($response, true);
 }
 
 print_r(get(API_URL, "structureTest", "?action=getData&pid=E2"));
 
-print_r(post(API_URL, "division", "?action=setVariables", array(
-        "id" => 1,
+print_r(post(API_URL, "division", "100", array(
+        "id" => 2,
         "name" => "name",
         "fullname" => "fullName",
         "enterprise" => 2,
@@ -63,6 +68,6 @@ print_r(post(API_URL, "division", "?action=setVariables", array(
         "isOpo" => "Y",
         "is_order_visible" => "Y"
     )
-))
+));
 
 ?>
