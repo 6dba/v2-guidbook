@@ -53,19 +53,4 @@ function post($url, $resource = "", $id = "", $parameters = array()) {
     
     return json_decode($response, true);
 }
-print_r(get(API_URL, "structureTest", "?action=getData&pid=E2"));
-
-print_r(post(API_URL, "division", "100", array(
-        "id" => 2,
-        "name" => "name",
-        "fullname" => "fullName",
-        "enterprise" => 2,
-        "type" => 2,
-        "shift" => 2,
-        "chief" => 2,
-        "adjanced" => 2,
-        "isOpo" => "Y",
-        "is_order_visible" => "Y"
-    )
-));
 ?>

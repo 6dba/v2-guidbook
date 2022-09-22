@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script language="javascript" type="text/javascript" src="edit_form.js"></script>
     <title>В2</title>
 </head>
 
@@ -21,12 +22,19 @@
                 <li><a href="#" class="nav-link px-2 link-light">Отчеты</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Администрирование</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Помощь</a></li>
-                <form action="auth.php" method="post">
-                    <li><button type="button" class="btn px-2 btn-link btn_login" value="Enter">Войти</button></li>
-                </form>
+                <li>
+                <?php
+                if($_COOKIE['user'] == '1'):
+                ?>
+                    <a href="/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
+                    <?php else: ?>
+                    <a href="/auth.php" class="btn px-2 btn-link btn_login">Вход</a>
+                    <?php endif; ?>
+                </li>
             </ul>
         </header>
     </div>
+
     <div class="container">
         <ul class="nav col-12 col-md-auto mb-2 justify-content mb-md-0 mt-3">
             <li class="pe-4">СПРАВОЧНИКИ
@@ -37,6 +45,9 @@
             <li class="px-4">НАСТРОЙКИ СИСТЕМЫ</li>
         </ul>
     </div>
+        <?php
+    if($_COOKIE['user'] == '1'):
+    ?>
     <div class="container_information">
         <div class="row">
             <div class="col trap">
@@ -50,14 +61,14 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="ing/add4.png" alt"" /></button>
+                        <button type="image" class="img_add"><img src="ing/add4.png" alt"" onClick=selectItem()></button>
                     </div>
                 </div>
                 <div>Дерево/таблица</div>
             </div>
             <div class="col trap">
                 <div class="d-flex back_title_element">
-                    <div class="w-100 p-1 title_element">Заголовок выбранного элемента
+                    <div id="ttl_el" class="w-100 p-1 title_element">Заголовок выбранного элемента
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="ing/exit.png" alt"" /></button>
@@ -69,9 +80,11 @@
                         <button type="image" class="img_add"><img src="ing/delete.png" alt"" /></button>
                     </div>
                 </div>
-                <div>Форма просмотра/редактирования</div>
+                <div id="edit_Form">Форма просмотра/редактирования</div>
             </div>
         </div>
+    </div>
+    <?php endif; ?>
 </body>
 
 </html>
