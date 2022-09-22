@@ -64,7 +64,23 @@
                         <button type="image" class="img_add"><img src="ing/add4.png" alt"" onClick=selectItem()></button>
                     </div>
                 </div>
-                <div>Дерево/таблица</div>
+                
+                
+                <div class = "typetable w-100 p-1 title_guide">
+                  <caption>Место переключения режима</caption> 
+                  <tr>
+                    <th rowspan="1" class="first">Номер</th>
+                    <th rowspan="1" class="first">Наименование</th>
+                  </tr>
+                  <tr>
+                    <td rowspan="1" class="first">№ ...</td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+                </div>
+                
+                
+                
             </div>
             <div class="col trap">
                 <div class="d-flex back_title_element">
