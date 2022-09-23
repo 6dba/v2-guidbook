@@ -56,7 +56,10 @@
                     <option value="second">Справочник 2</option>
                     <option value="third">Справочник 3</option>
                 </select>
-                <button type="button_find" class="btn_find">Найти</button>
+                <div class="d-flex flex-shrink-1">
+                    <input class='input_find'>
+                    <button type="button_find" class="ms-3 btn_find">Найти</button>
+                </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
@@ -64,30 +67,30 @@
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=selectItem()></button>
                     </div>
                 </div>
-                
-                
-                <div class = "typetable p-1 title_guide">
-                  <caption>Место переключения режима</caption> 
-                  <tr>
-                    <th rowspan="1" class="first">Номер</th>
-                    <th rowspan="1" class="first">Наименование</th>
-                  </tr>
-                  <tr>
-                    <td rowspan="1" class="first">№ ...</td>
-                    <td> </td>
-                    <td> </td>
-                  </tr>
+
+
+                <div class="typetable p-1 title_guide">
+                    <caption>Место переключения режима</caption>
+                    <tr>
+                        <th rowspan="1" class="first">Номер</th>
+                        <th rowspan="1" class="first">Наименование</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="1" class="first">№ ...</td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
                 </div>
-                
-                
-                
+
+
+
             </div>
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" ><img src="../assets/exit.png" alt"" ></button>
+                        <button type="image" class="img_add"><img src="../assets/exit.png" alt""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt"" id='img_change' /></button>
