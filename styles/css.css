@@ -144,3 +144,9 @@ li{
     font-weight: bold;
     font-size: 13px;
 }
+.input_tag{
+    width: 100%;
+}
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}

@@ -90,7 +90,7 @@
                         <button type="image" class="img_add" ><img src="../assets/exit.png" alt"" ></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/change.png" alt"" /></button>
+                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt"" id='img_change' /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="../assets/delete.png" alt"" onClick=close_edit()></button>
