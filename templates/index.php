@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script language="javascript" type="text/javascript" src="edit_form.js"></script>
+
     <title>В2</title>
 </head>
 
@@ -23,7 +23,7 @@
                 <li><a href="#" class="nav-link px-2 link-light">Администрирование</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Помощь</a></li>
                 <li>
-                <?php
+                    <?php
                 if($_COOKIE['user'] == '1'):
                 ?>
                     <a href="/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
@@ -45,7 +45,7 @@
             <li class="px-4">НАСТРОЙКИ СИСТЕМЫ</li>
         </ul>
     </div>
-        <?php
+    <?php
     if($_COOKIE['user'] == '1'):
     ?>
     <div class="container_information">
@@ -101,6 +101,8 @@
         </div>
     </div>
     <?php endif; ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="edit_form.js"></script>
 </body>
 
 </html>
