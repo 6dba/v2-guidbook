@@ -1,5 +1,5 @@
 <?php
-include 'hash.php';
+include '../php/hash.php';
 function cach( &$data ) {
     $ind = 'a';
     foreach ( $data as $obj ) {

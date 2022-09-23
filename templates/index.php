@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../styles/css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <title>В2</title>
@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
             <div class="imgpos">
-                <img src="ing/logo2.png" alt="" />
+                <img src="../assets/logo2.png" alt="" />
             </div>
             <div class="title flex-grow-1">Локальный сервер V1.2.3</div>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -26,9 +26,9 @@
                     <?php
                 if($_COOKIE['user'] == '1'):
                 ?>
-                    <a href="/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
+                    <a href="../php/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
                     <?php else: ?>
-                    <a href="/auth.php" class="btn px-2 btn-link btn_login">Вход</a>
+                    <a href="../php/auth.php" class="btn px-2 btn-link btn_login">Вход</a>
                     <?php endif; ?>
                 </li>
             </ul>
@@ -61,7 +61,7 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="ing/add4.png" alt"" onClick=selectItem()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=selectItem()></button>
                     </div>
                 </div>
                 
@@ -87,13 +87,13 @@
                     <div id="ttl_el" class="w-100 p-1 title_element">Заголовок выбранного элемента
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="ing/exit.png" alt"" /></button>
+                        <button type="image" class="img_add"><img src="../assets/exit.png" alt"" /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="ing/change.png" alt"" /></button>
+                        <button type="image" class="img_add"><img src="../assets/change.png" alt"" /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="ing/delete.png" alt"" /></button>
+                        <button type="image" class="img_add"><img src="../assets/delete.png" alt"" /></button>
                     </div>
                 </div>
                 <div id="edit_Form">Форма просмотра/редактирования</div>
@@ -102,7 +102,7 @@
     </div>
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
 </body>
 
 </html>

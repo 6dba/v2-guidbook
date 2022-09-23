@@ -44,7 +44,7 @@ function post($url, $parameters = array()) {
     
     return json_decode($response, true);
 }
-print_r(get("http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer"));
+/*print_r(get("http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer"));
 
 print_r(post("http://81.161.220.59:8100/api/division/?action=setVariables&request=developer", array(
         "id" => "686",
@@ -58,5 +58,5 @@ print_r(post("http://81.161.220.59:8100/api/division/?action=setVariables&reques
         "isOpo" => "Y",
         "is_order_visible" => "Y"
     )
-));
+));*/
 ?>
