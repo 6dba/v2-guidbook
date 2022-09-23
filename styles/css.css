@@ -51,6 +51,11 @@ li{
     height: auto;
     overflow-y: auto;
 }
+.trap_edit{
+        height: auto;
+    overflow-y: auto;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+}
 .container_information{
     width: 100%;
     padding-left: 100px;
@@ -111,6 +116,8 @@ li{
     border-collapse: collapse;
     line-height: 1.1;
     font-family: "Lucida Sans Unicode";
+    max-width:100%;
+    color:black;
 }
 
 .typetable th {
@@ -129,4 +136,11 @@ li{
     font-weight: bold;
     text-align: center;
     background: gray;
+}
+.edit {
+    display:none;
+}
+.arg_edit{
+    font-weight: bold;
+    font-size: 13px;
 }

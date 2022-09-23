@@ -66,7 +66,7 @@
                 </div>
                 
                 
-                <div class = "typetable w-100 p-1 title_guide">
+                <div class = "typetable p-1 title_guide">
                   <caption>Место переключения режима</caption> 
                   <tr>
                     <th rowspan="1" class="first">Номер</th>
@@ -82,27 +82,28 @@
                 
                 
             </div>
-            <div class="col trap">
+            <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
-                    <div id="ttl_el" class="w-100 p-1 title_element">Заголовок выбранного элемента
+                    <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/exit.png" alt"" /></button>
+                        <button type="image" class="img_add" ><img src="../assets/exit.png" alt"" ></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="../assets/change.png" alt"" /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/delete.png" alt"" /></button>
+                        <button type="image" class="img_add"><img src="../assets/delete.png" alt"" onClick=close_edit()></button>
                     </div>
                 </div>
-                <div id="edit_Form">Форма просмотра/редактирования</div>
+                <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
     </div>
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+
 </body>
 
 </html>
