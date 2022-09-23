@@ -1,7 +1,6 @@
 <?php
-include '../php/api.php';
+include 'api.php';
 
-$data = get("http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer");
+$data = get($_POST['url']);
 echo json_encode($data);
-
 ?>

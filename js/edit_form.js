@@ -7,6 +7,7 @@ function selectItem() {
         url: '../php/ajaxget.php',
         method: 'POST',
         dataType: 'json',
+        data:{ url: 'http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer'},
         success: function (data) {
             document.getElementById('ttl_el').innerHTML = data['ID'];
         },
