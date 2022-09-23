@@ -1,19 +1,14 @@
 <?php 
-const API_URL = "http://81.161.220.59:8100/api";
 
 /** 
- * Получение указанного $resource по $url с указанным $request
- *
- * http://81.161.220.59:8100/api/structureTest/?action=getData&pid=E2
- * |            $url            |  $resource  |       $request      | 
- *
+ * Получение данных по $url
  */
-function get($url, $resource = "", $request = "") {
+function get($url) {
 
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $url . "/" . $resource . "/" . $request,
+        CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -28,18 +23,14 @@ function get($url, $resource = "", $request = "") {
     return json_decode($response, true);
 }
 /**
- * Отправка информации ($parameters) по $url на $resource с указанным $id
- * 
- * http://81.161.220.59:8100/api/division/3/
- * |            $url            | $resource | | $id |
- *
+ * Отправка $parameters по $url
  */
-function post($url, $resource = "", $id = "", $parameters = array()) {
+function post($url, $parameters = array()) {
 
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => $url . "/" . $resource . "/" . $id,
+        CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -53,17 +44,17 @@ function post($url, $resource = "", $id = "", $parameters = array()) {
     
     return json_decode($response, true);
 }
-print_r(get(API_URL, "structureTest", "?action=getData&pid=E2"));
+print_r(get("http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer"));
 
-print_r(post(API_URL, "division", "100", array(
-        "id" => 2,
+print_r(post("http://81.161.220.59:8100/api/division/?action=setVariables&request=developer", array(
+        "id" => "686",
         "name" => "name",
         "fullname" => "fullName",
         "enterprise" => 2,
         "type" => 2,
-        "shift" => 2,
-        "chief" => 2,
-        "adjanced" => 2,
+        "shift" => 1,
+        "chief" => 1,
+        "adjanced" => 1,
         "isOpo" => "Y",
         "is_order_visible" => "Y"
     )
