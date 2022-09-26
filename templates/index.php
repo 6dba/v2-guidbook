@@ -64,7 +64,10 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=selectItem()></button>
+                        <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItem()></button>
                     </div>
                 </div>
 
@@ -90,15 +93,16 @@
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/exit.png" alt""></button>
+                        <button type="image" class="img_add"><img src="../assets/exit.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt"" id='img_change' /></button>
+                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt="" id='img_change' /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/delete.png" alt"" onClick=close_edit()></button>
+                        <button type="image" class="img_add"><img src="../assets/delete.png" alt="" onClick=close_edit()></button>
                     </div>
                 </div>
+                <div id='loading' class='loading p-2'>Loading</div>
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
@@ -106,7 +110,7 @@
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
 
 </body>
-
 </html>

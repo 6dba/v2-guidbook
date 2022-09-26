@@ -1,42 +1,3 @@
-/**
- * Обращаемся к файлу, где запрашиваем API
- * Объект приходит в форме json, расшифровывать обратно  не надо, поля берем просто по именам data['ID'], data['NAME'] и тд
- **/
-function selectItem() {
-    $.ajax({
-        url: '../php/ajaxget.php',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            url: 'http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer'
-        },
-        success: function (data) {
-            document.getElementById('ttl_el').innerHTML = data['NAME'];
-            /* генерация форм */
-            document.getElementById('edit_Form').innerHTML =
-                "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_1' class='arg_field'>" + (data['NAME'] ? data['NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_2' class='arg_field'>" + (data['NAME_FULL'] ? data['NAME_FULL'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ХОЛДИНГ</p>" +
-                "<p id='arg_3' class='selectlist arg_field'>" + (data['HOLDING_NAME'] ? data['HOLDING_NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ТИП ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_4' class='selectlist arg_field'>" + (data['ENTERPRISE_TYPE'] ? data['ENTERPRISE_TYPE'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_5' class='selectlist arg_field'>" + (data['DIRECTOR_NAME'] ? data['DIRECTOR_NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ПОДРЯДНАЯ ОРГАНИЗАЦИЯ</p>" +
-                "<input type='checkbox' id='arg_6' readonly" + (data['ISCONTRACTOR'] ? 'checked> ' : '>') +
-                "<p class='arg_edit'>СКЛАД</p>" +
-                "<p id='arg_7'  class='arg_field'>" + (data['SKLAD'] ? data['SKLAD'] : 'Не заполнено') + "</p>";
-            document.getElementById('block_edit').classList.remove('edit');
-        },
-        error: function (jqxhr, status, errorMsg) {
-            console.log(status + ' ' + errorMsg);
-        }
-    });
-
-}
-
 function close_edit() {
     document.getElementById('block_edit').classList.add('edit');
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
@@ -45,11 +6,12 @@ function close_edit() {
 
 function edit() {
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        selectItem();
+        selectItem('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer');
         img_change.src = '../assets/change.png';
-
     } else {
         img_change.src = '../assets/save.png';
+        loading.classList.remove('loading');
+        edit_Form.classList.add('loading');
         for (var i = 1; i <= 7; i++) {
             var name = eval("arg_" + i);
             var in_tag = name.innerHTML;
@@ -58,10 +20,53 @@ function edit() {
                 continue;
             }
             if (name.classList.contains('selectlist')) {
-                name.outerHTML = "<select class='input_tag'>" + "<option value=\'first\'>Опция 1</option>" + "<option value=\'second\'>Опция 2</option>" + "</select>";
+                selectList(name);
                 continue;
             }
             name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
         }
+        loading.classList.add('loading')
+        edit_Form.classList.remove('loading');
     }
+}
+
+function selectList(name) {
+    var id = '';
+    var list = '';
+    if (name.id == 'arg_3') list = 'holdings';
+    else if (name.id == 'arg_4') list = 'enterpriseTypes';
+    else if (name.id == 'arg_5') {
+        list = 'users';
+        id = '&enterprise=2';
+    }
+    var url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
+    $.ajax({
+        url: '../php/ajaxget.php',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            url: url
+        },
+        success: function (data) {
+            str = "<select class='input_tag'><option>Не выбран</option>";
+            for (var i in data) {
+                if (data[i][getFieldName(data[i])] == name.innerHTML)
+                    str += "<option selected>" + data[i][getFieldName(data[i])] + "</option>";
+                else str += "<option>" + data[i][getFieldName(data[i])] + "</option>";
+            }
+            str += "</select>";
+            name.outerHTML = str;
+        },
+        error: function (jqxhr, status, errorMsg) {
+            console.log(status + ' ' + errorMsg);
+        }
+    });
+}
+
+function getFieldName(obj) {
+    var key = "";
+    Object.keys(obj).forEach(function (a) {
+        if (a.includes('NAME')) key = a;
+    })
+    return key;
 }
