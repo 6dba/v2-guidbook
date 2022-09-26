@@ -25,8 +25,6 @@ function edit() {
             }
             name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
         }
-        loading.classList.add('loading')
-        edit_Form.classList.remove('loading');
     }
 }
 
@@ -56,6 +54,8 @@ function selectList(name) {
             }
             str += "</select>";
             name.outerHTML = str;
+            edit_Form.classList.remove('loading');
+            loading.classList.add('loading');
         },
         error: function (jqxhr, status, errorMsg) {
             console.log(status + ' ' + errorMsg);
