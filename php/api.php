@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-/** 
+/**
  * Получение данных по $url
+ * Возвращается JSON обьект
  */
 function get($url) {
 
@@ -20,12 +21,13 @@ function get($url) {
 
     $response = curl_exec($curl); curl_close($curl);
 
-    return json_decode($response, true);
+    return $response;
 }
 /**
  * Отправка $parameters по $url
+ * Возвращается JSON обьект
  */
-function post($url, $parameters = array()) {
+function post($url, $data = array()) {
 
     $curl = curl_init();
 
@@ -38,25 +40,20 @@ function post($url, $parameters = array()) {
         CURLOPT_HTTPHEADER => array(
         "cache-control: no-cache"
         ),
-        CURLOPT_POSTFIELDS => http_build_query($parameters),
+        CURLOPT_POSTFIELDS => http_build_query($data),
     ));
     $response = curl_exec($curl); curl_close($curl);
-    
-    return json_decode($response, true);
-}
-/*print_r(get("http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer"));
 
-print_r(post("http://81.161.220.59:8100/api/division/?action=setVariables&request=developer", array(
-        "id" => "686",
-        "name" => "name",
-        "fullname" => "fullName",
-        "enterprise" => 2,
-        "type" => 2,
-        "shift" => 1,
-        "chief" => 1,
-        "adjanced" => 1,
-        "isOpo" => "Y",
-        "is_order_visible" => "Y"
-    )
-));*/
+    return $response;
+}
+
+// Вызов API методов посредством AJAX JQuery
+if (isset($_POST['data']) and isset($_POST['url'])) {
+   echo post($_POST['url'], json_decode($_POST['data']));
+}
+
+if (isset($_POST['url'])) {
+   echo get($_POST['url']);
+}
+
 ?>

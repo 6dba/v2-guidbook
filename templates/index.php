@@ -58,7 +58,7 @@
                 </select>
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find'>
-                    <button type="button_find" class="ms-3 btn_find">Найти</button>
+                    <button type="button_find" class="ms-3 btn_find" onClick="search()">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Заголовок справочника
@@ -82,7 +82,9 @@
                     </tr>
                 </div>
 
+                <div id="view" class="p-1">
 
+               </div>
 
             </div>
             <div class="col trap_edit edit" id="block_edit">
@@ -106,6 +108,8 @@
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/search.js"></script>
 
 </body>
 
