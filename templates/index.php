@@ -67,7 +67,7 @@
                         <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItem()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=show_edit()></button>
                     </div>
                 </div>
 
@@ -112,12 +112,10 @@
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
-<<<<<<< HEAD
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
-=======
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
->>>>>>> 0dece670d7ce148d6315c0bf65ad5cc4bf29fec6
+
 
 </body>
 </html>

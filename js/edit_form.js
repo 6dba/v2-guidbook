@@ -8,7 +8,7 @@ function close_edit() {
 //функция для перехода в режим редактирования или обратно в //режим просмотра
 function edit() {
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        selectItem('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer');
+        show_edit('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer');
         img_change.src = '../assets/change.png';
     } else {
         img_change.src = '../assets/save.png';
@@ -50,7 +50,7 @@ function selectList(name) {
             url: url
         },
         success: function (data) {
-            str = "<select class='input_tag'><option>Не выбран</option>";
+            str = "<select class='input_tag'><option></option>";
             //получаем массив JSON-объектов, перебираем 
             //каждый элемент и вставляем его имя в селект 
             //лист

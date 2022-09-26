@@ -1,31 +1,28 @@
-function request(url, requestData) {
+function request(url, func, requestData) {
 
-   let data = {
-      url: url
-   }
+    let data = {
+        url: url
+    }
 
-   if (requestData !== undefined) {
-      data["data"] = requestData
-   }
+    if (requestData !== undefined) {
+        data["data"] = requestData
+    }
 
-   $.ajax({
-      url: '../php/api.php',
-      method: 'POST',
-      dataType: 'json',
-      data: data,
-      success: function (data) {
-         return data;
-      },
-      error: function (jqxhr, status, errorMsg) {
-           return (status, errorMsg);
-      }
-   });
+    return $.ajax({
+        url: '../php/ajaxget.php',
+        method: 'POST',
+        dataType: 'json',
+        data: data,
+        success: function(response){
+            func(response);
+        }
+    });
+
+}
+function get(url, func) {
+    request(url, func)
 }
 
-function get(url) {
-   request(url)
-}
-
-function post(url, data) {
-   request(url, data)
+function post(url, func, data) {
+    request(url, func, data)
 }
