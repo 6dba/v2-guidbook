@@ -10,5 +10,4 @@ if ( $_COOKIE['user'] == '1' ) {
     cach($data);
 }
 header( "Location: /templates" );
-
 ?>
