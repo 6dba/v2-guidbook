@@ -13,7 +13,7 @@
         },
         success: function (data) {
             document.getElementById('ttl_el').innerHTML = data['NAME'];
-            /* генерация форм 
+            /* генерация форм
             document.getElementById('edit_Form').innerHTML =
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                 "<p id='arg_1' class='arg_field'>" + (data['NAME'] ? data['NAME'] : 'Не заполнено') + "</p>" +
@@ -37,11 +37,13 @@
     });
 
 }*/
+
 /*'http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer'*/
 function show_edit(url)
 {
     get('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer', selectItem);
 }
+
 function selectItem(data) {
     document.getElementById('ttl_el').innerHTML = data['NAME'];
     document.getElementById('edit_Form').innerHTML =

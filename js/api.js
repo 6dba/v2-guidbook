@@ -1,4 +1,4 @@
-function request(url, func, requestData) {
+function request(url, requestData) {
 
     let data = {
         url: url
@@ -8,21 +8,28 @@ function request(url, func, requestData) {
         data["data"] = requestData
     }
 
-    return $.ajax({
-        url: '../php/ajaxget.php',
+    return new Promise(function (resolve, reject) {
+      $.ajax({
+        url: '../php/api.php',
         method: 'POST',
         dataType: 'json',
         data: data,
-        success: function(response){
-            func(response);
+        success: function(response) {
+            return resolve(response);
+        },
+        error: function (jqxhr, status, errorMsg) {
+            return reject(errorMsg);
         }
-    });
-
-}
-function get(url, func) {
-    request(url, func)
+     });
+  });
 }
 
-function post(url, func, data) {
-    request(url, func, data)
+
+
+function get(url) {
+    return request(url);
+}
+
+function post(url, data) {
+    return request(url, data);
 }

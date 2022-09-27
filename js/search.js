@@ -1,5 +1,9 @@
-function search() {
-   let data = get('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer');
+function search(data) {
+
+   get('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer')
+   .then(resolve => console.log(resolve));
+
+   console.log(data);
 
    document.getElementById('view').innerHTML =
    "<ul id='tree'> \

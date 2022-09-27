@@ -48,12 +48,12 @@ function post($url, $data = array()) {
 }
 
 // Вызов API методов посредством AJAX JQuery
-//if (isset($_POST['data']) and isset($_POST['url'])) {
-//   echo post($_POST['url'], json_decode($_POST['data']));
-//}
-//
-//if (isset($_POST['url'])) {
-//   echo get($_POST['url']);
-//}
+if (isset($_POST['data']) and isset($_POST['url'])) {
+   echo post($_POST['url'], json_decode($_POST['data']));
+}
+
+if (isset($_POST['url'])) {
+   echo get($_POST['url']);
+}
 
 ?>
