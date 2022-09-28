@@ -17,11 +17,11 @@ function edit() {
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
         if (ttl_el.innerHTML.includes('Предприятие')) {
             postEnterprise();
-            setTimeout(selectItemEnterprise, 10);
+            setTimeout(selectItemEnterprise, 100);
             
         } else{
             postDivision();
-            setTimeout(selectItemDivision, 10);
+            setTimeout(selectItemDivision, 100);
         }
         img_change.src = '../assets/change.png';
     } else {

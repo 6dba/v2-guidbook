@@ -12,7 +12,7 @@ function postEnterprise() {
     data['holding'] = arg_3.options[arg_3.selectedIndex].value;
     data['type'] = arg_4.options[arg_4.selectedIndex].value;
     data['director'] = arg_5.options[arg_5.selectedIndex].value;
-    if (arg_6.checked) data['isContractor'] = 'Y';
+    if (arg_6.checked) data['isContractor'] = "Y";
     else data["isContractor"] = '';
     data["sklad"] = arg_7.value;
 
