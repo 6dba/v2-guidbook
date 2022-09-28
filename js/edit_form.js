@@ -1,89 +1,69 @@
 //закрыть форму просмотра/редактирования
 function close_edit() {
     document.getElementById('block_edit').classList.add('edit');
+    ttl_el.innerHTML = '';
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
         img_change.src = '../assets/change.png';
+    let id;
+    ttl_el.classList.forEach(
+        function (a) {
+            if (/id/.test(a)) id = a;
+        });
+    ttl_el.classList.remove(id);
 }
 
 //функция для перехода в режим редактирования или обратно в //режим просмотра
 function edit() {
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
         if (ttl_el.innerHTML.includes('Предприятие')) {
-            post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', {
-   "id": "2",
-   "name": "mytest",
-   "fullname": "posttest",
-   "holding": "1",
-   "type": "2",
-   "director": "",
-   "isContractor": "Y",
-   "sklad": ""
-}
-);
-            selectItemEnterprise();
-        } else
-            selectItemDivison();
+            postEnterprise();
+            setTimeout(selectItemEnterprise, 10);
+            
+        } else{
+            postDivision();
+            setTimeout(selectItemDivision, 10);
+        }
         img_change.src = '../assets/change.png';
     } else {
         img_change.src = '../assets/save.png';
         //скрываем форму до полной загрузки
         loading.classList.remove('loading');
         edit_Form.classList.add('loading');
-        if (ttl_el.innerHTML.includes('Подразделение')) {
-            for (var i = 8; i <= 16; i++) {
-                var name = eval("arg_" + i);
-                var in_tag = name.innerHTML;
-                if (name.type == 'checkbox') {
-                    name.removeAttribute('readonly');
-                    continue;
-                }
-                if (name.classList.contains('selectlist')) {
-                    selectList(name);
-                    continue;
-                }
-                name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
-            }
-        } else {
-            for (var i = 1; i <= 7; i++) {
-                var name = eval("arg_" + i);
-                var in_tag = name.innerHTML;
-                if (name.type == 'checkbox') {
-                    name.removeAttribute('readonly');
-                    continue;
-                }
-                if (name.classList.contains('selectlist')) {
-                    selectList(name);
-                    continue;
-                }
-                name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
-            }
-        }
+        if (ttl_el.innerHTML.includes('Подразделение'))             changeView(8, 16);
+        else
+            changeView(1, 7);
     }
 }
 
 //Формирование селект листов
 function selectList(name) {
-    var id = '';
-    var list = '';
+    let id = '';
+    let list = '';
     if (name.id == 'arg_3') list = 'holdings';
     else if (name.id == 'arg_4') list = 'enterpriseTypes';
     else if (name.id == 'arg_5' || name.id == 'arg_13') {
         list = 'users';
-        id = '&enterprise=' + name.classList[2].substring(2);
+        let idName;
+        name.classList.forEach(
+            function (a) {
+                if (/id/.test(a)) idName = a;
+            });
+        id = '&enterprise=' + idName.substring(2);
     } else if (name.id == 'arg_10') list = 'enterprise';
     else if (name.id == 'arg_11') list = 'divisionTypes';
     else if (name.id == 'arg_12') list = 'divisionShift';
     else if (name.id == 'arg_14') list = 'divisionAdjanced';
-    var url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
+    let url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
     get(url).then(resolve => {
-        str = "<select class='input_tag'><option></option>";
-        //получаем массив JSON-объектов, перебираем 
+        str = "<select class='input_tag' id='"+name.id+"'><option></option>";
+        //получаем массив JSON-объектов для селект листа, //перебираем 
         //каждый элемент и вставляем его имя в селект 
         //лист
-        for (var i in resolve) {
-            if (resolve[i][getFieldName(resolve[i])] == name.innerHTML)
-                str += "<option selected>" + resolve[i][getFieldName(resolve[i])] + "</option>";
-            else str += "<option>" + resolve[i][getFieldName(resolve[i])] + "</option>";
+        for (let i in resolve) {
+            let field = resolve[i][getFieldName(resolve[i])];
+            if (field == name.innerHTML)
+                str += "<option selected value='"+resolve[i]['ID']+"'>" + field + "</option>";    
+            else str += "<option value='"+resolve[i]['ID']+"'>" + field + "</option>";
         }
         str += "</select>";
         name.outerHTML = str;
@@ -96,9 +76,26 @@ function selectList(name) {
 
 //Ищем поле, где написано имя для селект листа
 function getFieldName(obj) {
-    var key = "";
+    let key;
     Object.keys(obj).forEach(function (a) {
-        if (a.includes('NAME')) key = a;
+        if (a.includes('NAME'))
+            key = a; 
     })
     return key;
+}
+//функция генерации полей режима редактирования
+function changeView(start, end) {
+    for (let i = start; i <= end; i++) {
+        let name = eval("arg_" + i);
+        let in_tag = name.innerHTML;
+        if (name.type == 'checkbox') {
+            name.removeAttribute('readonly');
+            continue;
+        }
+        if (name.classList.contains('selectlist')) {
+            selectList(name);
+            continue;
+        }
+        name.outerHTML = "<input class='input_tag' id='"+ name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
+    }
 }

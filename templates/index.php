@@ -67,7 +67,7 @@
                         <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemEnterprise()></button>
                     </div>
                 </div>
                 <br>
@@ -116,6 +116,7 @@
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
 
 
 </body>

@@ -5,9 +5,8 @@ function request(url, requestData) {
     }
 
     if (requestData !== undefined) {
-        data["data"] = requestData
+        data["data"] = requestData;
     }
-
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: '../php/api.php',
