@@ -58,13 +58,13 @@
                 </select>
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find'>
-                    <button type="button_find" class="ms-3 btn_find" onClick="search()">Найти</button>
+                    <button type="button_find" class="ms-3 btn_find" onClick="">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
+                        <button type="image" class="img_add" onclick="changeView()"><img src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=show_edit()></button>
@@ -113,9 +113,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/search.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-
+    <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
 
 </body>
 </html>
