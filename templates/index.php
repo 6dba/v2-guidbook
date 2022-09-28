@@ -70,7 +70,6 @@
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
                     </div>
                 </div>
-<<<<<<< HEAD
                 <br>
                 <br>
                 <table>
@@ -91,26 +90,6 @@
                 </table>
                 <br>
                 <br>
-=======
-
-
-                <div class="typetable p-1 title_guide">
-                    <tr>
-                        <th rowspan="1" class="first">Номер</th>
-                        <th rowspan="1" class="first">Наименование</th>
-                    </tr>
-                    <tr>
-                        <td rowspan="1" class="first">№ ...</td>
-                        <td>1234S </td>
-                        <td> </td>
-                    </tr>
-                </div>
-
-                <div id="view" class="p-1">
-
-               </div>
-
->>>>>>> eef8c0cbc63d7a4daca0d50edc02770c733c0314
             </div>
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
