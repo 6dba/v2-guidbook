@@ -67,28 +67,29 @@
                         <button type="image" class="img_add" onclick="changeView()"><img src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=show_edit()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
                     </div>
                 </div>
-
-
-                <div class="typetable p-1 title_guide">
-                    <caption>Место переключения режима</caption>
-                    <tr>
-                        <th rowspan="1" class="first">Номер</th>
-                        <th rowspan="1" class="first">Наименование</th>
-                    </tr>
-                    <tr>
-                        <td rowspan="1" class="first">№ ...</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                </div>
-
-                <div id="view" class="p-1">
-
-               </div>
-
+                <br>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="1" class="tfirst">Номер</th>
+                            <th rowspan="1" class="tfirst">Наименование
+                                <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=load_data()></button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan = "1"> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
             </div>
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">

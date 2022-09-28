@@ -1,5 +1,5 @@
 <?php
-define('ENCRYPTION_KEY', md5(microtime() . rand(0, 9999)));
+define('ENCRYPTION_KEY', md5(s0svjser32d92ja));
 // Encrypt Function
 function mc_encrypt($encrypt, $key) {
   $encrypt = serialize($encrypt);

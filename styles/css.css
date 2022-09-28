@@ -111,31 +111,32 @@ li{
     max-width: 100%;
 }
 
-.typetable {
+table {
+    color: black;
+    line-height: 1.0;
+    font-family: "monospace";
+    background: white;
     border-collapse: collapse;
-    line-height: 1.1;
-    font-family: "Lucida Sans Unicode";
-    max-width:100%;
-    color:black;
+    border: 1px solid #F6F6F6;
+    box-shadow: 0.4em 0.4em 12px rgba(122,122,122,0.5);
 }
 
-.typetable th {
-    padding: 10px;
-    border: 1px solid #fff;
+th {
+     padding: 10px;
+     background: #596573;
 }
 
-.typetable td {
-    font-size: 0.8em;
+td {
+    font-size: small;
     padding: 5px 7px;
-    border: 1px solid #fff;
 }
 
-.typetable first {
-    font-size: 1em;
-    font-weight: bold;
+.tfirst {
     text-align: center;
-    background: gray;
+    color: white;
+    border: 1px solid #F6F6F6;
 }
+
 .edit {
     display:none;
 }
@@ -147,6 +148,7 @@ li{
 .input_tag{
     width: 100%;
 }
+
 input[type="checkbox"][readonly] {
   pointer-events: none;
 }
