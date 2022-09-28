@@ -58,15 +58,19 @@
                 </select>
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find'>
-                    <button type="button_find" class="ms-3 btn_find">Найти</button>
+                    <button type="button_find" class="ms-3 btn_find" onClick="search()">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=selectItem()></button>
+                        <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <br>
                 <br>
                 <table>
@@ -87,21 +91,42 @@
                 </table>
                 <br>
                 <br>
+=======
+
+
+                <div class="typetable p-1 title_guide">
+                    <tr>
+                        <th rowspan="1" class="first">Номер</th>
+                        <th rowspan="1" class="first">Наименование</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="1" class="first">№ ...</td>
+                        <td>1234S </td>
+                        <td> </td>
+                    </tr>
+                </div>
+
+                <div id="view" class="p-1">
+
+               </div>
+
+>>>>>>> eef8c0cbc63d7a4daca0d50edc02770c733c0314
             </div>
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/exit.png" alt""></button>
+                        <button type="image" class="img_add"><img src="../assets/exit.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt"" id='img_change' /></button>
+                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt="" id='img_change' /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/delete.png" alt"" onClick=close_edit()></button>
+                        <button type="image" class="img_add"><img src="../assets/delete.png" alt="" onClick=close_edit()></button>
                     </div>
                 </div>
+                <div id='loading' class='loading p-2'>Loading</div>
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
@@ -109,7 +134,10 @@
     <?php endif; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/search.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
+
 
 </body>
-
 </html>

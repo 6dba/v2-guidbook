@@ -161,3 +161,7 @@ input[type="checkbox"][readonly] {
 .arg_field{
     cursor: default;
 }
+
+.loading {
+    display: none;
+}

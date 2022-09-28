@@ -1,67 +1,104 @@
-/**
- * Обращаемся к файлу, где запрашиваем API
- * Объект приходит в форме json, расшифровывать обратно  не надо, поля берем просто по именам data['ID'], data['NAME'] и тд
- **/
-function selectItem() {
-    $.ajax({
-        url: '../php/ajaxget.php',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            url: 'http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=2&request=developer'
-        },
-        success: function (data) {
-            document.getElementById('ttl_el').innerHTML = data['NAME'];
-            /* генерация форм */
-            document.getElementById('edit_Form').innerHTML =
-                "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_1' class='arg_field'>" + (data['NAME'] ? data['NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_2' class='arg_field'>" + (data['NAME_FULL'] ? data['NAME_FULL'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ХОЛДИНГ</p>" +
-                "<p id='arg_3' class='selectlist arg_field'>" + (data['HOLDING_NAME'] ? data['HOLDING_NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ТИП ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_4' class='selectlist arg_field'>" + (data['ENTERPRISE_TYPE'] ? data['ENTERPRISE_TYPE'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_5' class='selectlist arg_field'>" + (data['DIRECTOR_NAME'] ? data['DIRECTOR_NAME'] : 'Не заполнено') + "</p>" +
-                "<p class='arg_edit'>ПОДРЯДНАЯ ОРГАНИЗАЦИЯ</p>" +
-                "<input type='checkbox' id='arg_6' readonly" + (data['ISCONTRACTOR'] ? 'checked> ' : '>') +
-                "<p class='arg_edit'>СКЛАД</p>" +
-                "<p id='arg_7'  class='arg_field'>" + (data['SKLAD'] ? data['SKLAD'] : 'Не заполнено') + "</p>";
-            document.getElementById('block_edit').classList.remove('edit');
-        },
-        error: function (jqxhr, status, errorMsg) {
-            console.log(status + ' ' + errorMsg);
-        }
-    });
-
-}
-
+//закрыть форму просмотра/редактирования
 function close_edit() {
     document.getElementById('block_edit').classList.add('edit');
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
         img_change.src = '../assets/change.png';
 }
 
+//функция для перехода в режим редактирования или обратно в //режим просмотра
 function edit() {
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        selectItem();
+        if (ttl_el.innerHTML.includes('Предприятие')) {
+            post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', {
+   "id": "2",
+   "name": "mytest",
+   "fullname": "posttest",
+   "holding": "1",
+   "type": "2",
+   "director": "",
+   "isContractor": "Y",
+   "sklad": ""
+}
+);
+            selectItemEnterprise();
+        } else
+            selectItemDivison();
         img_change.src = '../assets/change.png';
-
     } else {
         img_change.src = '../assets/save.png';
-        for (var i = 1; i <= 7; i++) {
-            var name = eval("arg_" + i);
-            var in_tag = name.innerHTML;
-            if (name.type == 'checkbox') {
-                name.removeAttribute('readonly');
-                continue;
+        //скрываем форму до полной загрузки
+        loading.classList.remove('loading');
+        edit_Form.classList.add('loading');
+        if (ttl_el.innerHTML.includes('Подразделение')) {
+            for (var i = 8; i <= 16; i++) {
+                var name = eval("arg_" + i);
+                var in_tag = name.innerHTML;
+                if (name.type == 'checkbox') {
+                    name.removeAttribute('readonly');
+                    continue;
+                }
+                if (name.classList.contains('selectlist')) {
+                    selectList(name);
+                    continue;
+                }
+                name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
             }
-            if (name.classList.contains('selectlist')) {
-                name.outerHTML = "<select class='input_tag'>" + "<option value=\'first\'>Опция 1</option>" + "<option value=\'second\'>Опция 2</option>" + "</select>";
-                continue;
+        } else {
+            for (var i = 1; i <= 7; i++) {
+                var name = eval("arg_" + i);
+                var in_tag = name.innerHTML;
+                if (name.type == 'checkbox') {
+                    name.removeAttribute('readonly');
+                    continue;
+                }
+                if (name.classList.contains('selectlist')) {
+                    selectList(name);
+                    continue;
+                }
+                name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
             }
-            name.outerHTML = "<input class='input_tag'" + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
         }
     }
+}
+
+//Формирование селект листов
+function selectList(name) {
+    var id = '';
+    var list = '';
+    if (name.id == 'arg_3') list = 'holdings';
+    else if (name.id == 'arg_4') list = 'enterpriseTypes';
+    else if (name.id == 'arg_5' || name.id == 'arg_13') {
+        list = 'users';
+        id = '&enterprise=' + name.classList[2].substring(2);
+    } else if (name.id == 'arg_10') list = 'enterprise';
+    else if (name.id == 'arg_11') list = 'divisionTypes';
+    else if (name.id == 'arg_12') list = 'divisionShift';
+    else if (name.id == 'arg_14') list = 'divisionAdjanced';
+    var url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
+    get(url).then(resolve => {
+        str = "<select class='input_tag'><option></option>";
+        //получаем массив JSON-объектов, перебираем 
+        //каждый элемент и вставляем его имя в селект 
+        //лист
+        for (var i in resolve) {
+            if (resolve[i][getFieldName(resolve[i])] == name.innerHTML)
+                str += "<option selected>" + resolve[i][getFieldName(resolve[i])] + "</option>";
+            else str += "<option>" + resolve[i][getFieldName(resolve[i])] + "</option>";
+        }
+        str += "</select>";
+        name.outerHTML = str;
+        //показываем обновленную форму с полностью 
+        //загруженными данными
+        edit_Form.classList.remove('loading');
+        loading.classList.add('loading');
+    });
+}
+
+//Ищем поле, где написано имя для селект листа
+function getFieldName(obj) {
+    var key = "";
+    Object.keys(obj).forEach(function (a) {
+        if (a.includes('NAME')) key = a;
+    })
+    return key;
 }
