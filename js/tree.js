@@ -1,8 +1,12 @@
+const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
+const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
+
+// http://81.161.220.59:8100/api/structureTest/?action=getData&pid=H1&request=developer child
+
 function tree() {
 
    const view = document.getElementById('view');
    const tree = document.createDocumentFragment();
-   const url = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
    const list = document.createElement('ul');
 
    get(url)
@@ -14,13 +18,14 @@ function tree() {
 
          Object.assign(name, {
             id: `${parent.ID}`,
-            href: '#'
-         })
+            href: '#',
+            class: `${parent.IDENTIFIER}`
+         });
+
          name.innerHTML = `${parent.NAME}`;
 
          li.appendChild(name); list.appendChild(li);
          tree.appendChild(list); view.appendChild(tree);
-
       })
    })
    .catch((error) => {
@@ -28,14 +33,20 @@ function tree() {
    });
 
 
-   "<ul id='tree'> \
-     <li id='n1'>Предприятие 1</li> \
-     <li id='n2'>Предприятие 2 \
-       <ul id='n2.0'> \
-         <li id='n2.1'>Подразделение 1</li> \
-         <li id='n2.2'>Подразделение 2</li> \
-       </ul> \
-     </li> \
-     <li id='n3'>Предприятие 3</li> \
-   </ul>";
+
+}
+
+async function getTree() {
+
+var tree, childs = [];
+const roots = await get(rootUrl).then(roots => roots);
+
+for (var i = 0; i < roots.length; i++) {
+   await get(`http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${roots[i].ID}&request=developer`)
+      .then(resolve => childs.push(resolve))
+}
+
+console.log(roots, childs);
+
+
 }
