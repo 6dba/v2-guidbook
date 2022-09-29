@@ -64,14 +64,15 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" onclick="changeView()"><img src="../assets/table.png" alt=""></button>
+                        <button type="image" class="img_add" onclick="changeView()"><img id="img_view"src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemEnterprise()></button>
                     </div>
                 </div>
                 <br>
-                <br>
+                </div>
+                <div id="view" class="tree"></div>
                 <table>
                     <thead>
                         <tr>
@@ -88,7 +89,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <br>
                 <br>
             </div>
             <div class="col trap_edit edit" id="block_edit">
@@ -116,7 +116,9 @@
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
+
 
 </body>
 </html>

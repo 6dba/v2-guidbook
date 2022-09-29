@@ -1,5 +1,5 @@
 <?php
-define('ENCRYPTION_KEY', md5(s0svjser32d92ja));
+define('ENCRYPTION_KEY', md5('166435816016150.73777200'));
 // Encrypt Function
 function mc_encrypt($encrypt, $key) {
   $encrypt = serialize($encrypt);

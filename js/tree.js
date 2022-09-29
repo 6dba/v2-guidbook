@@ -1,41 +1,62 @@
 const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
 const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
 
-// http://81.161.220.59:8100/api/structureTest/?action=getData&pid=H1&request=developer child
+async function getRoots() {
+   return await get(rootUrl).then(roots => roots).catch(reject => reject);
+}
 
-function tree() {
+async function getChild(root) {
+   const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${root.ID}&request=developer`
+   return await get(childUrl).then(resolve => resolve).catch(reject => reject);
+}
+
+/*
+* Создание элементарного List Item элемент дерева и его необходимого заполнения
+*/
+function createLi(classItem, item) {
+   let li = document.createElement('li');
+   let name = document.createElement('a');
+
+   name.innerHTML = `${item.NAME}`;
+   name.classList.add(classItem,`${item.IDENTIFIER}`);
+
+   Object.assign(name, {id: item.ID, href: '#'});
+
+   li.appendChild(name);
+   return li;
+}
+
+/*
+ * Создание древовидного отображения подразделений и предприятий компании
+*/
+async function tree() {
 
    const view = document.getElementById('view');
    const tree = document.createDocumentFragment();
-   const list = document.createElement('ul');
+   const ul = document.createElement('ul');
 
-   get(url)
-   .then((response) => {
-      let parents = response;
-      parents.map((parent) => {
-         let li = document.createElement('li');
-         let name = document.createElement('a');
+   const roots = await getRoots();
 
-         Object.assign(name, {
-            id: `${parent.ID}`,
-            href: '#',
-            class: `${parent.IDENTIFIER}`
+   roots.forEach(async (root, i) => {
+      /* Создание элемента списка, с необходимыми дочерними полями */
+      let li = createLi('root', root);
+      /* Запрос детей */
+      const childs = await getChild(root);
+
+      if (childs) {
+         childs.forEach((child) => {
+            let childUl = document.createElement('ul');
+            let childLi = createLi('child', child);
+
+            childUl.appendChild(childLi);
+            li.appendChild(childUl);
          });
-
-         name.innerHTML = `${parent.NAME}`;
-
-         li.appendChild(name); list.appendChild(li);
-         tree.appendChild(list); view.appendChild(tree);
-      })
-   })
-   .catch((error) => {
-      console.log(error);
+      }
+      ul.appendChild(li); tree.appendChild(ul); view.appendChild(tree);
    });
-
-
-
 }
 
+/* Пример async запросов roots и childs
 async function getTree() {
 
 var tree, childs = [];
@@ -49,4 +70,4 @@ for (var i = 0; i < roots.length; i++) {
 console.log(roots, childs);
 
 
-}
+}*/
