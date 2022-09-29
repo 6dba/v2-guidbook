@@ -64,7 +64,7 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/table.png" alt=""></button>
+                        <button type="image" class="img_add"><img src="../assets/table.png" alt="" onclick="load()"></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
@@ -72,25 +72,7 @@
                 </div>
                 <br>
                 <br>
-                <table>
-                    <thead>
-                        <tr>
-                            <th rowspan="1" class="tfirst">Номер</th>
-                            <th rowspan="1" class="tfirst">Наименование
-                                <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=load_data()></button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td rowspan = "1"> </td>
-                            <td> </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <br>
-            </div>
+            </div>         
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
@@ -116,7 +98,6 @@
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-
-
+    <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>  
 </body>
 </html>
