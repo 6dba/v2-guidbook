@@ -58,21 +58,42 @@
                 </select>
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find'>
-                    <button type="button_find" class="ms-3 btn_find" onClick="search()">Найти</button>
+                    <button type="button_find" class="ms-3 btn_find" onClick="">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add"><img src="../assets/table.png" alt="" onclick="load()"></button>
+                        <button type="image" class="img_add" onclick="changeView()"><img id="img_view"src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemDivison()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemEnterprise()></button>
                     </div>
                 </div>
                 <br>
                 <br>
             </div>         
+                </div>
+                <div id="view" class="tree"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="1" class="tfirst">Номер</th>
+                            <th rowspan="1" class="tfirst">Наименование
+                                <button type="image" class="img_add"><img src="../assets/add4.png" alt"" onClick=load_data()></button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan = "1"> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+            </div>
             <div class="col trap_edit edit" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
@@ -96,8 +117,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/search.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>  
+    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
 </body>
 </html>

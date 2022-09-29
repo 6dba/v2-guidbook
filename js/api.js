@@ -4,10 +4,9 @@ function request(url, requestData) {
         url: url
     }
 
-    if (requestData !== undefined) {
-        data["data"] = requestData
+    if (requestData) {
+        data["data"] = requestData;
     }
-
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: '../php/api.php',
@@ -18,7 +17,7 @@ function request(url, requestData) {
             return resolve(response);
         },
         error: function (jqxhr, status, errorMsg) {
-            return reject(errorMsg);
+            return reject(errorMsg, status);
         }
      });
   });
