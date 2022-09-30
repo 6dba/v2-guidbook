@@ -48,6 +48,7 @@ function post($url, $data = array()) {
 
 // Вызов API методов посредством AJAX JQuery
 if (isset($_POST['data']) and isset($_POST['url'])) {
+    echo json_encode($_POST['data']);
    echo post($_POST['url'], $_POST['data']);
 }
 
