@@ -1,4 +1,5 @@
 body{
+        overflow-y: inherit;
 }
 
 .container-fluid{
@@ -48,17 +49,18 @@ li{
     cursor: pointer;
 }
 .trap{
-    height: auto;
-    overflow-y: auto;
+    max-height: 63vh;
+    overflow-y: inherit;
 }
 .trap_edit{
-        height: auto;
+    height: auto;
     overflow-y: auto;
     box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
 }
 .container_information{
     width: 100%;
     padding-left: 100px;
+    max-height: 100vh;
 }
 
 .guides{
@@ -174,4 +176,8 @@ td {
     color: white;
     border: 1px solid #F6F6F6;
 }
-
+#view {
+    overflow-y: auto;
+    max-height: 100%;
+    
+}

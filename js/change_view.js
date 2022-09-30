@@ -13,7 +13,7 @@ function changeView() {
    if (view.classList.contains('tree')) {
       icon.src = '../assets/tree.png'; removeChilds(view);
       /* Отрисовка нового view */
-      // tableview();
+      load();
       /* Подмена классов */
       view.classList.remove('tree'); view.classList.add('table');
    } else if (view.classList.contains('table')) {

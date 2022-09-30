@@ -8,11 +8,11 @@ function load(){
         table.appendChild(thead);
         table.appendChild(tbody);
 
-        document.getElementById('body').appendChild(table);
+        document.getElementById('view').appendChild(table);
 
         let row_1 = document.createElement('tr');
         let heading_1 = document.createElement('th');
-        heading_1.innerHTML = "Номер";
+        heading_1.innerHTML = "Название";
         let heading_2 = document.createElement('th');
         heading_2.innerHTML = "Наименование";
 
@@ -24,7 +24,7 @@ function load(){
             let rown = document.createElement('tr');
             if (item.ID && item.TYPE_NAME) {
                 let rown_data_1 = document.createElement('td');
-                rown_data_1.innerHTML = `${item.ID}`;
+                rown_data_1.innerHTML = `${item.NAME}`;
                 rown.appendChild(rown_data_1);
 
                 let rown_data_2 = document.createElement('td');

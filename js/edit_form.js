@@ -29,9 +29,9 @@ function edit() {
         //скрываем форму до полной загрузки
         loading.classList.remove('loading');
         edit_Form.classList.add('loading');
-        if (ttl_el.innerHTML.includes('Подразделение'))             changeView(8, 16);
+        if (ttl_el.innerHTML.includes('Подразделение'))             editView(8, 16);
         else
-            changeView(1, 7);
+            editView(1, 7);
     }
 }
 
@@ -84,7 +84,7 @@ function getFieldName(obj) {
     return key;
 }
 //функция генерации полей режима редактирования
-function changeView(start, end) {
+function editView(start, end) {
     for (let i = start; i <= end; i++) {
         let name = eval("arg_" + i);
         let in_tag = name.innerHTML;
