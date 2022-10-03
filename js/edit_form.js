@@ -14,12 +14,12 @@ function edit() {
         button_change_view.onclick = changeView
     }, 1000);
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        if (ttl_el.innerHTML.includes('Предприятие')) {
+        if (ttl_el.innerHTML.includes('Предприятие') || (typeof type !== 'undefined' && type.val() == 'enterprise')) {
             postEnterprise();
             setTimeout(function () {
                 selectItemEnterprise(findID(ttl_el));
             }, 100);
-        } else {
+        } else if (ttl_el.innerHTML.includes('Подразделение') || (typeof type !== 'undefined' && type.val() == 'enterprise')) {
             postDivision();
             setTimeout(function () {
                 selectItemDivision(findID(ttl_el));

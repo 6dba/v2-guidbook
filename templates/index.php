@@ -14,6 +14,7 @@
     <script language="javascript" type="text/javascript" src="../js/post.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
     <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
     <title>В2</title>
 </head>
 
@@ -57,7 +58,7 @@
     if($_COOKIE['user'] == '1'):
     ?>
     <div class="container_information">
-        <div class="row">
+        <div class="row d-flex">
             <div class="col trap">
                 <select class="guides">
                     <option value="first">Справочник 1</option>
@@ -86,7 +87,7 @@
                 </script>
             </div>
 
-            <div class="col trap_edit edit" id="block_edit">
+            <div class="col trap_edit edit align-self-start" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
@@ -101,7 +102,7 @@
                     </div>
                 </div>
                 <div id='loading' class='loading p-2' style='text-align: center'>
-                    <div class='three-quarters-loader' id='loader_icon'></div>
+                    <div class='spinner-border text-primary' id='loader_icon'></div>
                 </div>
                 <div id="edit_Form" class="p-2"></div>
             </div>

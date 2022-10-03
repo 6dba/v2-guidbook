@@ -1,5 +1,5 @@
 async function getAll() {
-    return await get('http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer').then(all => all).catch(reject => reject);
+    return await cache('table').then(all => all).catch(reject => reject);
 }
 
 async function load() {

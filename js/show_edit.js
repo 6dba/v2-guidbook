@@ -83,10 +83,14 @@ function findName(id, obj) {
 function getType(object) {
     if (object.classList.contains("DIVISION")) {
         ttl_el.innerHTML = '';
+        if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
+        img_change.src = '../assets/change.png';
         removeID();
         selectItemDivision(object.id.substring(1));
     } else if (object.classList.contains("ENTERPRISE")) {
         ttl_el.innerHTML = '';
+        if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
+        img_change.src = '../assets/change.png';
         removeID();
         selectItemEnterprise(object.id.substring(1));
     } else return;

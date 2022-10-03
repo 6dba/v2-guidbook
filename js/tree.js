@@ -1,13 +1,10 @@
-const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
-const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
 
 async function getRoots() {
-    return await get(rootUrl).then(roots => roots).catch(reject => reject);
+    return await cache('tree').then(roots => roots).catch(reject => reject);
 }
 
 async function getChilds(parentId) {
-    const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${parentId}&request=developer`
-    return await get(childUrl).then(resolve => resolve).catch(reject => reject);
+    return await cache('tree',`${parentId}`).then(resolve => resolve).catch(reject => reject);
 }
 
 function createElemWithAttr(item, attributes) {
@@ -18,17 +15,18 @@ function createElemWithAttr(item, attributes) {
  * Грузятся все родители, выводятся, кэшируются. При нажатии на родителя,
  * запрашиваются его дети, грузятся, выводятся.
  */
-async function openChilds(element) {
+async function openChilds(element, button) {
     const childs = await getChilds(element.id);
     if (!childs) return;
-
 
     const li = element.parentElement;
     if (li.classList.contains('open')) {
         li.removeChild(li.lastChild);
-        li.classList.remove('open')
+        li.classList.remove('open');
+        button.querySelector('img').src = '../assets/rootClose.png';
         return;
     }
+    button.querySelector('img').src = '../assets/rootOpen.png';
     li.classList.add('open');
     li.appendChild(createUl('child', childs))
 }
@@ -61,11 +59,7 @@ function createLi(classItem, item) {
     });
     button.innerHTML = "<img src=../assets/rootClose.png alt='' id='img_root'/>";
     button.onclick = function () {
-        openChilds(a);
-        if (a.parentElement.classList.contains('open'))
-            this.querySelector('img').src = '../assets/rootClose.png';
-        else
-            this.querySelector('img').src = '../assets/rootOpen.png';
+        openChilds(a, this);
     }
     a.onclick = function () {
         getType(this)
