@@ -64,10 +64,10 @@
                     <div class="w-100 p-1 title_guide">Заголовок справочника
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                        <button type="image" class="img_add" id="button_change_view" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onClick=selectItemEnterprise()></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt=""></button>
                     </div>
                 </div>
                 <div id="view" class="tree"></div>
@@ -87,7 +87,9 @@
                         <button type="image" class="img_add"><img src="../assets/delete.png" alt="" onClick=close_edit()></button>
                     </div>
                 </div>
-                <div id='loading' class='loading p-2'>Loading</div>
+                <div id='loading' class='loading p-2' style='text-align: center'>
+                    <div class='three-quarters-loader' id='loader_icon'></div>
+                </div>
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
