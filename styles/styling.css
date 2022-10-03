@@ -3,6 +3,12 @@ body {
 }
 
 .container-fluid {
+    background-color:#7eecf2;
+    height: 68px;
+    color:white;
+}
+
+.container-fluid {
     color: white;
     background-color: #00CED1;
     height: 68px;   
@@ -177,7 +183,7 @@ th, td {
     padding: 10px;
     border: 1px solid #D3D3D3;
 }
-
+    
 th {
     color: white;
     background: #596573;
