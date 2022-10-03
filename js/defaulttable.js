@@ -40,7 +40,6 @@ async function load() {
             rown_data_2.innerHTML = `${item.TYPE_NAME}`;
             rown.appendChild(rown_data_2);
         }
-        tbody.appendChild(rown);
-        
+        tbody.appendChild(rown);    
     });
 }

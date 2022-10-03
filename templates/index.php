@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../styles/css.css">
+    <link rel="stylesheet" href="../styles/styling.css">
+    <link rel="stylesheet" href="../styles/tabledata.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <title>В2</title>
@@ -13,9 +14,9 @@
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
             <div class="imgpos">
-                <img src="../assets/logo2.png" alt="" />
+                <img src="../assets/altan_logo.png" alt="" />
             </div>
-            <div class="title flex-grow-1">Локальный сервер V1.2.3</div>
+            <div class="title flex-grow-1">Локальный сервер v 1.2.3</div>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2 link-light">Инструменты</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Модули</a></li>
