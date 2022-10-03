@@ -69,7 +69,7 @@
                     <button type="button_find" class="ms-3 btn_find" onClick="">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
-                    <div class="w-100 p-1 title_guide">Заголовок справочника
+                    <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button type="image" class="img_add" id="button_change_view" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>

@@ -54,7 +54,7 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
             "<p id='arg_10' class='selectlist arg_field'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterprise) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-            "<p id='arg_11' class='arg_field'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
+            "<p id='arg_11' class='selectlist arg_field'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
             "<p id='arg_12' class='selectlist arg_field'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
@@ -81,13 +81,15 @@ function findName(id, obj) {
 
 //функции определения типа объекта
 function getType(object) {
-    ttl_el.innerHTML = '';
-    removeID();
-    if (object.classList.contains("DIVISION"))
+    if (object.classList.contains("DIVISION")) {
+        ttl_el.innerHTML = '';
+        removeID();
         selectItemDivision(object.id.substring(1));
-    else if (object.classList.contains("ENTERPRISE"))
+    } else if (object.classList.contains("ENTERPRISE")) {
+        ttl_el.innerHTML = '';
+        removeID();
         selectItemEnterprise(object.id.substring(1));
-    else return;
+    } else return;
 }
 
 function blockSelect(freeze) {

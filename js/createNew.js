@@ -46,6 +46,7 @@ function createNewObject() {
             type.disabled = true;
             loading.classList.remove('loading');
             edit_Form.classList.add('loading');
+            get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer').then(divisionType =>
             get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
 
                 document.getElementById('edit_Form').innerHTML =
@@ -56,7 +57,7 @@ function createNewObject() {
                     "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
                     "<select class='input_tag' id='arg_10'><option></option>" + createSelectList(enterprise) +
                     "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-                    "<input id='arg_11' class='input_tag'>" +
+                    "<select class='input_tag' id='arg_11'><option></option>" + createSelectList(divisionType) +
                     "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
                     "<select class='input_tag' id='arg_12'><option></option>" + createSelectList(divisionShift) +
                     "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag' id='arg_13'><option></option>" + createSelectList(users) +
@@ -69,7 +70,7 @@ function createNewObject() {
                 edit_Form.classList.remove('loading');
                 loading.classList.add('loading');
                 type.disabled = false;
-            }))));
+            })))));
         } else if ($(this).val() == '')
             edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
     })

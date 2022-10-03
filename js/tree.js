@@ -40,18 +40,19 @@ function createLi(classItem, item) {
     let li;
     if (classItem == 'root')
         li = createElemWithAttr('li', {
-            className: classItem
+            className: classItem,
+            style: 'padding-top: 10px;'
         });
     else
         li = createElemWithAttr('li', {
             className: classItem,
-            style: 'margin-left: 30px'
+            style: 'margin-left: 30px;'
         });
-
     let div = document.createElement('div');
     let a = createElemWithAttr('a', {
         className: item.IDENTIFIER,
-        id: item.ID
+        id: item.ID,
+        style: 'text-decoration: none; color: black;'
     });
     let button = createElemWithAttr('button', {
         style: 'height: 20px; width: 20px; margin-right: 10px;',
