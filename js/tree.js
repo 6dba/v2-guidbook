@@ -71,35 +71,7 @@ async function tree() {
 
    const roots = await getRoots();
 
-<<<<<<< HEAD
    const ul = createUl('root', roots);
    tree.appendChild(ul); view.appendChild(tree);
-=======
-   roots.forEach(async (root, i) => {
-      /* Создание элемента списка, с необходимыми дочерними полями */
-      let li = createLi('root', root);
-      /* Запрос детей */
-      const childs = await getChild(root);
-
-      if (childs) {
-         childs.forEach((child) => {
-            let childUl = document.createElement('ul');
-            let childLi = createLi('child', child);
-
-            childUl.appendChild(childLi);
-            li.appendChild(childUl);
-         });
-      }
-      ul.appendChild(li); tree.appendChild(ul); view.appendChild(tree);
-       
-   });
-}
-
-/* Пример async запросов roots и childs
-async function getTree() {
-
-var tree, childs = [];
-const roots = await get(rootUrl).then(roots => roots);
->>>>>>> 093e43440dfbbbf23374313d8b94cf05158dcf15
 
 }
