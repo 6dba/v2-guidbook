@@ -1,7 +1,7 @@
 /* Очистка элемента */
-function removeChilds(item) {
-   while (item.hasChildNodes()) {
-      item.removeChild(item.lastChild);
+function removeChilds(element) {
+   while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild);
    }
 }
 
@@ -11,7 +11,7 @@ function changeView() {
    let icon = document.getElementById('img_view');
 
    if (view.classList.contains('tree')) {
-      icon.src = '../assets/tree.png'; removeChilds(view);
+      icon.src = '../assets/tree-icon.png'; removeChilds(view);
       /* Отрисовка нового view */
       load();
       /* Подмена классов */
