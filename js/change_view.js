@@ -1,8 +1,8 @@
 /* Очистка элемента */
-function removeChilds(item) {
-    while (item.hasChildNodes()) {
-        item.removeChild(item.lastChild);
-    }
+function removeChilds(element) {
+   while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild);
+   }
 }
 
 function changeView() {
@@ -19,7 +19,6 @@ function changeView() {
         /* Подмена классов */
         icon.src = '../assets/tree.png';
         removeChilds(view);
-        
 
     } else if (view.classList.contains('table')) {
         freezeButton();
@@ -28,7 +27,7 @@ function changeView() {
         tree();
         icon.src = '../assets/table.png';
         removeChilds(view);
-        
+
     }
 
     return;
