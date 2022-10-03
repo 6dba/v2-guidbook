@@ -5,7 +5,15 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="../styles/css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
     <title>В2</title>
 </head>
 
@@ -67,10 +75,15 @@
                         <button type="image" class="img_add" id="button_change_view" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt=""></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onclick="createNewObject()"></button>
                     </div>
                 </div>
                 <div id="view" class="tree"></div>
+                <script>
+                    freezeButton();
+                    tree();
+                    
+                </script>
             </div>
 
             <div class="col trap_edit edit" id="block_edit">
@@ -95,14 +108,6 @@
         </div>
     </div>
     <?php endif; ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
 </body>
 
 </html>

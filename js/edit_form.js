@@ -82,6 +82,7 @@ function getFieldName(obj) {
     })
     return key;
 }
+
 //функция генерации полей режима редактирования
 function editView(start, end) {
     for (let i = start; i <= end; i++) {
@@ -99,6 +100,7 @@ function editView(start, end) {
     }
 }
 
+//найти ID объекта name
 function findID(name) {
     let id;
     name.classList.forEach(
@@ -111,6 +113,7 @@ function findID(name) {
     return id;
 }
 
+//Удалить ID из заголовка формы просмотра/редактирования
 function removeID() {
     ttl_el.classList.forEach(
         function (a) {

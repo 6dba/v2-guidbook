@@ -43,7 +43,7 @@ function selectItemDivision(id) {
     loading.classList.remove('loading');
     edit_Form.classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
-    get('http://81.161.220.59:8100/api/division/?action=getVariables&id=' + id + '&request=developer').then(resolve => get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterpise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ENTERPRISE_ID'] + '&request=developer').then(users => {
+    get('http://81.161.220.59:8100/api/division/?action=getVariables&id=' + id + '&request=developer').then(resolve => get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ENTERPRISE_ID'] + '&request=developer').then(users => {
         document.getElementById('ttl_el').innerHTML = 'Подразделение ' + resolve['NAME'];
         ttl_el.classList.add('id' + resolve['ID']);
         document.getElementById('edit_Form').innerHTML =
@@ -52,9 +52,9 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
             "<p id='arg_9' class='arg_field'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
-            "<p id='arg_10' class='selectlist arg_field'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterpise) : 'Не заполнено') + "</p>" +
+            "<p id='arg_10' class='selectlist arg_field'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterprise) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-            "<p id='arg_11' class='selectlist arg_field'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
+            "<p id='arg_11' class='arg_field'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
             "<p id='arg_12' class='selectlist arg_field'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
@@ -81,6 +81,7 @@ function findName(id, obj) {
 
 //функции определения типа объекта
 function getType(object) {
+    ttl_el.innerHTML = '';
     removeID();
     if (object.classList.contains("DIVISION"))
         selectItemDivision(object.id.substring(1));
