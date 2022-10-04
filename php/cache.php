@@ -1,10 +1,10 @@
 <?php
 include 'hash.php';
 function cach( &$data ) {
-    $ind = 'a';
+    $ind = 0;
     foreach ( $data as $obj ) {
         $encrypted = mc_encrypt( $obj, ENCRYPTION_KEY );
-        apcu_add( $ind, $encrypted );
+        apcu_add( "$ind", $encrypted );
         $ind++;
     }
 

@@ -1,10 +1,9 @@
-function cache(type, parentId) {
+function cache(type, page, parentId) {
     if(!parentId) parentId="";
+    data = {type: type,
+           page: page};
     if(type == 'tree')
-        data = {parentId: parentId,
-               type: type};
-    else if (type == 'table')
-        data = {type: type};
+        data["parentId"] = parentId;
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: '../php/get_cache.php',

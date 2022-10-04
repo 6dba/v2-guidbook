@@ -1,10 +1,9 @@
-
 async function getRoots() {
     return await cache('tree').then(roots => roots).catch(reject => reject);
 }
 
 async function getChilds(parentId) {
-    return await cache('tree',`${parentId}`).then(resolve => resolve).catch(reject => reject);
+    return await cache('tree', 0, `${parentId}`).then(resolve => resolve).catch(reject => reject);
 }
 
 function createElemWithAttr(item, attributes) {
@@ -89,7 +88,6 @@ function createUl(classItem, arr) {
     arr.forEach(async (item) => {
         ul.appendChild(await createLi(classItem, item));
     });
-
     return ul;
 }
 
