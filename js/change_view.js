@@ -22,6 +22,7 @@ function changeView() {
 
     } else if (view.classList.contains('table')) {
         freezeButton();
+        view.onscroll = '';
         view.classList.remove('table');
         view.classList.add('tree');
         removeChilds(view);
