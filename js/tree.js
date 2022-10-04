@@ -34,7 +34,7 @@ async function openChilds(element, button) {
 /*
  * Создание элементарного List Item элемента дерева и его необходимого заполнения
  */
-function createLi(classItem, item) {
+async function createLi(classItem, item) {
     let li;
     if (classItem == 'root')
         li = createElemWithAttr('li', {
@@ -44,7 +44,7 @@ function createLi(classItem, item) {
     else
         li = createElemWithAttr('li', {
             className: classItem,
-            style: 'margin-left: 30px;'
+            style: 'margin-left: 15px;'
         });
     let div = document.createElement('div');
     let a = createElemWithAttr('a', {
@@ -52,20 +52,28 @@ function createLi(classItem, item) {
         id: item.ID,
         style: 'text-decoration: none; color: black;'
     });
-    let button = createElemWithAttr('button', {
-        style: 'height: 20px; width: 20px; margin-right: 10px;',
-        type: 'image',
-        className: 'img_add'
-    });
-    button.innerHTML = "<img src=../assets/rootClose.png alt='' id='img_root'/>";
-    button.onclick = function () {
-        openChilds(a, this);
+
+    if (await getChilds(item.ID)) {
+        let button = createElemWithAttr('button', {
+            style: 'height: 20px; width: 20px; margin-right: 5px;',
+            type: 'image',
+            className: 'img_add'
+        });
+        button.innerHTML = "<img src=../assets/rootClose.png alt='' id='img_root'/>";
+        button.onclick = function () {
+            openChilds(a, this);
+        }
+
+        div.append(button);
+    } else {
+        a.style = 'text-decoration: none; color: black; margin-left: 25px;'
     }
+
     a.onclick = function () {
         getType(this)
     };
     a.innerHTML = `${item.NAME}`;
-    div.append(button);
+
     div.append(a);
     li.appendChild(div);
 
@@ -78,8 +86,8 @@ function createLi(classItem, item) {
 function createUl(classItem, arr) {
     const ul = document.createElement('ul');
     ul.style = 'list-style-type: none; padding-left: 0; margin-left: 0;';
-    arr.forEach((item) => {
-        ul.appendChild(createLi(classItem, item))
+    arr.forEach(async (item) => {
+        ul.appendChild(await createLi(classItem, item));
     });
 
     return ul;
