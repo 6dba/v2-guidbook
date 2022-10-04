@@ -14,7 +14,7 @@ function changeView() {
         freezeButton();
         view.classList.remove('tree');
         view.classList.add('table');
-        /* Отрисовка нов    ого view */
+        /* Отрисовка нового view */
         load();
         /* Подмена классов */
         icon.src = '../assets/tree.png';
@@ -27,14 +27,11 @@ function changeView() {
         tree();
         icon.src = '../assets/table.png';
         removeChilds(view);
-
     }
-
     return;
 }
 
-function freezeButton()
-{
+function freezeButton() {
     button_change_view.onclick = null;
         setTimeout(function() {
             button_change_view.onclick = changeView

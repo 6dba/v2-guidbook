@@ -17,14 +17,13 @@
     <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
     <title>В2</title>
 </head>
-
 <body>
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
             <div class="imgpos">
                 <img src="../assets/altan_logo.png" alt="" />
             </div>
-            <div class="title flex-grow-1">Локальный сервер v 1.2.3</div>
+            <div class="title flex-grow-1">Локальный сервер v 1.2.3 </div>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2 link-light">Инструменты</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Модули</a></li>
@@ -73,17 +72,16 @@
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" id="button_change_view" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                        <button type="image" class="img_add" id="button_change_view" title = "Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" onclick="createNewObject()"></button>
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title = "Добавить" onclick="createNewObject()"></button>
                     </div>
                 </div>
                 <div id="view" class="tree"></div>
                 <script>
                     freezeButton();
                     tree();
-                    
                 </script>
             </div>
 
@@ -92,13 +90,13 @@
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/exit.png" alt=""></button>
+                        <button type="image" class="img_add"><img src="../assets/exit.png" title ="Отменить изменения" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" alt="" id='img_change' /></button>
+                        <button type="image" onClick=edit() class="img_add"><img src="../assets/change.png" title="Редактировать" alt="" id='img_change' /></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/delete.png" alt="" onClick=close_edit()></button>
+                        <button type="image" class="img_add"><img src="../assets/delete.png" title="Закрыть" alt="" onClick=close_edit()></button>
                     </div>
                 </div>
                 <div id='loading' class='loading p-2' style='text-align: center'>
