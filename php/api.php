@@ -46,12 +46,12 @@ function post($url, $data = array()) {
     return $response;
 }
 
-// Вызов API методов посредством AJAX JQuery
+/*// Вызов API методов посредством AJAX JQuery
 if (isset($_POST['data']) and isset($_POST['url'])) {
    echo post($_POST['url'], $_POST['data']);
 }
 
 if (isset($_POST['url'])) {
    echo get($_POST['url']);
-}
+}*/
 ?>

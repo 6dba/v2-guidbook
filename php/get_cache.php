@@ -2,11 +2,19 @@
 ini_set( 'display_errors', 1 );
 error_reporting( E_ALL ^E_NOTICE );
 include 'hash.php';
+include 'api.php';
 unset( $data );
+
 if ( $_POST['type'] == 'tree' ) {
-    foreach ( new APCIterator() as $entry ) {
-        if ( mc_decrypt( $entry[value], ENCRYPTION_KEY )->PARENT_ID == $_POST['parentId'] )
-        $data[] = mc_decrypt( $entry[value], ENCRYPTION_KEY );
+    // Если записи по данному ключу (url) в кэшэ нет, заносим, отдамем
+    if (apcu_fetch($_POST['url']) != false) {
+        echo json_encode(mc_decrypt(apcu_fetch($_POST['url']), ENCRYPTION_KEY));
+    }
+    else {
+        $data = json_decode(get($_POST['url']));
+        $encrypted = mc_encrypt($data, ENCRYPTION_KEY );
+        apcu_add($_POST['url'], $encrypted );
+        echo json_encode($data);
     }
 } elseif ( $_POST['type'] == 'table' ) {
     $ind = 0 + $_POST['page'] * 25;
@@ -15,6 +23,7 @@ if ( $_POST['type'] == 'tree' ) {
         if ( $object == false ) break;
         $data[] = $object;
     }
+    echo json_encode( $data );
 }
-echo json_encode( $data );
+
 ?>
