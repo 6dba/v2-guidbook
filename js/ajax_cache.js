@@ -3,7 +3,7 @@ function cache(type, page, url) {
     data = {type: type,
            page: page};
     if(type == 'tree')
-        data["url"] = url;
+        data["path"] = url;
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: '../php/get_cache.php',

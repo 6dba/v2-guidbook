@@ -7,13 +7,13 @@ unset( $data );
 
 if ( $_POST['type'] == 'tree' ) {
     // Если записи по данному ключу (url) в кэшэ нет, заносим, отдамем
-    if (apcu_fetch($_POST['url']) != false) {
-        echo json_encode(mc_decrypt(apcu_fetch($_POST['url']), ENCRYPTION_KEY));
+    if (apcu_fetch($_POST['path']) != false) {
+        echo json_encode(mc_decrypt(apcu_fetch($_POST['path']), ENCRYPTION_KEY));
     }
     else {
-        $data = json_decode(get($_POST['url']));
+        $data = json_decode(get($_POST['path']));
         $encrypted = mc_encrypt($data, ENCRYPTION_KEY );
-        apcu_add($_POST['url'], $encrypted );
+        apcu_add($_POST['path'], $encrypted );
         echo json_encode($data);
     }
 } elseif ( $_POST['type'] == 'table' ) {
