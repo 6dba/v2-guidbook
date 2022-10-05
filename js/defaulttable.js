@@ -36,9 +36,15 @@ async function load() {
 
 async function checkLastElement() {
     if (!end) {
-        if (first && tbody.lastChild.getBoundingClientRect().top<850) {
+        view.onscroll = '';
+        setTimeout(() => view.onscroll = checkLastElement, 20);
+        if (first && tbody.lastChild.getBoundingClientRect().top < 850) {
             const response = await getAll(page);
             let array = response;
+            if (array == null || array.length < 25) {
+                view.onscroll = '';
+                end = true;
+            }
             array.forEach(item => {
                 let rown = document.createElement('tr');
                 rown.id = `${item.ID}`;
@@ -57,10 +63,6 @@ async function checkLastElement() {
                 }
                 tbody.appendChild(rown);
             });
-            if (array.length < 25){
-                view.onscroll = '';
-                end = true;
-            }
             page++;
         } else if (!first) {
             const response = await getAll(page);
@@ -83,10 +85,12 @@ async function checkLastElement() {
                 }
                 tbody.appendChild(rown);
             });
-            if (array.length < 25)
+            if (array.length < 25) {
                 end = true;
+                view.onscroll = '';
+            }
             page++;
-            first=true;
+            first = true;
         }
     }
 }

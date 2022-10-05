@@ -34,6 +34,7 @@ function selectItemEnterprise(id) {
             edit_Form.classList.remove('loading');
             loading.classList.add('loading');
             blockSelect(false);
+        img_change.onclick=edit;
         }))));
 }
 
@@ -67,6 +68,7 @@ function selectItemDivision(id) {
         edit_Form.classList.remove('loading');
         loading.classList.add('loading');
         blockSelect(false);
+        img_change.onclick=edit;
     })))));
 }
 

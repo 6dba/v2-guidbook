@@ -1,33 +1,46 @@
 //закрыть форму просмотра/редактирования
 function close_edit() {
     document.getElementById('block_edit').classList.add('edit');
+    exit.style.visibility = 'hidden';
     ttl_el.innerHTML = '';
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
         img_change.src = '../assets/change.png';
     removeID();
 }
 
+//функция отмены редактирования
+function undo_edit() {
+    exit.style.visibility = 'hidden';
+    img_change.src = '../assets/change.png';
+    if (typeof type !== 'undefined')
+           createNewObject();
+    else if (ttl_el.innerHTML.includes('Предприятие')) {
+        selectItemEnterprise(findID(ttl_el));
+    } else if (ttl_el.innerHTML.includes('Подразделение')) {
+        selectItemDivision(findID(ttl_el));
+    }
+}
+
 //функция для перехода в режим редактирования или отправки измененных данных в //режим просмотра
 function edit() {
     img_change.onclick = null;
-    setTimeout(function () {
-        button_change_view.onclick = changeView
-    }, 1000);
+    setTimeout(() =>
+        button_change_view.onclick = changeView, 1000);
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        if (ttl_el.innerHTML.includes('Предприятие') || (typeof type !== 'undefined' && type.val() == 'enterprise')) {
+        exit.style.visibility = 'hidden';
+        if (ttl_el.innerHTML.includes('Предприятие')) {
             postEnterprise();
-            setTimeout(function () {
-                selectItemEnterprise(findID(ttl_el));
-            }, 100);
-        } else if (ttl_el.innerHTML.includes('Подразделение') || (typeof type !== 'undefined' && type.val() == 'enterprise')) {
+            setTimeout(() =>
+                selectItemEnterprise(findID(ttl_el)), 100);
+        } else if (ttl_el.innerHTML.includes('Подразделение')) {
             postDivision();
-            setTimeout(function () {
-                selectItemDivision(findID(ttl_el));
-            }, 100);
+            setTimeout(() =>
+                selectItemDivision(findID(ttl_el)), 100);
         }
         img_change.src = '../assets/change.png';
     } else {
         img_change.src = '../assets/save.png';
+        exit.style.visibility = 'visible';
         //скрываем форму до полной загрузки
         loading.classList.remove('loading');
         edit_Form.classList.add('loading');
@@ -38,7 +51,7 @@ function edit() {
             loading.classList.add('loading');
         }, 1500);
         if (ttl_el.innerHTML.includes('Подразделение')) editView(8, 16);
-        else
+        else if (ttl_el.innerHTML.includes('Предприятие'))
             editView(1, 7);
     }
 }

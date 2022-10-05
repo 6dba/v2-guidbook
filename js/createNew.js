@@ -1,4 +1,6 @@
 function createNewObject() {
+    exit.style.visibility = 'visible';
+    img_change.onclick = postNew;
     edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
     ttl_el.innerHTML = 'Выбрать тип: ';
     loading.classList.remove('loading');
@@ -82,7 +84,17 @@ function createSelectList(selectlist) {
         let field = selectlist[i][getFieldName(selectlist[i])];
         str += "<option value='" + selectlist[i]['ID'] + "'>" + field + "</option>";
     }
-    
+
     str += "</select>";
     return str;
+}
+
+function postNew() {
+    exit.style.visibility = 'hidden';
+    if (typeof type !== 'undefined' && type.value == 'enterprise') {
+        postEnterprise();
+    } else if (typeof type !== 'undefined' && type.value == 'division') {
+        postDivision();
+    }
+    createNewObject();
 }
