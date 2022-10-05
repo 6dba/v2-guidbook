@@ -48,7 +48,6 @@ function createNewObject() {
             edit_Form.classList.add('loading');
             get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer').then(divisionType =>
             get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
-
                 document.getElementById('edit_Form').innerHTML =
                     "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                     "<input id='arg_8' class='input_tag'>" +

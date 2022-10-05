@@ -202,7 +202,5 @@ table {
 }
 
 select {
-    width: 50%;
-    min-width: 150px;
-    max-width: 190px;
+    width: auto;
 }
