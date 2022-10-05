@@ -76,17 +76,14 @@ function createNewObject() {
     })
 }
 
-
-
-
 function createSelectList(selectlist) {
-
     let str;
 
     for (let i in selectlist) {
         let field = selectlist[i][getFieldName(selectlist[i])];
         str += "<option value='" + selectlist[i]['ID'] + "'>" + field + "</option>";
     }
+    
     str += "</select>";
     return str;
 }
