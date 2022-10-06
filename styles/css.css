@@ -100,8 +100,26 @@ li {
     height: 35px;
 }
 
+.title_filter {
+    font-size: 12px;
+    font-family: "monospace";
+    background-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 35px;
+    border: 1px solid black;
+}
+
+.guide_filter {
+    color: black;
+    font-size: 15px;
+    font-family: "monospace";
+    margin-left: 20px;
+}
+
 .title_guide {
-    color:white;
+    color: white;
     margin-left: 20px;
 }
 
@@ -203,4 +221,14 @@ table {
 
 select {
     width: auto;
+}
+
+.checkbox__label {
+    color: black;
+    font-size: 13px;
+    margin-right: 25px;
+}
+
+.checkbox {
+    margin-top: 7px;
 }

@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../styles/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
@@ -59,13 +61,8 @@
     <div class="container_information">
         <div class="row d-flex">
             <div class="col trap">
-                <select class="guides">
-                    <option value="first">Справочник 1</option>
-                    <option value="second">Справочник 2</option>
-                    <option value="third">Справочник 3</option>
-                </select>
                 <div class="d-flex flex-shrink-1">
-                    <input class='input_find'>
+                    <input class='input_find' placeholder=" Введите текст для поиска">
                     <button type="button_find" class="ms-3 btn_find" onClick="">Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
@@ -78,6 +75,36 @@
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title = "Создать" onclick="createNewObject()"></button>
                     </div>
                 </div>
+                <div class="filter">
+                    <div class="d-flex title_filter">
+                        <div class="w-50 p-1 guide_filter">Фильтр</div>
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="place" onclick="update_rows()">
+                            <span class="checkbox__label">Место работы</span>
+                            </label>
+
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="brigade" onclick="update_rows()">
+                            <span class="checkbox__label">Бригада</span>
+                            </label>
+                        
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="division" onclick="update_rows()">
+                            <span class="checkbox__label">Подразделение</span>
+                            </label>
+                        
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="company" onclick="update_rows()">
+                            <span class="checkbox__label">Предприятие</span>
+                            </label>
+                        
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="holding" onclick="update_rows()">
+                            <span class="checkbox__label">Холдинг</span>
+                            </label>
+                    </div>
+                </div>
+                
                 <div id="view" class="tree"></div>
                 <script>
                     freezeButton();
