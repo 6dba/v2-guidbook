@@ -15,6 +15,7 @@
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
     <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
     <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <title>В2</title>
 </head>
 <body>
@@ -66,7 +67,11 @@
                 </select>
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find'>
-                    <button type="button_find" class="ms-3 btn_find" onClick="">Найти</button>
+                    <script>
+                    let input_find = document.querySelector('.input_find');
+                    input_find.addEventListener('input', function() {inputEvent(this)})
+                    </script>
+                    <button type="button_find" class="ms-3 btn_find" onClick=search()>Найти</button>
                 </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
