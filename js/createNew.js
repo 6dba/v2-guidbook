@@ -2,14 +2,13 @@ function createNewObject() {
     exit.style.visibility = 'visible';
     img_change.onclick = postNew;
     edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
-    ttl_el.innerHTML = 'Выбрать тип: ';
     loading.classList.remove('loading');
     edit_Form.classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
     let type = document.createElement('select');
     type.id = 'type';
     type.innerHTML =
-        "<option></option>" +
+        "<option value='types' selected disabled hidden>--Выберете тип--</option>" +
         "<option value='enterprise'>Предприятие</option>" +
         "<option value='division'>Подразделение</option>";
 
