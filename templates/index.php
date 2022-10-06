@@ -69,16 +69,6 @@
                     </script>
                     <button type="button_find" class="ms-3 btn_find" onClick=search()>Найти</button>
                 </div>
-                <div class="d-flex back_title_guide">
-                    <div class="w-100 p-1 title_guide">Сотрудники
-                    </div>
-                    <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" id="button_change_view" title = "Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
-                    </div>
-                    <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title = "Создать" onclick="createNewObject()"></button>
-                    </div>
-                </div>
                 <div class="filter">
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Фильтр</div>
@@ -108,7 +98,16 @@
                             </label>
                     </div>
                 </div>
-                
+                <div class="d-flex back_title_guide">
+                    <div class="w-100 p-1 title_guide">Сотрудники
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button type="image" class="img_add" id="button_change_view" title = "Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title = "Создать" onclick="createNewObject()"></button>
+                    </div>
+                </div>
                 <div id="view" class="tree"></div>
                 <script>
                     freezeButton();
