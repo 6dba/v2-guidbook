@@ -22,10 +22,10 @@ function changeView() {
 
     } else if (view.classList.contains('table')) {
         freezeButton();
+        removeChilds(view);
         view.onscroll = '';
         view.classList.remove('table');
         view.classList.add('tree');
-        removeChilds(view);
         tree();
         icon.src = '../assets/table.png';
     }

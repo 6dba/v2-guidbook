@@ -83,6 +83,7 @@ function findName(id, obj) {
 
 //функции определения типа объекта
 function getType(object) {
+    exit.style.visibility = 'hidden';
     if (object.classList.contains("DIVISION")) {
         ttl_el.innerHTML = '';
         if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')

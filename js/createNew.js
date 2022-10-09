@@ -8,7 +8,7 @@ function createNewObject() {
     let type = document.createElement('select');
     type.id = 'type';
     type.innerHTML =
-        "<option value='types' selected disabled hidden>--Выберете тип--</option>" +
+        "<option value='types' selected>--Выберите тип--</option>" +
         "<option value='enterprise'>Предприятие</option>" +
         "<option value='division'>Подразделение</option>";
 
@@ -48,29 +48,29 @@ function createNewObject() {
             loading.classList.remove('loading');
             edit_Form.classList.add('loading');
             get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer').then(divisionType =>
-            get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
-                document.getElementById('edit_Form').innerHTML =
-                    "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
-                    "<input id='arg_8' class='input_tag'>" +
-                    "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
-                    "<input id='arg_9' class='input_tag'>" +
-                    "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
-                    "<select class='input_tag' id='arg_10'><option></option>" + createSelectList(enterprise) +
-                    "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-                    "<select class='input_tag' id='arg_11'><option></option>" + createSelectList(divisionType) +
-                    "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
-                    "<select class='input_tag' id='arg_12'><option></option>" + createSelectList(divisionShift) +
-                    "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag' id='arg_13'><option></option>" + createSelectList(users) +
-                    "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<select class='input_tag' id='arg_14'><option> </option>" +
-                    createSelectList(divisionAdjanced) +
-                    "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
-                    "<input type='checkbox' id='arg_15'>" +
-                    "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
-                    "<input type='checkbox' id='arg_16'>";
-                edit_Form.classList.remove('loading');
-                loading.classList.add('loading');
-                type.disabled = false;
-            })))));
+                get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
+                    document.getElementById('edit_Form').innerHTML =
+                        "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
+                        "<input id='arg_8' class='input_tag'>" +
+                        "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
+                        "<input id='arg_9' class='input_tag'>" +
+                        "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
+                        "<select class='input_tag' id='arg_10'><option></option>" + createSelectList(enterprise) +
+                        "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
+                        "<select class='input_tag' id='arg_11'><option></option>" + createSelectList(divisionType) +
+                        "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
+                        "<select class='input_tag' id='arg_12'><option></option>" + createSelectList(divisionShift) +
+                        "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag' id='arg_13'><option></option>" + createSelectList(users) +
+                        "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<select class='input_tag' id='arg_14'><option> </option>" +
+                        createSelectList(divisionAdjanced) +
+                        "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
+                        "<input type='checkbox' id='arg_15'>" +
+                        "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
+                        "<input type='checkbox' id='arg_16'>";
+                    edit_Form.classList.remove('loading');
+                    loading.classList.add('loading');
+                    type.disabled = false;
+                })))));
         } else if ($(this).val() == '')
             edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
     })
@@ -92,8 +92,27 @@ function postNew() {
     exit.style.visibility = 'hidden';
     if (typeof type !== 'undefined' && type.value == 'enterprise') {
         postEnterprise();
+        if (view.classList.contains('tree')) {
+            removeChilds(view);
+            freezeButton();
+            tree();
+        } else if (view.classList.contains('table')) {
+            removeChilds(view);
+            freezeButton();
+            load();
+        }
     } else if (typeof type !== 'undefined' && type.value == 'division') {
         postDivision();
+        if (view.classList.contains('tree')) {
+            removeChilds(view);
+            freezeButton();
+            tree();
+        } else if (view.classList.contains('table')) {
+            removeChilds(view);
+            freezeButton();
+            load();
+        }
     }
+    type.remove();
     createNewObject();
 }
