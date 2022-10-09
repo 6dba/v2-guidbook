@@ -27,7 +27,7 @@ async function load() {
     heading_1.innerHTML = "Название";
     let heading_2 = document.createElement('th');
     heading_2.innerHTML = "Наименование";
-
+    
     row_1.appendChild(heading_1);
     row_1.appendChild(heading_2);
     thead.appendChild(row_1);
