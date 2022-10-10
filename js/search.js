@@ -18,7 +18,7 @@ async function search() {
 
    if (view.classList.contains('tree')) {
       removeChilds(view);
-      createView('root', matches);
+      createView('root', matches, input.value);
    } else if (view.classList.contains('table')) {
       /* Вставляйте сюда функцию очистки view и отображения поисковых данных
        * в табличном представлении */
@@ -48,6 +48,7 @@ function inputEvent(element) {
       clear(element)
       return;
    }
+
    if (document.querySelector('.button_clear')) return;
 
    let button = createElemWithAttr('button', {

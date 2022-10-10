@@ -64,14 +64,16 @@
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
                     <input class='input_find placeholder=" Введите текст для поиска"'>
+                    <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
-                        let input_find = document.querySelector('.input_find');
-                        input_find.addEventListener('input', function() {
+                        $('.input_find').on('input', function() {
                             inputEvent(this)
                         })
 
+                        $('.input_find').keyup(function(event) {
+                           if (event.key == 'Enter') search();
+                        });
                     </script>
-                    <button type="button_find" class="ms-3 btn_find" onClick=search()>Найти</button>
                 </div>
                 <div class="filter">
                     <div class="d-flex title_filter">
@@ -85,28 +87,28 @@
                             <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
                             <span class="checkbox__label">Бригада</span>
                             </label>
-                        
+
                             <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
                             <span class="checkbox__label">Подразделение</span>
                             </label>
-                        
+
                             <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
                             <span class="checkbox__label">Предприятие</span>
                             </label>
-                        
+
                             <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
                 </div>
-                
+
                     <script src="../js/filter.js"></script>
                     <script>
                         filterTable( document.getElementById("tbody"), {
-                            1: new filterTable.Filter([ 
+                            1: new filterTable.Filter([
                                 document.getElementById("place"),
                                 document.getElementById("brigade"),
                                 document.getElementById("division"),
@@ -125,7 +127,7 @@
                     }
                 );
                     </script>
-                
+
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
