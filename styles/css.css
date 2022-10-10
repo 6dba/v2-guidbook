@@ -215,6 +215,10 @@ table {
     max-height: 100%;
 }
 
+#view.tree {
+    border: 1px solid #D3D3D3;
+}
+
 .spinner-border{
     margin: 30% auto;
 }

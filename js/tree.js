@@ -48,7 +48,9 @@ async function createLi(classItem, item, searchPattern) {
 		})
 	}
 
-	let div = document.createElement('div');
+	let div = createElemWithAttr('div', {
+		style: 'margin-left: 5px;'
+	});
 
 	// TODO: Проработать выделение паттерна несоответсвующего регистру исходной строки
 	const replace = (string, search, replace) => {
