@@ -34,7 +34,7 @@ function selectItemEnterprise(id) {
             edit_Form.classList.remove('loading');
             loading.classList.add('loading');
             blockSelect(false);
-        img_change.onclick=edit;
+            img_change.onclick = edit;
         }))));
 }
 
@@ -68,7 +68,7 @@ function selectItemDivision(id) {
         edit_Form.classList.remove('loading');
         loading.classList.add('loading');
         blockSelect(false);
-        img_change.onclick=edit;
+        img_change.onclick = edit;
     })))));
 }
 
@@ -86,14 +86,16 @@ function getType(object) {
     exit.style.visibility = 'hidden';
     if (object.classList.contains("DIVISION")) {
         ttl_el.innerHTML = '';
+        img_change.style.visibility = 'visible';
         if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
-        img_change.src = '../assets/change.png';
+            img_change.src = '../assets/change.png';
         removeID();
         selectItemDivision(object.id.substring(1));
     } else if (object.classList.contains("ENTERPRISE")) {
         ttl_el.innerHTML = '';
+        img_change.style.visibility = 'visible';
         if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
-        img_change.src = '../assets/change.png';
+            img_change.src = '../assets/change.png';
         removeID();
         selectItemEnterprise(object.id.substring(1));
     } else return;

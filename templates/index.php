@@ -75,7 +75,7 @@
                         });
                     </script>
                 </div>
-                <div class="filter">
+                <!-- <div class="filter">
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Фильтр</div>
                             <label for="сheckbox-filter" class="checkbox">
@@ -127,6 +127,7 @@
                     }
                 );
                     </script>
+            </script>-->
 
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
@@ -141,6 +142,9 @@
                         <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
                     </div>
                 </div>
+                <div id='loading_view' class='loading p-2' style='text-align: center'>
+                    <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
+                </div>
                 <div id="view" class="tree"></div>
                 <script>
                     freezeButton();
@@ -154,13 +158,16 @@
                     <div id="ttl_el" class="w-100 p-1 title_element">
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" id="exit" class="img_add" style="visibility : hidden;"><img src="../assets/exit.png" title="Закрыть режим редактирования" alt="" onClick=undo_edit()></button>
+                        <button id="deleteObject" class="img_add" style="visibility : hidden;"><img src="../assets/delete.png" title="Удалить" alt="" onClick=delete_object()></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/change.png" title="Редактировать" alt="" id='img_change' /></button>
+                        <button id="exit" class="img_add" style="visibility : hidden;"><img src="../assets/exit.png" title="Закрыть режим редактирования" alt="" onClick=undo_edit()></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/delete.png" title="Закрыть" alt="" onClick=close_edit()></button>
+                        <button class="img_add"><img src="../assets/change.png" title="Редактировать" alt="" id='img_change' onClick=edit() /></button>
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button class="img_add"><img src="../assets/close.png" title="Закрыть" alt="" onClick=close_edit()></button>
                     </div>
                 </div>
                 <div id='loading' class='loading p-2' style='text-align: center'>

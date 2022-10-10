@@ -1,6 +1,9 @@
 function createNewObject() {
-    exit.style.visibility = 'visible';
+    img_change.style.visibility = 'hidden';
+    exit.style.visibility = 'hidden';
+    deleteObject.style.visibility = 'hidden';
     img_change.onclick = postNew;
+    ttl_el.innerHTML = '';
     edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
     loading.classList.remove('loading');
     edit_Form.classList.add('loading');
@@ -16,13 +19,14 @@ function createNewObject() {
     img_change.src = '../assets/save.png';
     edit_Form.classList.remove('loading');
     loading.classList.add('loading');
-    $('#type').change(function () {
+    $('#type').change(function() {
         if ($(this).val() == 'enterprise') {
+            exit.style.visibility = 'visible';
+            img_change.style.visibility = 'visible';
             type.disabled = true;
             loading.classList.remove('loading');
             edit_Form.classList.add('loading');
-            get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer').then(holdings => get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer').then(enterpriseType => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
-
+            get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer').then(holdings => get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer').then(enterpriseType => get('http://81.161.220.59:8100/api/users/?action=getList&request=developer').then(users => {
                 document.getElementById('edit_Form').innerHTML =
                     "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                     "<input id='arg_1' class='input_tag'>" +
@@ -44,11 +48,13 @@ function createNewObject() {
 
             })))
         } else if ($(this).val() == 'division') {
+            exit.style.visibility = 'visible';
+            img_change.style.visibility = 'visible';
             type.disabled = true;
             loading.classList.remove('loading');
             edit_Form.classList.add('loading');
             get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer').then(divisionType =>
-                get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=2&request=developer').then(users => {
+                get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&request=developer').then(users => {
                     document.getElementById('edit_Form').innerHTML =
                         "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                         "<input id='arg_8' class='input_tag'>" +
@@ -71,8 +77,11 @@ function createNewObject() {
                     loading.classList.add('loading');
                     type.disabled = false;
                 })))));
-        } else if ($(this).val() == '')
+        } else if ($(this).val() == 'types') {
             edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
+            img_change.style.visibility = 'hidden';
+            exit.style.visibility = 'hidden';
+        }
     })
 }
 
@@ -92,26 +101,10 @@ function postNew() {
     exit.style.visibility = 'hidden';
     if (typeof type !== 'undefined' && type.value == 'enterprise') {
         postEnterprise();
-        if (view.classList.contains('tree')) {
-            removeChilds(view);
-            freezeButton();
-            tree();
-        } else if (view.classList.contains('table')) {
-            removeChilds(view);
-            freezeButton();
-            load();
-        }
+        reload_cache();
     } else if (typeof type !== 'undefined' && type.value == 'division') {
         postDivision();
-        if (view.classList.contains('tree')) {
-            removeChilds(view);
-            freezeButton();
-            tree();
-        } else if (view.classList.contains('table')) {
-            removeChilds(view);
-            freezeButton();
-            load();
-        }
+        reload_cache();
     }
     type.remove();
     createNewObject();

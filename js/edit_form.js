@@ -1,27 +1,38 @@
 //функция для перехода в режим редактирования или отправки измененных данных в //режим просмотра
 function edit() {
     img_change.onclick = null;
+    setTimeout(() => {
+        img_change.onclick = edit;
+    }, 1000);
+    img_change.style.visibility = 'visible';
     setTimeout(() =>
         button_change_view.onclick = changeView, 1000);
     if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
         exit.style.visibility = 'hidden';
+        deleteObject.style.visibility = 'hidden';
         if (ttl_el.innerHTML.includes('Предприятие')) {
             postEnterprise();
-            setTimeout(() =>
-                selectItemEnterprise(findID(ttl_el)), 100);
+            setTimeout(() => {
+                selectItemEnterprise(findID(ttl_el));
+                reload_cache();
+            }, 300);
+            img_change.src = '../assets/change.png';
         } else if (ttl_el.innerHTML.includes('Подразделение')) {
             postDivision();
-            setTimeout(() =>
-                selectItemDivision(findID(ttl_el)), 100);
+            setTimeout(() => {
+                selectItemDivision(findID(ttl_el));
+                reload_cache();
+            }, 300);
+            img_change.src = '../assets/change.png';
         }
-        img_change.src = '../assets/change.png';
     } else {
         img_change.src = '../assets/save.png';
         exit.style.visibility = 'visible';
+        deleteObject.style.visibility = 'visible';
         //скрываем форму до полной загрузки
         loading.classList.remove('loading');
         edit_Form.classList.add('loading');
-        setTimeout(function () {
+        setTimeout(() => {
             //показываем обновленную форму с полностью 
             //загруженными данными
             edit_Form.classList.remove('loading');
@@ -32,7 +43,6 @@ function edit() {
             editView(1, 7);
     }
 }
-
 //Формирование селект листов
 function selectList(name) {
     let id = '';
