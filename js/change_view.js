@@ -19,6 +19,7 @@ function changeView() {
         load();
         /* Подмена классов */
         icon.src = '../assets/tree.png';
+        localStorage.setItem('view', 'table');
 
     } else if (view.classList.contains('table')) {
         freezeButton();
@@ -28,6 +29,7 @@ function changeView() {
         view.classList.add('tree');
         tree();
         icon.src = '../assets/table.png';
+        localStorage.setItem('view', 'tree');
     }
     return;
 }

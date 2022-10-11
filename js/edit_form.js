@@ -70,6 +70,11 @@ function selectList(name) {
         }
         str += "</select>";
         name.outerHTML = str;
+        $('#arg_10').change(async function () {
+            users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
+            arg_13.innerHTML = "<option></option>" +
+                createSelectList(users);
+        });
     });
 }
 
@@ -107,7 +112,6 @@ function findID(name) {
         function (a) {
             if (/id/.test(a)) {
                 id = a.substring(2);
-                return;
             }
         })
     return id;
@@ -119,7 +123,6 @@ function removeID() {
         function (a) {
             if (/id/.test(a)) {
                 ttl_el.classList.remove(a);
-                return;
             }
         });
 }
