@@ -79,6 +79,58 @@
 
                     </script>
                 </div>
+                <div class="filter">
+                    <div class="d-flex title_filter">
+                        <div class="w-50 p-1 guide_filter">Фильтр</div>
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
+                            <span class="checkbox__label">Место работы</span>
+                            </label>
+
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
+                            <span class="checkbox__label">Бригада</span>
+                            </label>
+
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
+                            <span class="checkbox__label">Подразделение</span>
+                            </label>
+
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
+                            <span class="checkbox__label">Предприятие</span>
+                            </label>
+
+                            <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
+                            <span class="checkbox__label">Холдинг</span>
+                            </label>
+                    </div>
+                </div>
+
+                    <script src="../js/filter.js"></script>
+                    <script>
+                        filterTable(document.getElementById("tbody"), {
+                            2: new filterTable.Filter([
+                                document.getElementById("place"),
+                                document.getElementById("brigade"),
+                                document.getElementById("division"),
+                                document.getElementById("company"),
+                                document.getElementById("holding")
+                            ],
+                            function (value, filters, i) {
+                                if (false === filters[i].checked) return true;
+                                return filters[0].checked && filters[0].value === value ||
+                                filters[1].checked && filters[1].value === value ||
+                                filters[2].checked && filters[2].value === value ||
+                                filters[3].checked && filters[3].value === value ||
+                                filters[4].checked && filters[4].value === value;
+                            }
+                        ),
+                    }
+                );
+                    </script>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
