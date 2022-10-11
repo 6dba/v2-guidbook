@@ -392,6 +392,7 @@
     } else {
       $(document.body).removeAttr('unselectable');
     }
+      localStorage.setItem('thead', JSON.stringify(thead.outerHTML));
   }
 
   function swapNodes(a, b) {

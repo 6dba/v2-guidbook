@@ -74,8 +74,9 @@
                         })
 
                         $('.input_find').keyup(function(event) {
-                           if (event.key == 'Enter') search();
+                            if (event.key == 'Enter') search();
                         });
+
                     </script>
                 </div>
                 <!-- <div class="filter">
@@ -148,12 +149,20 @@
                 <div id='loading_view' class='loading p-2' style='text-align: center'>
                     <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                 </div>
-                <div id="view" class="tree"></div>
+                <div id="view"></div>
                 <script>
                     freezeButton();
-                    tree();
+                    if (localStorage.getItem('view')=='table') {
+                        view.classList.add('table');
+                        load();
+                    } else {
+                        view.classList.add('tree');
+                        tree();
+                    }
 
                 </script>
+
+
             </div>
 
             <div class="col trap_edit edit align-self-start" id="block_edit">

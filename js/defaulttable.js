@@ -19,31 +19,37 @@ async function load() {
     table.id = 'table';
     thead.id = 'thead';
 
-    table.appendChild(thead);
+
     table.appendChild(tbody);
 
     document.getElementById('view').appendChild(table);
     view.onscroll = checkLastElement;
 
-    let row_1 = document.createElement('tr');
-    let heading_1 = document.createElement('th');
-    heading_1.innerHTML = "№";
-    let heading_2 = document.createElement('th');
-    heading_2.innerHTML = "Название";
-    heading_2.classList.add("drag_accept");
-    let heading_3 = document.createElement('th');
-    heading_3.innerHTML = "Тип подразделения";
-    heading_3.classList.add("drag_accept");
-    let heading_4 = document.createElement('th');
-    heading_4.innerHTML = "Наименование";
-    heading_4.classList.add("drag_accept");
+    if (localStorage.getItem('thead')) {
+        $('#table').append(JSON.parse(localStorage.getItem('thead')));
+    } else {
+        let row_1 = document.createElement('tr');
+        let heading_1 = document.createElement('th');
+        heading_1.innerHTML = "№";
+        let heading_2 = document.createElement('th');
+        heading_2.innerHTML = "Название";
+        heading_2.classList.add("drag_accept");
+        let heading_3 = document.createElement('th');
+        heading_3.innerHTML = "Тип подразделения";
+        heading_3.classList.add("drag_accept");
+        let heading_4 = document.createElement('th');
+        heading_4.innerHTML = "Наименование";
+        heading_4.classList.add("drag_accept");
 
 
-    row_1.appendChild(heading_1);
-    row_1.appendChild(heading_2);
-    row_1.appendChild(heading_3);
-    row_1.appendChild(heading_4);
-    thead.appendChild(row_1);
+        row_1.appendChild(heading_1);
+        row_1.appendChild(heading_2);
+        row_1.appendChild(heading_3);
+        row_1.appendChild(heading_4);
+
+        thead.appendChild(row_1);
+        table.appendChild(thead);
+    }
     $('#table').dragtable({
         axis: null,
         dragaccept: '.drag_accept',
