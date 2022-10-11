@@ -1,5 +1,5 @@
 var filterTable = function (HTMLTBodyRef, aFilters) {
-    var rows = HTMLTBodyRef.getElementsByTagName("TR"),
+    var rows = HTMLTBodyRef.getElementsByTagName("tr"),
         filters = {}, n,
         walkThrough = function (rows) {
             var tr, i, f;
@@ -7,7 +7,7 @@ var filterTable = function (HTMLTBodyRef, aFilters) {
                 tr = rows.item(i);
                 for(f in filters) {
                     if (filters.hasOwnProperty(f)) {
-                        if (false === filters[f].validate(tr.children[f].innerText) ) {
+                        if (false === filters[f].validate(tr.children[f].innerText)) {
                             tr.style.display = "none"; break;
                         } else {
                             tr.style.display = "";
@@ -37,7 +37,7 @@ filterTable.Filter = function (HTMLElementRef, callback, eventName) {
 
     this.validate = function (cellValue) {
         for (var i = 0; i < this.filters.length; i += 1) {
-            if ( false === this.__validate(cellValue, this.filters[i], i) ) {
+            if (false === this.__validate(cellValue, this.filters[i], i)) {
                 return false;
             }
         }

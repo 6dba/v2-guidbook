@@ -75,7 +75,7 @@
                         });
                     </script>
                 </div>
-                <!-- <div class="filter">
+                <div class="filter">
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Фильтр</div>
                             <label for="сheckbox-filter" class="checkbox">
@@ -107,8 +107,8 @@
 
                     <script src="../js/filter.js"></script>
                     <script>
-                        filterTable( document.getElementById("tbody"), {
-                            1: new filterTable.Filter([
+                        filterTable(document.getElementById("tbody"), {
+                            2: new filterTable.Filter([
                                 document.getElementById("place"),
                                 document.getElementById("brigade"),
                                 document.getElementById("division"),
@@ -127,7 +127,6 @@
                     }
                 );
                     </script>
-            </script>-->
 
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
