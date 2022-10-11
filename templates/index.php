@@ -79,71 +79,17 @@
 
                     </script>
                 </div>
-                <!-- <div class="filter">
-                    <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Фильтр</div>
-                            <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
-                            <span class="checkbox__label">Место работы</span>
-                            </label>
-
-                            <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
-                            <span class="checkbox__label">Бригада</span>
-                            </label>
-
-                            <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
-                            <span class="checkbox__label">Подразделение</span>
-                            </label>
-
-                            <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
-                            <span class="checkbox__label">Предприятие</span>
-                            </label>
-
-                            <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
-                            <span class="checkbox__label">Холдинг</span>
-                            </label>
-                    </div>
-                </div>
-
-                    <script src="../js/filter.js"></script>
-                    <script>
-                        filterTable( document.getElementById("tbody"), {
-                            1: new filterTable.Filter([
-                                document.getElementById("place"),
-                                document.getElementById("brigade"),
-                                document.getElementById("division"),
-                                document.getElementById("company"),
-                                document.getElementById("holding")
-                            ],
-                            function (value, filters, i) {
-                                if (false === filters[i].checked) return true;
-                                return filters[0].checked && filters[0].value === value ||
-                                filters[1].checked && filters[1].value === value ||
-                                filters[2].checked && filters[2].value === value ||
-                                filters[3].checked && filters[3].value === value ||
-                                filters[4].checked && filters[4].value === value;
-                            }
-                        ),
-                    }
-                );
-                    </script>
-            </script>-->
-
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
+                        <button class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" id="button_change_view" title="Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                        <button class="img_add" id="button_change_view" title="Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
+                        <button class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
                     </div>
                 </div>
                 <div id='loading_view' class='loading p-2' style='text-align: center'>
@@ -153,10 +99,12 @@
                 <script>
                     freezeButton();
                     if (localStorage.getItem('view')=='table') {
+                        img_view.src = '../assets/tree.png';
                         view.classList.add('table');
                         load();
                     } else {
                         view.classList.add('tree');
+                        img_view.src = '../assets/table.png';
                         tree();
                     }
 
