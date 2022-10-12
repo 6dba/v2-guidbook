@@ -66,7 +66,7 @@
         <div class="row d-flex">
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
-                    <input class='input_find placeholder=" Введите текст для поиска"'>
+                    <input type=text class='input_find placeholder=" Введите текст для поиска"'>
                     <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
                         $('.input_find').on('input', function() {

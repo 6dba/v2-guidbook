@@ -2,11 +2,17 @@ async function getData(url) {
 	return await cache('tree', 0, url).then(resolve => resolve).catch(reject => reject);
 }
 
+// Созданием DOM обьекта, с заданными attributes
 function createElemWithAttr(item, attributes) {
 	return Object.assign(document.createElement(item), attributes);
 }
 
-/* Грузятся все родители, выводятся, кэшируются. При нажатии на родителя,
+// Подсветка вхождения search в string (Свойство NAME полученных данных)
+const searchBackLight = (string, search) => {
+	return string.replace(new RegExp(search, 'gi'), `<span style="background-color:#ff9447">$&</span>`);
+}
+
+/* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
  * запрашиваются его дети, грузятся, выводятся */
 async function openChilds(element, button) {
 	const li = element.parentElement;
@@ -52,11 +58,6 @@ async function createLi(classItem, item, searchPattern) {
 		style: 'margin-left: 5px;'
 	});
 
-	// TODO: Проработать выделение паттерна несоответсвующего регистру исходной строки
-	const replace = (string, search, replace) => {
-		return string.split(search).join(replace);
-	}
-
 	let a = createElemWithAttr('a', {
 		className: item.IDENTIFIER,
 		id: item.ID,
@@ -64,7 +65,7 @@ async function createLi(classItem, item, searchPattern) {
 		onclick: function() {getType(this)},
 		innerHTML:
 			searchPattern
-			? replace(item.NAME, searchPattern, `<span style="background-color:#ff9447">${searchPattern}</span>`)
+			? searchBackLight(item.NAME, searchPattern)
 			: item.NAME
 	});
 
@@ -90,7 +91,7 @@ async function createLi(classItem, item, searchPattern) {
 	return li;
 }
 
-/* Создание списка Ul */
+// Создание списка Ul
 function createUl(classItem, arr, searchPattern) {
 	const ul = document.createElement('ul');
 	ul.style = 'list-style-type: none; padding-left: 0; margin-left: 0;';
@@ -111,7 +112,7 @@ function createView(className, arr, searchPattern) {
 	view.appendChild(tree);
 }
 
-/* Создание древовидного отображения подразделений и предприятий компании */
+// Создание древовидного отображения подразделений и предприятий компании
 async function tree() {
 	const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
 	createView('root', await getData(rootUrl));

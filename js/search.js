@@ -4,21 +4,29 @@ async function search() {
 
    if (!input.value) return;
 
+   const value = input.value.replace(/(<([^>]+)>)/ig, '')
+
    const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
    const data = await getData(allUrl);
 
    /* Соотвествует совпадениям по наименованию (предприятия, подразделения)
     * и наименованию типа подразделения */
    const matches = data.filter(
-      item => (item.NAME.toLowerCase().includes(input.value.toLowerCase()) ||
-           item.DIVISION_TYPE_NAME.toLowerCase().includes(input.value.toLowerCase()))
+      item => (item.NAME.toLowerCase().includes(value.toLowerCase()) ||
+           item.DIVISION_TYPE_NAME.toLowerCase().includes(value.toLowerCase()))
    )
 
-   if (!matches) return;
+   if (!matches.length) {
+      view.innerHTML =
+      `<div class="card">
+         <div class="card-body"><h5 class="card-title">Совпадений для <b>${value}</b> не найдено :(</h5></div>
+      </div>`
+      return;
+   }
 
    if (view.classList.contains('tree')) {
       removeChilds(view);
-      createView('root', matches, input.value);
+      createView('root', matches, value);
    } else if (view.classList.contains('table')) {
       /* Вставляйте сюда функцию очистки view и отображения поисковых данных
        * в табличном представлении */
