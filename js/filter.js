@@ -1,4 +1,5 @@
 var filterTable = function (HTMLTBodyRef, aFilters) {
+    console.log(HTMLTBodyRef);
     var rows = HTMLTBodyRef.getElementsByTagName("tr"),
         filters = {}, n,
         walkThrough = function (rows) {
@@ -23,7 +24,6 @@ var filterTable = function (HTMLTBodyRef, aFilters) {
             } else {
                 filters[n] = new filterTable.Filter(aFilters[n]);
             }
-            filters[n]._setAction("onchange", function () {walkThrough(rows);});
         }
     }
 }
@@ -34,26 +34,4 @@ filterTable.Filter = function (HTMLElementRef, callback, eventName) {
     }
     
     this.filters = {}.toString.call(HTMLElementRef) == "[object Array]" ? HTMLElementRef : [HTMLElementRef];
-
-    this.validate = function (cellValue) {
-        for (var i = 0; i < this.filters.length; i += 1) {
-            if (false === this.__validate(cellValue, this.filters[i], i)) {
-                return false;
-            }
-        }
-    }
-
-    this.__validate = function (cellValue, filter, i) {
-        if (typeof callback !== "undefined") {
-            return callback(cellValue, this.filters, i);
-        }
-        filter.value = filter.value.replace(/^\s+$/g, "");
-        return !filter.value || filter.value == cellValue;
-    }
-
-    this._setAction = function (anEventName, callback) {
-        for (var i = 0; i < this.filters.length; i += 1) {
-            this.filters[i][eventName||anEventName] = callback;
-        }
-    }
 };

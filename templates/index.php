@@ -79,7 +79,8 @@
 
                     </script>
                 </div>
-                <div class="filter">
+                
+               <div class="filter">
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Фильтр</div>
                             <label for="сheckbox-filter" class="checkbox">
@@ -107,31 +108,9 @@
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
-                </div>
+                </div> 
 
-                    <script src="../js/filter.js"></script>
-                    <script>
-                        filterTable(document.getElementById("tbody"), {
-                            2: new filterTable.Filter([
-                                document.getElementById("place"),
-                                document.getElementById("brigade"),
-                                document.getElementById("division"),
-                                document.getElementById("company"),
-                                document.getElementById("holding")
-                            ],
-                            function (value, filters, i) {
-                                if (false === filters[i].checked) return true;
-                                return filters[0].checked && filters[0].value === value ||
-                                filters[1].checked && filters[1].value === value ||
-                                filters[2].checked && filters[2].value === value ||
-                                filters[3].checked && filters[3].value === value ||
-                                filters[4].checked && filters[4].value === value;
-                            }
-                        ),
-                    }
-                );
-                    </script>
-
+                <script src="../js/filter.js"></script>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
@@ -154,6 +133,25 @@
                     if (localStorage.getItem('view')=='table') {
                         view.classList.add('table');
                         load();
+                        filterTable(document.getElementById("tbody"), {
+                            2: new filterTable.Filter([ 
+                                    document.getElementById("place"),
+                                    document.getElementById("brigade"),
+                                    document.getElementById("division"),
+                                    document.getElementById("company"),
+                                    document.getElementById("holding")
+                                ],
+                                function (value, filters, i) {
+                                    if (false === filters[i].checked) return true;
+                                    return filters[0].checked && filters[0].value === value ||
+                                            filters[1].checked && filters[1].value === value ||
+                                            filters[2].checked && filters[2].value === value ||
+                                            filters[3].checked && filters[3].value === value ||
+                                            filters[4].checked && filters[4].value === value;
+                                }
+                            ),
+                        }
+                    );
                     } else {
                         view.classList.add('tree');
                         tree();

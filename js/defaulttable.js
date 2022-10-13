@@ -57,7 +57,6 @@ async function load() {
         maxMovingRows: 15
     });
     checkLastElement();
-
 }
 
 async function checkLastElement() {
@@ -135,6 +134,7 @@ async function checkLastElement() {
             first = true;
         }
     }
+    
 }
 
 function find_header(header) {
