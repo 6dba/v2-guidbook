@@ -38,7 +38,7 @@ function reload_cache() {
             } else if (view.classList.contains('table')) {
                 removeChilds(view);
                 view.scrollTo(pageXOffset, 0);
-                load();
+                table();
             }
             button_change_view.onclick = changeView;
             view.classList.remove('loading');

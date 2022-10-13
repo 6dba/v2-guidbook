@@ -1,3 +1,5 @@
+const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
+
 async function getData(url) {
 	return await cache('tree', 0, url).then(resolve => resolve).catch(reject => reject);
 }
@@ -5,11 +7,6 @@ async function getData(url) {
 // Созданием DOM обьекта, с заданными attributes
 function createElemWithAttr(item, attributes) {
 	return Object.assign(document.createElement(item), attributes);
-}
-
-// Подсветка вхождения search в string (Свойство NAME полученных данных)
-const searchBackLight = (string, search) => {
-	return string.replace(new RegExp(search, 'gi'), `<span style="background-color:#ff9447">$&</span>`);
 }
 
 /* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
@@ -113,7 +110,10 @@ function createView(className, arr, searchPattern) {
 }
 
 // Создание древовидного отображения подразделений и предприятий компании
-async function tree() {
-	const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
-	createView('root', await getData(rootUrl));
+async function tree(data, backlightPattern) {
+
+    if (!data || !data.length)
+        data = await getData(rootUrl);
+
+	createView('root', data, backlightPattern);
 }

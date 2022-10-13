@@ -54,7 +54,7 @@ async function load() {
         axis: null,
         dragaccept: '.drag_accept',
         containment: 'parent',
-        maxMovingRows: 15
+        maxMovingRows: 17
     });
     checkLastElement();
 }
