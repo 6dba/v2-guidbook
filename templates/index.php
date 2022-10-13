@@ -66,7 +66,7 @@
         <div class="row d-flex">
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
-                    <input class='input_find placeholder=" Введите текст для поиска"'>
+                    <input type=text class='input_find placeholder=" Введите текст для поиска"'>
                     <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
                         $('.input_find').on('input', function() {
@@ -108,20 +108,47 @@
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
+<<<<<<< HEAD
                 </div> 
 
                 <script src="../js/filter.js"></script>
+=======
+                </div>
+
+                    <script src="../js/filter.js"></script>
+                    <script>
+                        filterTable(document.getElementById("tbody"), {
+                            2: new filterTable.Filter([
+                                document.getElementById("place"),
+                                document.getElementById("brigade"),
+                                document.getElementById("division"),
+                                document.getElementById("company"),
+                                document.getElementById("holding")
+                            ],
+                            function (value, filters, i) {
+                                if (false === filters[i].checked) return true;
+                                return filters[0].checked && filters[0].value === value ||
+                                filters[1].checked && filters[1].value === value ||
+                                filters[2].checked && filters[2].value === value ||
+                                filters[3].checked && filters[3].value === value ||
+                                filters[4].checked && filters[4].value === value;
+                            }
+                        ),
+                    }
+                );
+                    </script>
+>>>>>>> 900b48dbe2142f87571786a27a0bea304cbc0654
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
+                        <button class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add" id="button_change_view" title="Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                        <button class="img_add" id="button_change_view" title="Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button type="image" class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
+                        <button class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
                     </div>
                 </div>
                 <div id='loading_view' class='loading p-2' style='text-align: center'>
@@ -131,6 +158,7 @@
                 <script>
                     freezeButton();
                     if (localStorage.getItem('view')=='table') {
+                        img_view.src = '../assets/tree.png';
                         view.classList.add('table');
                         load();
                         filterTable(document.getElementById("tbody"), {
@@ -154,6 +182,7 @@
                     );
                     } else {
                         view.classList.add('tree');
+                        img_view.src = '../assets/table.png';
                         tree();
                     }
 
