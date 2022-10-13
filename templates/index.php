@@ -18,6 +18,7 @@
     <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
+    <script type="text/javascript" src="../dist/tableToExcel.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <title>В2</title>
@@ -112,6 +113,9 @@
             </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
+                    </div>
+                    <div class="flex-shrink-1 add_pos">
+                        <button class="img_add"><img src="../assets/excel.png" alt="" title="Экспорт в Excel" onclick="export()"></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
                         <button class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
