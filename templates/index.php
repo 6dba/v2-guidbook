@@ -9,6 +9,7 @@
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>
@@ -109,7 +110,6 @@
                             </label>
                     </div>
                 </div>
-            </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
@@ -127,6 +127,7 @@
                     <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                 </div>
                 <div id="view"></div>
+                
                 <script>
                     freezeButton();
                     if (localStorage.getItem('view')=='table') {
