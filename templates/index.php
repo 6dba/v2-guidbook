@@ -108,36 +108,8 @@
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
-<<<<<<< HEAD
-                </div> 
-
-                <script src="../js/filter.js"></script>
-=======
                 </div>
-
-                    <script src="../js/filter.js"></script>
-                    <script>
-                        filterTable(document.getElementById("tbody"), {
-                            2: new filterTable.Filter([
-                                document.getElementById("place"),
-                                document.getElementById("brigade"),
-                                document.getElementById("division"),
-                                document.getElementById("company"),
-                                document.getElementById("holding")
-                            ],
-                            function (value, filters, i) {
-                                if (false === filters[i].checked) return true;
-                                return filters[0].checked && filters[0].value === value ||
-                                filters[1].checked && filters[1].value === value ||
-                                filters[2].checked && filters[2].value === value ||
-                                filters[3].checked && filters[3].value === value ||
-                                filters[4].checked && filters[4].value === value;
-                            }
-                        ),
-                    }
-                );
-                    </script>
->>>>>>> 900b48dbe2142f87571786a27a0bea304cbc0654
+            </div>
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
@@ -214,7 +186,6 @@
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 </body>
 
