@@ -26,8 +26,8 @@ async function search() {
    }
 
    if (view.classList.contains('tree')) {
-      removeChilds(view);
-      tree(matches, value);
+       removeChilds(view);
+       tree(matches, value);
    } else if (view.classList.contains('table')) {
        removeChilds(view);
        table(matches, value);

@@ -9,7 +9,7 @@ function createHead() {
 
     titles.forEach((item, i) => {
         theadRow.appendChild(createElemWithAttr('th', {
-            className: item != '№' ? 'drag_accept' : '',
+            className: item !== '№' ? 'drag_accept' : '',
             innerHTML: item
         }));
     })
@@ -28,10 +28,10 @@ function createBody(data, backlightPattern) {
             className: item.IDENTIFIER
         }));
         sequence.forEach((title) => {
-            row.insertCell().innerHTML = title == '№' ? i
-                : title == 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
-                : title == 'Тип подразделения' ? item.DIVISION_TYPE_NAME
-                : title == 'Наименование' ? item.TYPE_NAME : '';
+            row.insertCell().innerHTML = title === '№' ? i
+                : title === 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
+                : title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME
+                : title === 'Наименование' ? item.TYPE_NAME : '';
         })
     })
     return tbody;
@@ -49,9 +49,9 @@ async function table(data, backlightPattern) {
     const table = createElemWithAttr('table', {id: 'table'});
     document.getElementById('view').appendChild(table);
 
-    $('#table').append(createHead()); $('#table').append(createBody(data, backlightPattern));
+    $(table).append(createHead()); $(table).append(createBody(data, backlightPattern));
 
-    $('#table').dragtable({
+    $(table).dragtable({
         axis: null,
         dragaccept: '.drag_accept',
         containment: 'parent',
