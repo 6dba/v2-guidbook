@@ -21,18 +21,19 @@ function createBody(data, backlightPattern) {
     const tbody = createElemWithAttr('tbody', {id: 'tbody'});
     const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
 
-    data.forEach((item, i) => {
+    data.forEach((item) => {
         const row = tbody.appendChild(createElemWithAttr('tr', {
             id: item.ID,
             onclick: function () {getType(this)},
             className: item.IDENTIFIER
         }));
         sequence.forEach((title) => {
-            row.insertCell().innerHTML = title == '№' ? i
+            row.insertCell().innerHTML = title == '№' ? number
                 : title == 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
                 : title == 'Тип подразделения' ? item.DIVISION_TYPE_NAME
                 : title == 'Наименование' ? item.TYPE_NAME : '';
         })
+        number++;
     })
     return tbody;
 }
@@ -40,7 +41,11 @@ function createBody(data, backlightPattern) {
 async function table(data, backlightPattern) {
     if (!data || !data.length)
         data = await getAll(0);
-
+    
+    page = 1;
+    end = false;
+    number = 1;
+    
     view.onscroll = checkLastElement;
 
     if (backlightPattern)
