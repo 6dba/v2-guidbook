@@ -28,7 +28,7 @@ function createBody(data, backlightPattern) {
             className: item.IDENTIFIER
         }));
         sequence.forEach((title) => {
-            row.insertCell().innerHTML = title === '№' ? i
+            row.insertCell().innerHTML = title === '№' ? number
                 : title === 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
                 : title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME
                 : title === 'Наименование' ? item.TYPE_NAME : '';

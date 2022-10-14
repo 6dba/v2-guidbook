@@ -1,5 +1,5 @@
 function toExcel() {
-    TableToExcel.convert(document.getElementById('table'), {
+    TableToExcel.convert($('#table'), {
         name: 'export.xlsx'
     })
 }
