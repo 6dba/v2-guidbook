@@ -1,5 +1,4 @@
 function request(url, requestData) {
-
     let data = {
         url: url
     }
@@ -7,6 +6,7 @@ function request(url, requestData) {
     if (requestData) {
         data["data"] = requestData;
     }
+
     return new Promise(function (resolve, reject) {
       $.ajax({
         url: '../php/api.php',

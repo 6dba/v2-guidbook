@@ -20,12 +20,12 @@ async function hasChilds(id) {
 }
 
 /* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
- * запрашиваются его дети, грузятся, выводятся */
+ * в кэшэ запрашиваются его дети, грузятся, выводятся */
 async function openChilds(element, button) {
-	const li = element.parentElement;
-	if (li.classList.contains('open')) {
-		li.removeChild(li.lastChild);
-		li.classList.remove('open');
+	const div = element.parentElement;
+	if (div.classList.contains('open')) {
+        div.removeChild(div.lastChild);
+		div.classList.remove('open');
 		button.querySelector('img').src = '../assets/rootClose.png';
 		return;
 	}
@@ -36,8 +36,9 @@ async function openChilds(element, button) {
 	if (typeof childs === 'undefined' && childs.length <= 0) return;
 
 	button.querySelector('img').src = '../assets/rootOpen.png';
-	li.classList.add('open');
-	li.appendChild(createUl('child', childs))
+	div.classList.add('open');
+
+    div.appendChild(createUl('child', childs));
 }
 
 /* Создание элементарного List Item элемента дерева и его необходимого заполнения
@@ -104,7 +105,7 @@ function createUl(classItem, arr, searchPattern) {
 		ul.appendChild(await createLi(classItem, item, searchPattern));
     });
 
-	return ul;
+    return ul;
 }
 
 function createView(className, arr, searchPattern) {

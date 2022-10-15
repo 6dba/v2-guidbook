@@ -6,7 +6,6 @@ function removeChilds(element) {
 }
 
 function changeView() {
-
     let view = document.getElementById('view');
     let icon = document.getElementById('img_view');
 
