@@ -1,5 +1,5 @@
 var filterTable = function (HTMLTBodyRef, aFilters) {
-    var rows = HTMLTBodyRef.getElementsByTagName("TR"),
+    var rows = HTMLTBodyRef.getElementsByTagName("tr"),
         filters = {}, n,
         walkThrough = function (rows) {
             var tr, i, f;

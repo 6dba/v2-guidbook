@@ -1,19 +1,19 @@
 async function search() {
-   let input = document.querySelector('.input_find')
-   let view = document.getElementById('view');
+   const input = document.querySelector('.input_find');
+   const view = document.getElementById('view');
 
    if (!input.value) return;
 
    const value = input.value.replace(/(<([^>]+)>)/ig, '')
-
-   const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
+    
    const data = await getData(allUrl);
 
    /* Соотвествует совпадениям по наименованию (предприятия, подразделения)
     * и наименованию типа подразделения */
    const matches = data.filter(
-      item => (item.NAME.toLowerCase().includes(value.toLowerCase()) ||
-           item.DIVISION_TYPE_NAME.toLowerCase().includes(value.toLowerCase()))
+           (item) => (item.NAME.toLowerCase().includes(value.toLowerCase()))
+      // || item.DIVISION_TYPE_NAME.toLowerCase().includes(value.toLowerCase()))
+      // || item.TYPE_NAME.toLowerCase().includes(value.toLowerCase()))
    )
 
    if (!matches.length) {
@@ -25,11 +25,11 @@ async function search() {
    }
 
    if (view.classList.contains('tree')) {
-      removeChilds(view);
-      createView('root', matches, value);
+       removeChilds(view);
+       tree(matches, value);
    } else if (view.classList.contains('table')) {
-      /* Вставляйте сюда функцию очистки view и отображения поисковых данных
-       * в табличном представлении */
+       removeChilds(view);
+       table(matches, value);
    }
 }
 
@@ -44,11 +44,11 @@ function clear(input) {
       tree();
    } else if (view.classList.contains('table')) {
       removeChilds(view);
-      load();
+      table();
    }
 
-   input.value = ""
-   input.parentElement.removeChild(document.querySelector('.button_clear'))
+   input.value = "";
+   input.parentElement.removeChild(document.querySelector('.button_clear'));
 }
 
 function inputEvent(element) {
@@ -67,4 +67,9 @@ function inputEvent(element) {
    });
 
    element.after(button);
+}
+
+// Подсветка вхождения search в string (Свойство NAME полученных данных)
+const searchBackLight = (string, search) => {
+    return string.replace(new RegExp(search, 'gi'), `<span style="background-color:#ff9447">$&</span>`);
 }

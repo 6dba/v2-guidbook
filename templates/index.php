@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/dragtable.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/table.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
@@ -19,6 +20,8 @@
     <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
+    <script type="text/javascript" src="../libs/tableToExcel.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <title>В2</title>
@@ -157,6 +160,9 @@
                 <div class="d-flex back_title_guide">
                     <div class="w-100 p-1 title_guide">Сотрудники
                     </div>
+                    <div id="excel" class="flex-shrink-1 add_pos">
+                        <button class="img_add"><img src="../assets/excel.png" alt="" title="Экспорт в Excel" onclick="toExcel()"></button>
+                    </div>
                     <div class="flex-shrink-1 add_pos">
                         <button class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
                     </div>
@@ -177,7 +183,7 @@
                     if (localStorage.getItem('view')=='table') {
                         img_view.src = '../assets/tree.png';
                         view.classList.add('table');
-                        load();
+                        table();
                         filterTable(document.getElementById("tbody"), {
                             2: new filterTable.Filter([ 
                                     document.getElementById("place"),
@@ -209,8 +215,9 @@
                     );
                     } else {
                         view.classList.add('tree');
-                        img_view.src = '../assets/table.png';
                         tree();
+                        img_view.src = '../assets/table.png';
+                        document.getElementById('excel').style.visibility = 'hidden'
                     }
 
                 </script>

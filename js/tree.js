@@ -1,3 +1,6 @@
+const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
+const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
+
 async function getData(url) {
 	return await cache('tree', 0, url).then(resolve => resolve).catch(reject => reject);
 }
@@ -7,9 +10,13 @@ function createElemWithAttr(item, attributes) {
 	return Object.assign(document.createElement(item), attributes);
 }
 
-// Подсветка вхождения search в string (Свойство NAME полученных данных)
-const searchBackLight = (string, search) => {
-	return string.replace(new RegExp(search, 'gi'), `<span style="background-color:#ff9447">$&</span>`);
+// Поиск дочерних элементов
+async function hasChilds(id) {
+    const data = await getData(allUrl)
+    if (data.find((item) => item.PARENT_ID === id)) {
+        return true;
+    }
+    return false;
 }
 
 /* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
@@ -69,10 +76,7 @@ async function createLi(classItem, item, searchPattern) {
 			: item.NAME
 	});
 
-	const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${item.ID}&request=developer`
-	const childs = await getData(childUrl);
-
-	if (typeof childs !== 'undefined' && childs.length > 0) {
+	if (await hasChilds(item.ID)) {
 		let button = createElemWithAttr('button', {
 			style: 'height: 20px; width: 20px; margin-right: 5px;',
 			type: 'image',
@@ -80,7 +84,6 @@ async function createLi(classItem, item, searchPattern) {
 			onclick: function() {openChilds(a, this)},
 			innerHTML: "<img src=../assets/rootClose.png alt='' id='img_root'/>"
 		});
-
 		a.style = `text-decoration: none; color: black;`
 		div.append(button);
 	}
@@ -93,12 +96,14 @@ async function createLi(classItem, item, searchPattern) {
 
 // Создание списка Ul
 function createUl(classItem, arr, searchPattern) {
-	const ul = document.createElement('ul');
-	ul.style = 'list-style-type: none; padding-left: 0; margin-left: 0;';
+    const ul = createElemWithAttr('ul', {
+        style: 'list-style-type: none; padding-left: 0; margin-left: 0;'
+    })
 
 	arr.forEach(async (item) => {
 		ul.appendChild(await createLi(classItem, item, searchPattern));
-	});
+    });
+
 	return ul;
 }
 
@@ -106,14 +111,14 @@ function createView(className, arr, searchPattern) {
 	const view = document.getElementById('view');
 	const tree = document.createDocumentFragment();
 
-	const ul = createUl(className, arr, searchPattern);
-
-	tree.appendChild(ul);
+    tree.appendChild(createUl(className, arr, searchPattern));
 	view.appendChild(tree);
 }
 
 // Создание древовидного отображения подразделений и предприятий компании
-async function tree() {
-	const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
-	createView('root', await getData(rootUrl));
+async function tree(data, backlightPattern) {
+    if (!data || !data.length)
+        data = await getData(rootUrl);
+
+	createView('root', data, backlightPattern);
 }
