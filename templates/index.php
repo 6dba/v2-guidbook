@@ -69,7 +69,7 @@
         <div class="row d-flex">
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
-                    <input type=text class='input_find placeholder=" Введите текст для поиска"'>
+                    <input type=text class='input_find' placeholder=" Введите текст для поиска">
                     <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
                         $('.input_find').on('input', function() {
@@ -79,13 +79,13 @@
                         $('.input_find').keyup(function(event) {
                             if (event.key == 'Enter') search();
                         });
-
                     </script>
+                    <button type="button_find" class="ms-3 btn_filter" onclick=""><img src="../assets/filter.png" alt=""/></button>
                 </div>
                 
                <div class="filter">
                     <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Фильтр</div>
+                        <div class="w-50 p-1 guide_filter">Наименование</div>
                             <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
                             <span class="checkbox__label">Место работы</span>
@@ -111,6 +111,50 @@
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
+                    <div class="d-flex title_filter">
+                       <div class="w-50 p-1 guide_filter">Тип подразделения</div>
+                                <label for="сheckbox-filter" class="checkbox">
+                                <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
+                                <span class="checkbox__label">Проходка</span>
+                                </label>
+
+                                <label for="сheckbox-filter" class="checkbox">
+                                <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
+                                <span class="checkbox__label">Очистной забой</span>
+                                </label>
+                   </div>
+                   <div class="d-flex title_filter">
+                           <div class="w-50 p-1 guide_filter">Сортировка</div>
+                           <div id="ttl_el" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Название--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       
+                            <div id="ttl_el" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Наименование--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       
+                            <div id="ttl_el" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Тип подразделения--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       </div>
+                     
+                        <button type="button_Ok" class="ms-3 btn_ok" onclick="">Ок</button>
+                    
                 </div>
                 <div class="d-flex back_title_guide">
                     <div id="title" class="w-100 p-1 title_guide">Сотрудники</div>
@@ -155,6 +199,16 @@
                                             filters[4].checked && filters[4].value === value;
                                 }
                             ),
+                            3: new filterTable.Filter([ 
+                                    document.getElementById("sinking"),
+                                    document.getElementById("stall")
+                                ],
+                                function (value, filters, i) {
+                                    if (false === filters[i].checked) return true;
+                                    return filters[0].checked && filters[0].value === value ||
+                                            filters[1].checked && filters[1].value === value;
+                                }
+                            ),
                         }
                     );
                     } else {
@@ -192,7 +246,7 @@
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
+    </div>
     <?php endif; ?>
 </body>
-
 </html>
