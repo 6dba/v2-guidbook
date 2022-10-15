@@ -69,7 +69,7 @@
         <div class="row d-flex">
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
-                    <input type=text class='input_find' placeholder=" Введите текст для поиска">
+                    <input type=text class="input_find" placeholder="Введите текст для поиска">
                     <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
                         $('.input_find').on('input', function() {
@@ -125,7 +125,7 @@
                    </div>
                    <div class="d-flex title_filter">
                            <div class="w-50 p-1 guide_filter">Сортировка</div>
-                           <div id="ttl_el" class="w-100 p-1 title_element">
+                           <div id="title_element" class="w-100 p-1 title_element">
                                <select id="type"><option value="types" selected="">--Название--</option>
                                <option value="a-z">А-Я</option>
                                <option value="z-a">Я-А</option>
@@ -134,7 +134,7 @@
                                </select>
                             </div>
                        
-                            <div id="ttl_el" class="w-100 p-1 title_element">
+                            <div id="title_element" class="w-100 p-1 title_element">
                                <select id="type"><option value="types" selected="">--Наименование--</option>
                                <option value="a-z">А-Я</option>
                                <option value="z-a">Я-А</option>
@@ -143,7 +143,7 @@
                                </select>
                             </div>
                        
-                            <div id="ttl_el" class="w-100 p-1 title_element">
+                            <div id="title_element" class="w-100 p-1 title_element">
                                <select id="type"><option value="types" selected="">--Тип подразделения--</option>
                                <option value="a-z">А-Я</option>
                                <option value="z-a">Я-А</option>
