@@ -112,7 +112,7 @@ function createSelectList(selectlist) {
 }
 
 function postNew() {
-    exit.style.visibility = 'hidden';
+    document.getElementById('exit').style.visibility = 'hidden';
     if (typeof type !== 'undefined' && type.value == 'enterprise') {
         postEnterprise();
         reload_cache();
@@ -120,7 +120,7 @@ function postNew() {
         postDivision();
         reload_cache();
     }
-    type.remove();
+    document.getElementById('type').remove();
     createNewObject();
 }
 

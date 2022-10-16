@@ -69,7 +69,33 @@ function delete_object() {
             deleteObject.style.visibility = 'hidden';
             reload_cache();
         },
-        error: function (jqxhr, status, errorMsg) {
-        }
+        error: function (jqxhr, status, errorMsg) {}
     })
+}
+
+
+function accept_filters() {
+    button_change_view.onclick = null;
+    loading_view.classList.remove('loading');
+    view.classList.add('loading');
+    data_sort = {
+        sort: $('#name').val() ? $('#name').val() : $('#type_name').val() ? $('#type_name').val() : $('#division_type_name').val() ? $('#division_type_name').val() : '',
+
+        name: $('#name').val() ? 'NAME' : $('#type_name').val() ? 'TYPE_NAME' : $('#division_type_name').val() ? 'DIVISION_TYPE_NAME' : ''
+    };
+    $.ajax({
+        url: '../php/sort_cache.php',
+        method: 'POST',
+        data: data_sort,
+        success: function (response) {
+            console.log(response);
+            removeChilds(view);
+            view.scrollTo(pageXOffset, 0);
+            table();
+            button_change_view.onclick = changeView;
+            view.classList.remove('loading');
+            loading_view.classList.add('loading');
+        },
+        error: function (jqxhr, status, errorMsg) {}
+    });
 }
