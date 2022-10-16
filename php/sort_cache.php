@@ -3,35 +3,18 @@ ini_set( 'display_errors', 1 );
 error_reporting( E_ALL ^E_NOTICE );
 include 'hash.php';
 //Вызов функции
+$left = 0;
+$right = apcu_cache_info( true )['nentries']-1;
+while ( apcu_exists( "$right" ) == false )
+$right--;
 if ( $_POST['sort'] == 'a-z' || $_POST['sort'] == 'z-a' )
-qsort();
-else if ( $_POST['sort'] == 'null' || $_POST['sort'] == 'not_null' )
-qsort_to_null();
+sort_high_low( $left, $right );
+else if ( $_POST['sort'] == 'empty' || $_POST['sort'] == 'not_empty' )
+sort_null_not( $left, $right );
 else
 echo $_POST['sort'];
 
-/*
-* Функция вычисляет количество элементов,
-* тем самым подготавливая параметры для первого запуска,
-* и запускает сам процесс.
-*/
-
-function qsort() {
-
-    $left = 0;
-    $right = apcu_cache_info( true )['nentries']-1;
-    while ( apcu_exists( "$right" ) == false )
-    $right--;
-    my_sort( $left, $right );
-
-}
-
-/*
-* Функция, непосредственно производящая сортировку.
-* Так как массив передается по ссылке, ничего не возвращает.
-*/
-
-function my_sort( $left, $right ) {
+function sort_high_low( $left, $right ) {
 
     //Создаем копии пришедших переменных, с которыми будем манипулировать в дальнейшем.
     $l = $left;
@@ -39,29 +22,29 @@ function my_sort( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->$_POST['name'];
+    $center = mb_strtolower(mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->$_POST['name']);
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
-        if ( $_POST['sort'] == 'a-z') {
-            while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name'], $center ) >= 1 ) {
+        if ( $_POST['sort'] == 'a-z' ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name'], $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
                 $l++;
 
             }
         } else if ( $_POST['sort'] == 'z-a' ) {
-            while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name'], $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name'], $center ) >= 1 ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
                 $l++;
             }
         }
@@ -79,6 +62,7 @@ function my_sort( $left, $right ) {
             //И переводим счетчики на следующий элементы
             $l++;
             $r--;
+
         }
 
         //Повторяем цикл, если true
@@ -88,19 +72,19 @@ function my_sort( $left, $right ) {
     if ( $r > $left ) {
         //Если условие true, совершаем рекурсию
         //Передаем массив, исходное начало и текущий конец
-        my_sort( $left, $r );
+        sort_high_low( $left, $r );
     }
 
     if ( $l < $right ) {
         //Если условие true, совершаем рекурсию
         //Передаем массив, текущие начало и конец
-        my_sort( $l, $right );
+        sort_high_low( $l, $right );
     }
     //Сортировка завершена
 
 }
 
-function my_sort1( $left, $right ) {
+function sort_null_not( $left, $right ) {
 
     //Создаем копии пришедших переменных, с которыми будем манипулировать в дальнейшем.
     $l = $left;
@@ -108,21 +92,32 @@ function my_sort1( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME;
+    $center = mb_strtolower(mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->$_POST['name']);
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) <= -1 || !apcu_fetch( "$r" ) ) {
-            $r--;
-        }
+        if ( $_POST['sort'] == 'empty' ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+                $r--;
+            }
 
-        //Ищем значения меньше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) >= 1 ) {
-            $l++;
-        }
+            //Ищем значения меньше 'центра'
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+                $l++;
 
+            }
+        } else if ( $_POST['sort'] == 'not_empty' ) {
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+                $r--;
+            }
+
+            //Ищем значения меньше 'центра'
+            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+                $l++;
+            }
+        }
         //После прохода циклов проверяем счетчики циклов
         if ( $l <= $r ) {
 
@@ -143,13 +138,13 @@ function my_sort1( $left, $right ) {
     if ( $r > $left ) {
         //Если условие true, совершаем рекурсию
         //Передаем массив, исходное начало и текущий конец
-        my_sort( $left, $r );
+        sort_null_not( $left, $r );
     }
 
     if ( $l < $right ) {
         //Если условие true, совершаем рекурсию
         //Передаем массив, текущие начало и конец
-        my_sort( $l, $right );
+        sort_null_not( $l, $right );
     }
     //Сортировка завершена
 

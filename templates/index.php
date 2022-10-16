@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
     <link rel="stylesheet" href="../styles/css.css">
     <link rel="stylesheet" href="../styles/dragtable.css">
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
@@ -15,7 +15,6 @@
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
-
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
