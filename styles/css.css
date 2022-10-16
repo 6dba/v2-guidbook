@@ -95,6 +95,30 @@ li {
     color:darkgreen;
 }
 
+.btn_ok {
+    border-color: #00CED1;
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 100px;
+    height: 25px;
+    float: right;
+    color: black;
+}
+
+.btn_filter {
+    border-color: #00CED1;
+    margin-top: 15px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 55px;
+    height: 28px;
+    float: right;
+    color: black;
+}
+
 .back_title_guide {
     background-color: #596573;
     margin-top: 10px;
@@ -102,15 +126,24 @@ li {
     height: 35px;
 }
 
-.title_filter {
-    font-size: 12px;
+.filter {
+    font-size: 13px;
     font-family: "monospace";
     background-color: white;
     margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
-    height: 35px;
+    height: 170px;
     border: 1px solid black;
+}
+
+.title_filter {
+    font-size: 13px;
+    font-family: "monospace";
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .guide_filter {
@@ -232,6 +265,11 @@ table {
 
 select {
     width: auto;
+}
+
+option {
+    font-size: 13px;
+    font-family: "monospace";
 }
 
 .checkbox__label {

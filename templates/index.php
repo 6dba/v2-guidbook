@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles/css.css">
     <link rel="stylesheet" href="../styles/dragtable.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,14 +14,12 @@
     <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/defaulttable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/post.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
     <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/ajax_cache.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/cache.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
-    <script type="text/javascript" src="../libs/tableToExcel.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
@@ -70,7 +69,7 @@
         <div class="row d-flex">
             <div class="col trap">
                 <div class="d-flex flex-shrink-1">
-                    <input type=text class='input_find placeholder=" Введите текст для поиска"'>
+                    <input type=text class="input_find" placeholder="Введите текст для поиска">
                     <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                     <script>
                         $('.input_find').on('input', function() {
@@ -80,13 +79,13 @@
                         $('.input_find').keyup(function(event) {
                             if (event.key == 'Enter') search();
                         });
-
                     </script>
+                    <button type="button_find" class="ms-3 btn_filter" onclick=""><img src="../assets/filter.png" alt=""/></button>
                 </div>
                 
                <div class="filter">
                     <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Фильтр</div>
+                        <div class="w-50 p-1 guide_filter">Наименование</div>
                             <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
                             <span class="checkbox__label">Место работы</span>
@@ -112,10 +111,53 @@
                             <span class="checkbox__label">Холдинг</span>
                             </label>
                     </div>
+                    <div class="d-flex title_filter">
+                       <div class="w-50 p-1 guide_filter">Тип подразделения</div>
+                                <label for="сheckbox-filter" class="checkbox">
+                                <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
+                                <span class="checkbox__label">Проходка</span>
+                                </label>
+
+                                <label for="сheckbox-filter" class="checkbox">
+                                <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
+                                <span class="checkbox__label">Очистной забой</span>
+                                </label>
+                   </div>
+                   <div class="d-flex title_filter">
+                           <div class="w-50 p-1 guide_filter">Сортировка</div>
+                           <div id="title_element" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Название--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       
+                            <div id="title_element" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Наименование--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       
+                            <div id="title_element" class="w-100 p-1 title_element">
+                               <select id="type"><option value="types" selected="">--Тип подразделения--</option>
+                               <option value="a-z">А-Я</option>
+                               <option value="z-a">Я-А</option>
+                               <option value="empty">Сначала пустые</option>
+                               <option value="not_empty">Сначала непустые</option>
+                               </select>
+                            </div>
+                       </div>
+                     
+                        <button type="button_Ok" class="ms-3 btn_ok" onclick="">Ок</button>
+                    
                 </div>
                 <div class="d-flex back_title_guide">
-                    <div class="w-100 p-1 title_guide">Сотрудники
-                    </div>
+                    <div id="title" class="w-100 p-1 title_guide">Сотрудники</div>
                     <div id="excel" class="flex-shrink-1 add_pos">
                         <button class="img_add"><img src="../assets/excel.png" alt="" title="Экспорт в Excel" onclick="toExcel()"></button>
                     </div>
@@ -157,6 +199,16 @@
                                             filters[4].checked && filters[4].value === value;
                                 }
                             ),
+                            3: new filterTable.Filter([ 
+                                    document.getElementById("sinking"),
+                                    document.getElementById("stall")
+                                ],
+                                function (value, filters, i) {
+                                    if (false === filters[i].checked) return true;
+                                    return filters[0].checked && filters[0].value === value ||
+                                            filters[1].checked && filters[1].value === value;
+                                }
+                            ),
                         }
                     );
                     } else {
@@ -194,7 +246,7 @@
                 <div id="edit_Form" class="p-2"></div>
             </div>
         </div>
+    </div>
     <?php endif; ?>
 </body>
-
 </html>

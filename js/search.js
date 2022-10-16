@@ -5,8 +5,7 @@ async function search() {
    if (!input.value) return;
 
    const value = input.value.replace(/(<([^>]+)>)/ig, '')
-
-   const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
+    
    const data = await getData(allUrl);
 
    /* Соотвествует совпадениям по наименованию (предприятия, подразделения)
@@ -26,8 +25,8 @@ async function search() {
    }
 
    if (view.classList.contains('tree')) {
-      removeChilds(view);
-      tree(matches, value);
+       removeChilds(view);
+       tree(matches, value);
    } else if (view.classList.contains('table')) {
        removeChilds(view);
        table(matches, value);
