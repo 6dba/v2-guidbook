@@ -46,7 +46,7 @@ async function toExcel() {
         return;
     }
 
-    const data = await getData(allUrl);
+    const data = await cache('table', 'all');
     if (!data.length) return;
     
     const table = document.createElement('table');
