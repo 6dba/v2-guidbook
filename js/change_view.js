@@ -6,8 +6,6 @@ function removeChilds(element) {
 }
 
 function changeView() {
-    let icon = document.getElementById('img_view');
-
     if (document.querySelector('.button_clear')) {
         const input = document.querySelector('.input_find')
         input.value = ''; input.parentElement.removeChild(document.querySelector('.button_clear'));
@@ -34,7 +32,6 @@ function changeView() {
         localStorage.setItem('view', 'tree');
         document.getElementById('excel').style.visibility = 'hidden'
     }
-    return;
 }
 
 function freezeButton() {

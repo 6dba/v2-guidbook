@@ -36,11 +36,8 @@ async function search() {
 }
 
 function clear(input) {
-   let view = document.getElementById('view');
+   const view = document.getElementById('view');
 
-   /* Лишнее обновление view если было заполнено поисковое поле, но не нажата кнопка Найти,
-    * то есть исходное отображение заменяется на исходное,
-    * не критично, но нужно решить */
     if (view.classList.contains('tree') && view.classList.contains('search')) {
         view.classList.toggle('search'); removeChilds(view);
         tree();

@@ -110,7 +110,7 @@ function createUl(classItem, arr, searchPattern) {
 }
 
 function createView(className, arr, searchPattern) {
-	const view = document.getElementById('view');
+    const view = document.getElementById('view');
 	const tree = document.createDocumentFragment();
 
     tree.append(createUl(className, arr, searchPattern));
@@ -121,6 +121,6 @@ function createView(className, arr, searchPattern) {
 async function tree(data, backlightPattern) {
     if (!data || !data.length)
         data = await getData(rootUrl);
-
 	createView('root', data, backlightPattern);
+
 }

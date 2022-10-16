@@ -23,6 +23,8 @@
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/tools.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/sort.js"></script>
 
 
     <title>В2</title>
@@ -129,8 +131,8 @@
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Сортировка</div>
                         <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="name">
-                                <option value="">--Название--</option>
+                            <select id="NAME" onchange="sort(this)">
+                            <option value="" disabled selected>--Название--</option>
                                 <option value="a-z">А-Я</option>
                                 <option value="z-a">Я-А</option>
                                 <option value="empty">Сначала пустые</option>
@@ -139,8 +141,8 @@
                         </div>
 
                         <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="type_name">
-                                <option value="">--Наименование--</option>
+                            <select id="TYPE_NAME" onchange="sort(this)">
+                            <option value="" disabled selected>--Наименование--</option>
                                 <option value="a-z">А-Я</option>
                                 <option value="z-a">Я-А</option>
                                 <option value="empty">Сначала пустые</option>
@@ -149,8 +151,8 @@
                         </div>
 
                         <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="division_type_name">
-                                <option value="">--Тип подразделения--</option>
+                            <select id="DIVISION_TYPE_NAME" onchange="sort(this)">
+                            <option value="" disabled selected>--Тип подразделения--</option>
                                 <option value="a-z">А-Я</option>
                                 <option value="z-a">Я-А</option>
                                 <option value="empty">Сначала пустые</option>
@@ -158,7 +160,6 @@
                             </select>
                         </div>
                     </div>
-
                     <button id="button_Ok" class="ms-3 btn_ok" onclick=accept_filters()>Ок</button>
 
                 </div>

@@ -23,7 +23,21 @@ function request(url, requestData) {
   });
 }
 
-
+function sortCache(value, property) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: '../php/sort_cache.php',
+            method: 'POST',
+            data: {sort: value, name: property},
+            success: function(response) {
+                return resolve(response);
+                },
+            error: function (jqxhr, status, errorMsg) {
+                return reject(errorMsg, status);
+            }
+        });
+    });
+}
 
 function get(url) {
     return request(url);

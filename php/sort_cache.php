@@ -3,13 +3,13 @@ ini_set( 'display_errors', 1 );
 error_reporting( E_ALL ^E_NOTICE );
 include 'hash.php';
 //Вызов функции
-if ( $_POST['sort'] == 'a-z' || $_POST['sort'] == 'z-a' )
-qsort();
-else if ( $_POST['sort'] == 'null' || $_POST['sort'] == 'not_null' )
-qsort_to_null();
-else
-echo $_POST['sort'];
-
+if ( $_POST['sort'] == 'a-z' || $_POST['sort'] == 'z-a' ) {
+    qsort();
+} else if ( $_POST['sort'] == 'null' || $_POST['sort'] == 'not_null' ) {
+    qsort_to_null();
+} else {
+    echo $_POST['sort'];
+}
 /*
 * Функция вычисляет количество элементов,
 * тем самым подготавливая параметры для первого запуска,
