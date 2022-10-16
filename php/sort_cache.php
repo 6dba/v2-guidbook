@@ -3,8 +3,10 @@ ini_set( 'display_errors', 1 );
 error_reporting( E_ALL ^E_NOTICE );
 include 'hash.php';
 //Вызов функции
+print_r( apcu_cache_info( true ) );
 qsort();
-print_r( apcu_cache_info(true));
+print_r( apcu_cache_info( true ) );
+
 /*
 * Функция вычисляет количество элементов,
 * тем самым подготавливая параметры для первого запуска,
@@ -14,8 +16,10 @@ print_r( apcu_cache_info(true));
 function qsort() {
 
     $left = 0;
-    $right = apcu_cache_info( true )['nentries'];
-
+    $right = apcu_cache_info( true )['nentries']-1;
+    while (apcu_exists("$right")==false)
+        $right--;
+    echo $right;
     my_sort( $left, $right );
 
 }
@@ -25,7 +29,7 @@ function qsort() {
 * Так как массив передается по ссылке, ничего не возвращает.
 */
 
-function my_sort1( $left, $right ) {
+function my_sort( $left, $right ) {
 
     //Создаем копии пришедших переменных, с которыми будем манипулировать в дальнейшем.
     $l = $left;
@@ -33,19 +37,20 @@ function my_sort1( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->NAME;
+    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME;
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->NAME, $center ) >= 1 ) {
+        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) >= 1) {
             $r--;
         }
 
         //Ищем значения меньше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->NAME, $center ) <= -1 ) {
+        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) <= -1) {
             $l++;
+
         }
 
         //После прохода циклов проверяем счетчики циклов
@@ -83,7 +88,7 @@ function my_sort1( $left, $right ) {
 
 }
 
-function my_sort( $left, $right ) {
+function my_sort1( $left, $right ) {
 
     //Создаем копии пришедших переменных, с которыми будем манипулировать в дальнейшем.
     $l = $left;
@@ -91,18 +96,18 @@ function my_sort( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->NAME;
+    $center = mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME;
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->NAME, $center ) <= -1 ) {
+        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) <= -1 || !apcu_fetch( "$r" ) ) {
             $r--;
         }
 
         //Ищем значения меньше 'центра'
-        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->NAME, $center ) >= 1 ) {
+        while ( strnatcasecmp( mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->DIVISION_TYPE_NAME, $center ) >= 1 ) {
             $l++;
         }
 

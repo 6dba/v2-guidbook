@@ -24,4 +24,5 @@ if ( $_POST['type'] == 'tree' ) {
     }
     echo json_encode( $data );
 }
+
 ?>
