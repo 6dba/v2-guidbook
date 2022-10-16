@@ -7,7 +7,7 @@ function createHead() {
     const thead = createElemWithAttr('thead', {id: 'thead'});
     const theadRow = thead.appendChild(document.createElement('tr'));
 
-    titles.forEach((item, i) => {
+    titles.forEach((item) => {
         theadRow.appendChild(createElemWithAttr('th', {
             className: item !== '№' ? 'drag_accept' : '',
             innerHTML: item
@@ -21,19 +21,18 @@ function createBody(data, backlightPattern) {
     const tbody = createElemWithAttr('tbody', {id: 'tbody'});
     const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
 
-    data.forEach((item) => {
+    data.forEach((item, i) => {
         const row = tbody.appendChild(createElemWithAttr('tr', {
             id: item.ID,
             onclick: function () {getType(this)},
             className: item.IDENTIFIER
         }));
         sequence.forEach((title) => {
-            row.insertCell().innerHTML = title === '№' ? number
+            row.insertCell().innerHTML = title === '№' ? ++i
                 : title === 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
                 : title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME
                 : title === 'Наименование' ? item.TYPE_NAME : '';
         })
-        number++;
     })
     return tbody;
 }

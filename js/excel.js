@@ -13,13 +13,28 @@ const tableToExcel = (function() {
     }
 
     return function(table, name, fileName) {
-        if (!table.nodeType) table = document.getElementById(table)
+        if (!table) return;
         const ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
         const resuri = uri + base64(format(template, ctx))
         downloadURI(resuri, fileName);
     }
 })();
 
-function toExcel() {
-    tableToExcel('table', `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xlsx`)
+function exportation(table) {
+    tableToExcel(table, `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xlsx`)
 }
+
+async function toExcel() {
+    if (view.classList.contains('search')) {
+        exportation(document.getElementById('table'));
+        return;
+    }
+
+    const data = await getData(allUrl);
+    if (!data.length) return;
+    
+    const table = document.createElement('table');
+    $(table).append(createHead()); $(table).append(createBody(data));
+    exportation(table);
+}
+

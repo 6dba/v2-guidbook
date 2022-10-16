@@ -21,6 +21,7 @@ async function search() {
       `<div class="card">
          <div class="card-body"><h5 class="card-title">Совпадений для <b>${value}</b> не найдено :(</h5></div>
       </div>`
+      view.classList.toggle('search');
       return;
    }
 
@@ -31,6 +32,7 @@ async function search() {
        removeChilds(view);
        table(matches, value);
    }
+    view.classList.toggle('search')
 }
 
 function clear(input) {
@@ -39,12 +41,12 @@ function clear(input) {
    /* Лишнее обновление view если было заполнено поисковое поле, но не нажата кнопка Найти,
     * то есть исходное отображение заменяется на исходное,
     * не критично, но нужно решить */
-   if (view.classList.contains('tree')) {
-      removeChilds(view);
-      tree();
-   } else if (view.classList.contains('table')) {
-      removeChilds(view);
-      table();
+    if (view.classList.contains('tree') && view.classList.contains('search')) {
+        view.classList.toggle('search'); removeChilds(view);
+        tree();
+    } else if (view.classList.contains('table') && view.classList.contains('search')) {
+        view.classList.toggle('search'); removeChilds(view);
+        table();
    }
 
    input.value = "";
