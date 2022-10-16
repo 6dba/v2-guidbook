@@ -6,14 +6,14 @@
 //функция для отображения предприятия
 function selectItemEnterprise(id) {
     blockSelect(true);
-    loading.classList.remove('loading');
-    edit_Form.classList.add('loading');
+    document.getElementById('loading').classList.remove('loading');
+    document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
     get('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=+' + id + '&request=developer')
         .then(resolve => get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer').then(holdings => get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer').then(enterpriseType => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ID'] + '&request=developer').then(users => {
 
             document.getElementById('ttl_el').innerHTML = 'Предприятие ' + resolve['NAME'];
-            ttl_el.classList.add('id' + resolve['ID']);
+            document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
             document.getElementById('edit_Form').innerHTML =
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                 "<p id='arg_1' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
@@ -31,22 +31,22 @@ function selectItemEnterprise(id) {
                 "<p id='arg_7'  class='arg_field'>" + (resolve['SKLAD'] ? resolve['SKLAD'] : 'Не заполнено') + "</p>";
 
 
-            edit_Form.classList.remove('loading');
-            loading.classList.add('loading');
+            document.getElementById('edit_Form').classList.remove('loading');
+            document.getElementById('loading').classList.add('loading');
             blockSelect(false);
-            img_change.onclick = edit;
+            document.getElementById('img_change').onclick = edit;
         }))));
 }
 
 //функция для отображения предприятия
 function selectItemDivision(id) {
     blockSelect(true);
-    loading.classList.remove('loading');
-    edit_Form.classList.add('loading');
+    document.getElementById('loading').classList.remove('loading');
+    document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
     get('http://81.161.220.59:8100/api/division/?action=getVariables&id=' + id + '&request=developer').then(resolve => get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ENTERPRISE_ID'] + '&request=developer').then(users => {
         document.getElementById('ttl_el').innerHTML = 'Подразделение ' + resolve['NAME'];
-        ttl_el.classList.add('id' + resolve['ID']);
+        document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
         document.getElementById('edit_Form').innerHTML =
             "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
             "<p id='arg_8' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
@@ -65,10 +65,10 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
             "<input type='checkbox' id='arg_16' readonly " + (resolve['IS_ORDERS_VISIBLE'] ? 'checked> ' : '>');
 
-        edit_Form.classList.remove('loading');
-        loading.classList.add('loading');
+        document.getElementById('edit_Form').classList.remove('loading');
+        document.getElementById('loading').classList.add('loading');
         blockSelect(false);
-        img_change.onclick = edit;
+        document.getElementById('img_change').onclick = edit;
     })))));
 }
 
@@ -83,19 +83,19 @@ function findName(id, obj) {
 
 //функции определения типа объекта
 function getType(object) {
-    exit.style.visibility = 'hidden';
+    document.getElementById('exit').style.visibility = 'hidden';
     if (object.classList.contains("DIVISION")) {
-        ttl_el.innerHTML = '';
-        img_change.style.visibility = 'visible';
-        if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
-            img_change.src = '../assets/change.png';
+        document.getElementById('ttl_el').innerHTML = '';
+        document.getElementById('img_change').style.visibility = 'visible';
+        if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png')
+            document.getElementById('img_change').src = '../assets/change.png';
         removeID();
         selectItemDivision(object.id.substring(1));
     } else if (object.classList.contains("ENTERPRISE")) {
-        ttl_el.innerHTML = '';
-        img_change.style.visibility = 'visible';
-        if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png')
-            img_change.src = '../assets/change.png';
+        document.getElementById('ttl_el').innerHTML = '';
+        document.getElementById('img_change').style.visibility = 'visible';
+        if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png')
+            document.getElementById('img_change').src = '../assets/change.png';
         removeID();
         selectItemEnterprise(object.id.substring(1));
     } else return;

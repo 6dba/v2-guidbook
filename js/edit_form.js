@@ -1,45 +1,45 @@
 //функция для перехода в режим редактирования или отправки измененных данных в //режим просмотра
 function edit() {
-    img_change.onclick = null;
+    document.getElementById('img_change').onclick = null;
     setTimeout(() => {
-        img_change.onclick = edit;
+        document.getElementById('img_change').onclick = edit;
     }, 1000);
-    img_change.style.visibility = 'visible';
+    document.getElementById('img_change').style.visibility = 'visible';
     setTimeout(() =>
-        button_change_view.onclick = changeView, 1000);
-    if (img_change.src == location.protocol + "//" + location.host + '/assets/save.png') {
-        exit.style.visibility = 'hidden';
-        deleteObject.style.visibility = 'hidden';
-        if (ttl_el.innerHTML.includes('Предприятие')) {
+        document.getElementById('button_change_view').onclick = changeView, 1000);
+    if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png') {
+        document.getElementById('exit').style.visibility = 'hidden';
+        document.getElementById('deleteObject').style.visibility = 'hidden';
+        if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
             postEnterprise();
             setTimeout(() => {
-                selectItemEnterprise(findID(ttl_el));
+                selectItemEnterprise(findID(document.getElementById('ttl_el')));
                 reload_cache();
             }, 300);
-            img_change.src = '../assets/change.png';
-        } else if (ttl_el.innerHTML.includes('Подразделение')) {
+            document.getElementById('img_change').src = '../assets/change.png';
+        } else if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) {
             postDivision();
             setTimeout(() => {
-                selectItemDivision(findID(ttl_el));
+                selectItemDivision(findID(document.getElementById('ttl_el')));
                 reload_cache();
             }, 300);
-            img_change.src = '../assets/change.png';
+            document.getElementById('img_change').src = '../assets/change.png';
         }
     } else {
-        img_change.src = '../assets/save.png';
-        exit.style.visibility = 'visible';
-        deleteObject.style.visibility = 'visible';
+        document.getElementById('img_change').src = '../assets/save.png';
+        document.getElementById('exit').style.visibility = 'visible';
+        document.getElementById('deleteObject').style.visibility = 'visible';
         //скрываем форму до полной загрузки
-        loading.classList.remove('loading');
-        edit_Form.classList.add('loading');
+        document.getElementById('loading').classList.remove('loading');
+        document.getElementById('edit_Form').classList.add('loading');
         setTimeout(() => {
             //показываем обновленную форму с полностью 
             //загруженными данными
-            edit_Form.classList.remove('loading');
-            loading.classList.add('loading');
+            document.getElementById('edit_Form').classList.remove('loading');
+            document.getElementById('loading').classList.add('loading');
         }, 1500);
-        if (ttl_el.innerHTML.includes('Подразделение')) editView(8, 16);
-        else if (ttl_el.innerHTML.includes('Предприятие'))
+        if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) editView(8, 16);
+        else if (document.getElementById('ttl_el').innerHTML.includes('Предприятие'))
             editView(1, 7);
     }
 }
@@ -72,7 +72,7 @@ function selectList(name) {
         name.outerHTML = str;
         $('#arg_10').change(async function () {
             users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-            arg_13.innerHTML = "<option></option>" +
+            document.getElementById('arg_13').innerHTML = "<option></option>" +
                 createSelectList(users);
         });
     });
@@ -119,10 +119,10 @@ function findID(name) {
 
 //Удалить ID из заголовка формы просмотра/редактирования
 function removeID() {
-    ttl_el.classList.forEach(
+    document.getElementById('ttl_el').classList.forEach(
         function (a) {
             if (/id/.test(a)) {
-                ttl_el.classList.remove(a);
+                document.getElementById('ttl_el').classList.remove(a);
             }
         });
 }

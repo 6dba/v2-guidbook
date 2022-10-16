@@ -8,12 +8,12 @@ let number = 1;
 
 async function checkLastElement() {
     if (!end) {
-        view.onscroll = '';
+        document.getElementById('view').onscroll = '';
         setTimeout(() => view.onscroll = checkLastElement, 20);
         if ($('tbody tr:last').offset().top < $('#view').height() * 2) {
             array = await getAll(page);
             if (array == null || array.length < 25) {
-                view.onscroll = '';
+                document.getElementById('view').onscroll = '';
                 end = true;
             }
             const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]

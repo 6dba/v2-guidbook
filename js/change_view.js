@@ -6,7 +6,6 @@ function removeChilds(element) {
 }
 
 function changeView() {
-    let view = document.getElementById('view');
     let icon = document.getElementById('img_view');
 
     if (document.querySelector('.button_clear')) {
@@ -16,22 +15,22 @@ function changeView() {
 
     if (view.classList.contains('tree')) {
         freezeButton();
-        removeChilds(view);
-        view.classList.remove('tree');
-        view.classList.add('table');
+        removeChilds(document.getElementById('view'));
+        document.getElementById('view').classList.remove('tree');
+        document.getElementById('view').classList.add('table');
         table();
-        icon.src = '../assets/tree.png';
+        document.getElementById('img_view').src = '../assets/tree.png';
         localStorage.setItem('view', 'table');
         document.getElementById('excel').style.visibility = 'visible'
 
     } else if (view.classList.contains('table')) {
         freezeButton();
-        removeChilds(view);
-        view.onscroll = '';
-        view.classList.remove('table');
-        view.classList.add('tree');
+        removeChilds(document.getElementById('view'));
+        document.getElementById('view').onscroll = '';
+        document.getElementById('view').classList.remove('table');
+        document.getElementById('view').classList.add('tree');
         tree();
-        icon.src = '../assets/table.png';
+        document.getElementById('img_view').src = '../assets/table.png';
         localStorage.setItem('view', 'tree');
         document.getElementById('excel').style.visibility = 'hidden'
     }
@@ -39,8 +38,8 @@ function changeView() {
 }
 
 function freezeButton() {
-    button_change_view.onclick = null;
+    document.getElementById('button_change_view').onclick = null;
     setTimeout(function () {
-        button_change_view.onclick = changeView
+        document.getElementById('button_change_view').onclick = changeView
     }, 1000);
 }

@@ -1,12 +1,12 @@
 function createNewObject() {
-    img_change.style.visibility = 'hidden';
-    exit.style.visibility = 'hidden';
-    deleteObject.style.visibility = 'hidden';
-    img_change.onclick = postNew;
-    ttl_el.innerHTML = '';
-    edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
-    loading.classList.remove('loading');
-    edit_Form.classList.add('loading');
+    document.getElementById('img_change').style.visibility = 'hidden';
+    document.getElementById('exit').style.visibility = 'hidden';
+    document.getElementById('deleteObject').style.visibility = 'hidden';
+    document.getElementById('img_change').onclick = postNew;
+    document.getElementById('ttl_el').innerHTML = '';
+    document.getElementById('edit_Form').outerHTML = '<div id="edit_Form" class="p-2"></div>';
+    document.getElementById('loading').classList.remove('loading');
+    document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
     let type = document.createElement('select');
     type.id = 'type';
@@ -15,17 +15,17 @@ function createNewObject() {
         "<option value='enterprise'>Предприятие</option>" +
         "<option value='division'>Подразделение</option>";
 
-    ttl_el.append(type);
-    img_change.src = '../assets/save.png';
-    edit_Form.classList.remove('loading');
-    loading.classList.add('loading');
+    document.getElementById('ttl_el').append(type);
+    document.getElementById('img_change').src = '../assets/save.png';
+    document.getElementById('edit_Form').classList.remove('loading');
+    document.getElementById('loading').classList.add('loading');
     $('#type').change(async function () {
         if ($(this).val() == 'enterprise') {
-            exit.style.visibility = 'visible';
-            img_change.style.visibility = 'visible';
-            type.disabled = true;
-            loading.classList.remove('loading');
-            edit_Form.classList.add('loading');
+            document.getElementById('exit').style.visibility = 'visible';
+            document.getElementById('img_change').style.visibility = 'visible';
+            document.getElementById('type').disabled = true;
+            document.getElementById('loading').classList.remove('loading');
+            document.getElementById('edit_Form').classList.add('loading');
 
             holdings = await get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer');
             enterpriseType = await get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer');
@@ -46,16 +46,16 @@ function createNewObject() {
                 "<input type='checkbox' id='arg_6'>" +
                 "<p class='arg_edit'>СКЛАД</p>" +
                 "<input id='arg_7'  class='input_tag'>";
-            edit_Form.classList.remove('loading');
-            loading.classList.add('loading');
-            type.disabled = false;
+            document.getElementById('edit_Form').classList.remove('loading');
+            document.getElementById('loading').classList.add('loading');
+            document.getElementById('type').disabled = false;
 
         } else if ($(this).val() == 'division') {
-            exit.style.visibility = 'visible';
-            img_change.style.visibility = 'visible';
-            type.disabled = true;
-            loading.classList.remove('loading');
-            edit_Form.classList.add('loading');
+            document.getElementById('exit').style.visibility = 'visible';
+            document.getElementById('img_change').style.visibility = 'visible';
+            document.getElementById('type').disabled = true;
+            document.getElementById('loading').classList.remove('loading');
+            document.getElementById('edit_Form').classList.add('loading');
 
             divisionType = await get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer');
             enterprise = await get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer');
@@ -82,19 +82,19 @@ function createNewObject() {
                 "<input type='checkbox' id='arg_16'>";
 
 
-            edit_Form.classList.remove('loading');
-            loading.classList.add('loading');
-            type.disabled = false;
+            document.getElementById('edit_Form').classList.remove('loading');
+            document.getElementById('loading').classList.add('loading');
+            document.getElementById('type').disabled = false;
             $('#arg_10').change(async function () {
                 users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-                arg_13.innerHTML = "<option></option>" +
+                document.getElementById('arg_13').innerHTML = "<option></option>" +
                     createSelectList(users);
             });
 
         } else if ($(this).val() == 'types') {
-            edit_Form.outerHTML = '<div id="edit_Form" class="p-2"></div>';
-            img_change.style.visibility = 'hidden';
-            exit.style.visibility = 'hidden';
+            document.getElementById('edit_Form').outerHTML = '<div id="edit_Form" class="p-2"></div>';
+            document.getElementById('img_change').style.visibility = 'hidden';
+            document.getElementById('exit').style.visibility = 'hidden';
         }
     })
 }

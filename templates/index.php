@@ -6,25 +6,24 @@
     <link rel="stylesheet" href="../styles/css.css">
     <link rel="stylesheet" href="../styles/dragtable.css">
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../libs/dragtable.js">
+    </script>
+    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
 
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
     <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/cache.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/dragtable.js">
-    </script>
+
 
     <title>В2</title>
 </head>
