@@ -170,6 +170,10 @@ li {
     background: none;
 }
 
+.img_add:hover{
+    opacity: 0.85;
+}
+
 .back_title_element {
     background-color: #596573;
     width: 100%;

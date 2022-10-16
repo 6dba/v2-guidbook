@@ -4,25 +4,27 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../styles/css.css">
-    <link rel="stylesheet" href="../styles/dragtable.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/dragtable.css">
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../libs/dragtable.js">
+    </script>
+    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/post.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
     <script language="javascript" type="text/javascript" src="../js/createNew.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/cache.js"></script>
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
+
+
     <title>В2</title>
 </head>
 
@@ -79,83 +81,102 @@
                         $('.input_find').keyup(function(event) {
                             if (event.key == 'Enter') search();
                         });
+
                     </script>
-                    <button type="button_find" class="ms-3 btn_filter" onclick=""><img src="../assets/filter.png" alt=""/></button>
+                    <button type="button_find" class="ms-3 btn_filter" onclick=""><img src="../assets/filter.png" alt="" /></button>
                 </div>
-                
-               <div class="filter">
+
+                <div class="filter">
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Наименование</div>
-                            <label for="сheckbox-filter" class="checkbox">
+                        <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
                             <span class="checkbox__label">Место работы</span>
-                            </label>
+                        </label>
 
-                            <label for="сheckbox-filter" class="checkbox">
+                        <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
                             <span class="checkbox__label">Бригада</span>
-                            </label>
+                        </label>
 
-                            <label for="сheckbox-filter" class="checkbox">
+                        <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
                             <span class="checkbox__label">Подразделение</span>
-                            </label>
+                        </label>
 
-                            <label for="сheckbox-filter" class="checkbox">
+                        <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
                             <span class="checkbox__label">Предприятие</span>
-                            </label>
+                        </label>
 
-                            <label for="сheckbox-filter" class="checkbox">
+                        <label for="сheckbox-filter" class="checkbox">
                             <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
                             <span class="checkbox__label">Холдинг</span>
-                            </label>
+                        </label>
                     </div>
                     <div class="d-flex title_filter">
-                       <div class="w-50 p-1 guide_filter">Тип подразделения</div>
-                                <label for="сheckbox-filter" class="checkbox">
-                                <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
-                                <span class="checkbox__label">Проходка</span>
-                                </label>
+                        <div class="w-50 p-1 guide_filter">Тип подразделения</div>
+                        <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
+                            <span class="checkbox__label">Проходка</span>
+                        </label>
 
-                                <label for="сheckbox-filter" class="checkbox">
-                                <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
-                                <span class="checkbox__label">Очистной забой</span>
-                                </label>
-                   </div>
-                   <div class="d-flex title_filter">
-                           <div class="w-50 p-1 guide_filter">Сортировка</div>
-                           <div id="title_element" class="w-100 p-1 title_element">
-                               <select id="type"><option value="types" selected="">--Название--</option>
-                               <option value="a-z">А-Я</option>
-                               <option value="z-a">Я-А</option>
-                               <option value="empty">Сначала пустые</option>
-                               <option value="not_empty">Сначала непустые</option>
-                               </select>
-                            </div>
-                       
-                            <div id="title_element" class="w-100 p-1 title_element">
-                               <select id="type"><option value="types" selected="">--Наименование--</option>
-                               <option value="a-z">А-Я</option>
-                               <option value="z-a">Я-А</option>
-                               <option value="empty">Сначала пустые</option>
-                               <option value="not_empty">Сначала непустые</option>
-                               </select>
-                            </div>
-                       
-                            <div id="title_element" class="w-100 p-1 title_element">
-                               <select id="type"><option value="types" selected="">--Тип подразделения--</option>
-                               <option value="a-z">А-Я</option>
-                               <option value="z-a">Я-А</option>
-                               <option value="empty">Сначала пустые</option>
-                               <option value="not_empty">Сначала непустые</option>
-                               </select>
-                            </div>
-                       </div>
-                     
-                        <button type="button_Ok" class="ms-3 btn_ok" onclick="">Ок</button>
-                    
+                        <label for="сheckbox-filter" class="checkbox">
+                            <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
+                            <span class="checkbox__label">Очистной забой</span>
+                        </label>
+                    </div>
+                    <div class="d-flex title_filter">
+                        <div class="w-50 p-1 guide_filter">Сортировка</div>
+                        <div id="title_element" class="w-100 p-1 title_element">
+                            <select id="name">
+                                <option value="">--Название--</option>
+                                <option value="a-z">А-Я</option>
+                                <option value="z-a">Я-А</option>
+                                <option value="empty">Сначала пустые</option>
+                                <option value="not_empty">Сначала непустые</option>
+                            </select>
+                        </div>
+
+                        <div id="title_element" class="w-100 p-1 title_element">
+                            <select id="type_name">
+                                <option value="">--Наименование--</option>
+                                <option value="a-z">А-Я</option>
+                                <option value="z-a">Я-А</option>
+                                <option value="empty">Сначала пустые</option>
+                                <option value="not_empty">Сначала непустые</option>
+                            </select>
+                        </div>
+
+                        <div id="title_element" class="w-100 p-1 title_element">
+                            <select id="division_type_name">
+                                <option value="">--Тип подразделения--</option>
+                                <option value="a-z">А-Я</option>
+                                <option value="z-a">Я-А</option>
+                                <option value="empty">Сначала пустые</option>
+                                <option value="not_empty">Сначала непустые</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="button_Ok" class="ms-3 btn_ok" onclick=accept_filters()>Ок</button>
+
                 </div>
+                <script>
+                    $('#name').change(function() {
+                        document.getElementById('type_name').value = '';
+                        document.getElementById('division_type_name').value = '';
+                    });
+                    $('#type_name').change(function() {
+                        document.getElementById('name').value = '';
+                        document.getElementById('division_type_name').value = '';
+                    });
+                    $('#division_type_name').change(function() {
+                        document.getElementById('type_name').value = '';
+                        document.getElementById('name').value = '';
+                    });
+
+                </script>
                 <div class="d-flex back_title_guide">
                     <div id="title" class="w-100 p-1 title_guide">Сотрудники</div>
                     <div id="excel" class="flex-shrink-1 add_pos">
@@ -175,42 +196,41 @@
                     <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                 </div>
                 <div id="view"></div>
-                
+
                 <script>
                     freezeButton();
-                    if (localStorage.getItem('view')=='table') {
+                    if (localStorage.getItem('view') == 'table') {
                         img_view.src = '../assets/tree.png';
                         view.classList.add('table');
                         table();
                         filterTable(document.getElementById("tbody"), {
-                            2: new filterTable.Filter([ 
+                            2: new filterTable.Filter([
                                     document.getElementById("place"),
                                     document.getElementById("brigade"),
                                     document.getElementById("division"),
                                     document.getElementById("company"),
                                     document.getElementById("holding")
                                 ],
-                                function (value, filters, i) {
+                                function(value, filters, i) {
                                     if (false === filters[i].checked) return true;
                                     return filters[0].checked && filters[0].value === value ||
-                                            filters[1].checked && filters[1].value === value ||
-                                            filters[2].checked && filters[2].value === value ||
-                                            filters[3].checked && filters[3].value === value ||
-                                            filters[4].checked && filters[4].value === value;
+                                        filters[1].checked && filters[1].value === value ||
+                                        filters[2].checked && filters[2].value === value ||
+                                        filters[3].checked && filters[3].value === value ||
+                                        filters[4].checked && filters[4].value === value;
                                 }
                             ),
-                            3: new filterTable.Filter([ 
+                            3: new filterTable.Filter([
                                     document.getElementById("sinking"),
                                     document.getElementById("stall")
                                 ],
-                                function (value, filters, i) {
+                                function(value, filters, i) {
                                     if (false === filters[i].checked) return true;
                                     return filters[0].checked && filters[0].value === value ||
-                                            filters[1].checked && filters[1].value === value;
+                                        filters[1].checked && filters[1].value === value;
                                 }
                             ),
-                        }
-                    );
+                        });
                     } else {
                         view.classList.add('tree');
                         tree();
@@ -249,4 +269,5 @@
     </div>
     <?php endif; ?>
 </body>
+
 </html>
