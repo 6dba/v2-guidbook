@@ -7,7 +7,7 @@ function createHead() {
     const thead = createElemWithAttr('thead', {id: 'thead'});
     const theadRow = thead.appendChild(document.createElement('tr'));
 
-    titles.forEach((item, i) => {
+    titles.forEach((item) => {
         theadRow.appendChild(createElemWithAttr('th', {
             className: item !== '№' ? 'drag_accept' : '',
             innerHTML: item
@@ -33,18 +33,17 @@ function createBody(data, backlightPattern) {
                 : title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME
                 : title === 'Наименование' ? item.TYPE_NAME : '';
         })
-        number++;
+        number++
     })
     return tbody;
 }
 
 async function table(data, backlightPattern) {
-    if (!data || !data.length)
+    if (!data || !data.length) {
         data = await getAll(0);
+    }
 
-    page = 1;
-    end = false;
-    number = 1;
+    page = 1; end = false; number = 1;
 
     view.onscroll = checkLastElement;
 

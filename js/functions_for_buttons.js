@@ -89,7 +89,7 @@ function accept_filters() {
         method: 'POST',
         data: data_sort,
         success: function (response) {
-            removeChilds(view);
+            removeChilds(getElementById('view'));
             document.getElementById('view').scrollTo(pageXOffset, 0);
             table();
             document.getElementById('button_change_view').onclick = changeView;

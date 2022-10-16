@@ -31,14 +31,15 @@ async function openChilds(element, button) {
 	}
 
 	const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${element.id}&request=developer`
+    button.querySelector('img').src = '../assets/tree-loader.gif';
 	const childs = await getData(childUrl);
 
 	if (typeof childs === 'undefined' && childs.length <= 0) return;
 
-	button.querySelector('img').src = '../assets/rootOpen.png';
+    button.querySelector('img').src = '../assets/rootOpen.png';
 	div.classList.add('open');
 
-    div.appendChild(createUl('child', childs));
+    div.append(createUl('child', childs));
 }
 
 /* Создание элементарного List Item элемента дерева и его необходимого заполнения
@@ -90,7 +91,7 @@ async function createLi(classItem, item, searchPattern) {
 	}
 
 	div.append(a);
-	li.appendChild(div);
+	li.append(div);
 
 	return li;
 }
@@ -102,24 +103,24 @@ function createUl(classItem, arr, searchPattern) {
     })
 
 	arr.forEach(async (item) => {
-		ul.appendChild(await createLi(classItem, item, searchPattern));
+		ul.append(await createLi(classItem, item, searchPattern));
     });
 
     return ul;
 }
 
 function createView(className, arr, searchPattern) {
-	const view = document.getElementById('view');
+    const view = document.getElementById('view');
 	const tree = document.createDocumentFragment();
 
-    tree.appendChild(createUl(className, arr, searchPattern));
-	view.appendChild(tree);
+    tree.append(createUl(className, arr, searchPattern));
+	view.append(tree);
 }
 
 // Создание древовидного отображения подразделений и предприятий компании
 async function tree(data, backlightPattern) {
     if (!data || !data.length)
         data = await getData(rootUrl);
-
 	createView('root', data, backlightPattern);
+
 }
