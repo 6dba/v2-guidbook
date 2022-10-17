@@ -63,6 +63,6 @@ if ( isset( $_POST['data'] ) and isset( $_POST['url'] ) ) {
 }
 
 if ( isset( $_POST['url'] ) ) {
-    get( $_POST['url'] );
+    echo get( $_POST['url'] );
 }
 ?>
