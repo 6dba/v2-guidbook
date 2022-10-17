@@ -2,7 +2,11 @@ body {
     overflow-y: inherit;
 }
 
-
+.container-fluid {
+    background-color:#00CED1;
+    height: 68px;
+    color:white;
+}
 
 .container-fluid {
     color: white;
@@ -91,16 +95,36 @@ li {
     color:darkgreen;
 }
 
-.btn_ok {
+.open_bar {
     border-color: #00CED1;
     margin-top: 10px;
-    margin-right: 10px;
     background-color: white;
     border-radius: 20px;
     width: 100px;
     height: 25px;
     float: right;
-    color: black;
+    color:darkgreen;
+}
+
+.btn_ok {
+    border-color: #00CED1;
+    margin-top: 10px;
+    margin-right: 40px;
+    background-color: white;
+    border-radius: 20px;
+    width: 100px;
+    height: 35px;
+    float: right;
+    color:black;
+}
+
+.btn_close {
+    border: none;
+    height: 15px;
+    background-color: #596573;
+    width: 15%;
+    color: white;
+    margin-top: 5px;
 }
 
 .btn_filter {
@@ -260,30 +284,65 @@ table {
     margin: 30% auto;
 }
 
-#ttl_el select {
-    font-size: 18px;
+#name {
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
 }
-#ttl_el option {
-    font-size: 18px;
+
+#name option {
+    font-size: 14px;
     font-family: "monospace";
 }
-#edit_Form option {
-    font-size: 18px;
+
+#type_name {
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+#type_name option {
+    font-size: 14px;
     font-family: "monospace";
 }
-option {
-    font-size: 13px;
+
+#division_type_name {
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+#division_type_name option {
+    font-size: 14px;
     font-family: "monospace";
 }
 
 .checkbox__label {
     color: black;
-    font-size: 13px;
+    font-size: 14px;
     margin-right: 25px;
 }
 
+.labels_bar {
+    font-family: "monospace";
+    font-size: 15px;
+    border: none;
+    height: 35px;
+    background-color: #596573;
+    width: 100%;
+    color: white;
+}
+
 .checkbox {
-    margin-top: 7px;
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+.span {
+    font-family: "monospace";
+    font-size: 14px;
+    text-align: center;
 }
 
 a:hover {
@@ -305,3 +364,39 @@ a:hover {
     background-color: #00CEFF;
 }
 
+.mySidebar {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 151px;
+    left: 956;
+    background-color: whitesmoke;
+    font-family: "monospace";
+    box-shadow: 0.4em 0.4em 12px rgba(122,122,122,1);
+    max-width: 260px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.mySidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    display: block;
+}
+
+.mySidebar a:hover {
+    color: #f1f1f1;
+    background:#00CED1;
+}
+
+.main {
+    padding: 0px;
+}
+
+@media screen and (max-height: 700px) {
+    .mySidebar {padding-top: 0px;}
+    .mySidebar a {font-size: 16px;}
+}

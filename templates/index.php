@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/dragtable.js">
-    </script>
+    <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/bar.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
@@ -22,8 +21,6 @@
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/sort.js"></script>
-
 
     <title>В2</title>
 </head>
@@ -67,6 +64,75 @@
     <?php
     if($_COOKIE['user'] == '1'):
     ?>
+    <div class ="d-flex">
+     <div class="mySidebar" id = "mySidebar">
+                 <label for="label-bar" class="labels_bar">
+                    <button class="btn_close" onclick="w3_close()" title="Закрыть">X</button>
+                     <span>Фильтр</span>
+                    </label>
+                  <a href="#name_place">Наименование</a>
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-type-name" type="checkbox" id="place" value="Место работы">
+                        <span class="checkbox__label">Место работы</span>
+                        </label>
+
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-type-name" type="checkbox" id="brigade" value="Бригада">
+                        <span class="checkbox__label">Бригада</span>
+                        </label>
+
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-type-name" type="checkbox" id="division" value="Подразделение">
+                        <span class="checkbox__label">Подразделение</span>
+                        </label>
+
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-type-name" type="checkbox" id="company" value="Предприятие">
+                        <span class="checkbox__label">Предприятие</span>
+                        </label>
+
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-type-name" type="checkbox" id="holding" value="Холдинг">
+                        <span class="checkbox__label">Холдинг</span>
+                        </label>
+
+                  <a href="#type_division">Тип подразделения</a>
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name" type="checkbox" id="sinking" value="Проходка">
+                        <span class="checkbox__label">Проходка</span>
+                        </label>
+
+                        <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name" type="checkbox" id="stall" value="Очистной забой">
+                        <span class="checkbox__label">Очистной забой</span>
+                        </label>
+
+                  <a href="#sort">Сортировка</a>
+                        <select id="name"><option value="types" selected="">--Название--</option>
+                        <option value="a-z">А-Я</option>
+                        <option value="z-a">Я-А</option>
+                        <option value="empty">Сначала пустые</option>
+                        <option value="not_empty">Сначала непустые</option>
+                        </select>
+
+                        <select id="type_name"><option value="types" selected="">--Наименование--</option>
+                        <option value="a-z">А-Я</option>
+                        <option value="z-a">Я-А</option>
+                        <option value="empty">Сначала пустые</option>
+                        <option value="not_empty">Сначала непустые</option>
+                        </select>
+
+                        <select id="division_type_name"><option value="types" selected="">--Тип подразделения--</option>
+                        <option value="a-z">А-Я</option>
+                        <option value="z-a">Я-А</option>
+                        <option value="empty">Сначала пустые</option>
+                        <option value="not_empty">Сначала непустые</option>
+                        </select>
+
+                <button id="button_Ok" class="ms-3 btn_ok" onclick="accept_filters()">Ок</button>
+    </div>
+    </div>
+<div class = "main" id = "main">
     <div class="container_information">
         <div class="row d-flex">
             <div class="col trap">
@@ -83,99 +149,9 @@
                         });
 
                     </script>
-                    <button type="button_find" class="ms-3 btn_filter" onclick=""><img src="../assets/filter.png" alt="" /></button>
+                    <button type="open_bar" class="ms-3 btn_filter" onclick=""><img src="../assets/kisspng-left.png" onclick="w3_open()" alt=""/></button>
                 </div>
 
-                <div class="filter">
-                    <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Наименование</div>
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-type-name" type="checkbox" id="place" value="Место работы">
-                            <span class="checkbox__label">Место работы</span>
-                        </label>
-
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-type-name" type="checkbox" id="brigade" value="Бригада">
-                            <span class="checkbox__label">Бригада</span>
-                        </label>
-
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-type-name" type="checkbox" id="division" value="Подразделение">
-                            <span class="checkbox__label">Подразделение</span>
-                        </label>
-
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-type-name" type="checkbox" id="company" value="Предприятие">
-                            <span class="checkbox__label">Предприятие</span>
-                        </label>
-
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-type-name" type="checkbox" id="holding" value="Холдинг">
-                            <span class="checkbox__label">Холдинг</span>
-                        </label>
-                    </div>
-                    <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Тип подразделения</div>
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-division-type-name" type="checkbox" id="sinking" value="Проходка">
-                            <span class="checkbox__label">Проходка</span>
-                        </label>
-
-                        <label for="сheckbox-filter" class="checkbox">
-                            <input class="check-division-type-name" type="checkbox" id="stall" value="Очистной забой">
-                            <span class="checkbox__label">Очистной забой</span>
-                        </label>
-                    </div>
-                    <div class="d-flex title_filter">
-                        <div class="w-50 p-1 guide_filter">Сортировка</div>
-                        <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="name" >
-                            <option value="" selected>--Название--</option>
-                                <option value="a-z">А-Я</option>
-                                <option value="z-a">Я-А</option>
-                                <option value="empty">Сначала пустые</option>
-                                <option value="not_empty">Сначала непустые</option>
-                            </select>
-                        </div>
-
-                        <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="type_name">
-                            <option value="" selected>--Наименование--</option>
-                                <option value="a-z">А-Я</option>
-                                <option value="z-a">Я-А</option>
-                                <option value="empty">Сначала пустые</option>
-                                <option value="not_empty">Сначала непустые</option>
-                            </select>
-                        </div>
-
-                        <div id="title_element" class="w-100 p-1 title_element">
-                            <select id="division_type_name">
-                            <option value="" selected>--Тип подразделения--</option>
-                                <option value="a-z">А-Я</option>
-                                <option value="z-a">Я-А</option>
-                                <option value="empty">Сначала пустые</option>
-                                <option value="not_empty">Сначала непустые</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button id="button_Ok" class="ms-3 btn_ok" onclick=accept_filters()>Ок</button>
-
-                </div>
-                <script>
-                    $('#name').change(function() {
-                        document.getElementById('type_name').value = '';
-                        document.getElementById('division_type_name').value = '';
-                    });
-                    $('#type_name').change(function() {
-                        document.getElementById('name').value = '';
-                        document.getElementById('division_type_name').value = '';
-                    });
-                    $('#division_type_name').change(function() {
-                        document.getElementById('type_name').value = '';
-                        document.getElementById('name').value = '';
-                    });
-
-                </script>
                 <div class="d-flex back_title_guide">
                     <div id="title" class="w-100 p-1 title_guide">Сотрудники</div>
                     <div id="excel" class="flex-shrink-1 add_pos">
@@ -195,7 +171,6 @@
                     <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                 </div>
                 <div id="view"></div>
-
                 <script>
                     freezeButton();
                     if (localStorage.getItem('view') == 'table') {
@@ -208,12 +183,8 @@
                         img_view.src = '../assets/table.png';
                         document.getElementById('excel').style.visibility = 'hidden'
                     }
-
                 </script>
-
-
             </div>
-
             <div class="col trap_edit edit align-self-start" id="block_edit">
                 <div class="d-flex back_title_element">
                     <div id="ttl_el" class="w-100 p-1 title_element">
@@ -238,6 +209,7 @@
             </div>
         </div>
     </div>
+</div>
     <?php endif; ?>
 </body>
 
