@@ -8,6 +8,11 @@ function edit() {
     setTimeout(() =>
         document.getElementById('button_change_view').onclick = changeView, 1000);
     if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png') {
+        if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) {
+            if (check_null(8, 16)) return;
+        } else if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
+            if (check_null(1, 7)) return;
+        }
         document.getElementById('exit').style.visibility = 'hidden';
         document.getElementById('deleteObject').style.visibility = 'hidden';
         if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
