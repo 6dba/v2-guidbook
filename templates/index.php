@@ -42,7 +42,7 @@
                 <li><a href="#" class="nav-link px-2 link-light">Администрирование</a></li>
                 <li><a href="#" class="nav-link px-2 link-light">Помощь</a></li>
                 <li>
-                    <?php
+                <?php
                 if($_COOKIE['user'] == '1'):
                 ?>
                     <a href="../php/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
@@ -90,39 +90,39 @@
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Наименование</div>
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
+                            <input class="check-type-name" type="checkbox" id="place" value="Место работы">
                             <span class="checkbox__label">Место работы</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
+                            <input class="check-type-name" type="checkbox" id="brigade" value="Бригада">
                             <span class="checkbox__label">Бригада</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
+                            <input class="check-type-name" type="checkbox" id="division" value="Подразделение">
                             <span class="checkbox__label">Подразделение</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
+                            <input class="check-type-name" type="checkbox" id="company" value="Предприятие">
                             <span class="checkbox__label">Предприятие</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
+                            <input class="check-type-name" type="checkbox" id="holding" value="Холдинг">
                             <span class="checkbox__label">Холдинг</span>
                         </label>
                     </div>
                     <div class="d-flex title_filter">
                         <div class="w-50 p-1 guide_filter">Тип подразделения</div>
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
+                            <input class="check-division-type-name" type="checkbox" id="sinking" value="Проходка">
                             <span class="checkbox__label">Проходка</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                            <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
+                            <input class="check-division-type-name" type="checkbox" id="stall" value="Очистной забой">
                             <span class="checkbox__label">Очистной забой</span>
                         </label>
                     </div>

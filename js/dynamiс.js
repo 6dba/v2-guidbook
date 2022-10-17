@@ -7,33 +7,18 @@ let end = false;
 let number = 1;
 
 async function checkLastElement() {
+    const view = document.getElementById('view')
+    const tbody = document.getElementById('tbody')
     if (!end) {
-        document.getElementById('view').onscroll = '';
+        view.onscroll = '';
         setTimeout(() => view.onscroll = checkLastElement, 20);
-        if ($('tbody tr:last').offset().top < $('#view').height() * 2) {
-            array = await getAll(page);
+        if ($('tbody tr:last').offset().top < $('#view').height() * 2 ) {
+            let array = await getAll(page);
             if (array == null || array.length < 25) {
-                document.getElementById('view').onscroll = '';
-                end = true;
+                view.onscroll = ''; end = true;
+                return;
             }
-            const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
-
-            array.forEach((item) => {
-                const row = tbody.appendChild(createElemWithAttr('tr', {
-                    id: item.ID,
-                    onclick: function () {
-                        getType(this)
-                    },
-                    className: item.IDENTIFIER
-                }));
-                sequence.forEach((title) => {
-                    row.insertCell().innerHTML = title === '№' ? number :
-                        title === 'Название' ? item.NAME :
-                        title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME :
-                        title === 'Наименование' ? item.TYPE_NAME : '';
-                })
-                number++;
-            })
+            createBody(array, tbody, undefined)
             page++;
         }
     }
