@@ -54,12 +54,7 @@ function post( $url, $data = array() ) {
 if ( isset( $_POST['data'] ) and isset( $_POST['url'] ) ) {
     // Изменяем ресурс
     post( $_POST['url'], $_POST['data'] );
-    // Очищаем кэш
-    apcu_clear_cache();
-    // Запрашиваем новые данные
-    $newData = json_decode( get( "http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer" ) );
-    // Кэшируем
-    cache( $newData );
+
 }
 
 if ( isset( $_POST['url'] ) ) {

@@ -5,13 +5,14 @@ function createNewObject() {
     document.getElementById('img_change').onclick = postNew;
     document.getElementById('ttl_el').innerHTML = '';
     document.getElementById('edit_Form').outerHTML = '<div id="edit_Form" class="p-2"></div>';
+    removeID();
     document.getElementById('loading').classList.remove('loading');
     document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
     let type = document.createElement('select');
     type.id = 'type';
     type.innerHTML =
-        "<option value='types' selected>--Выберите тип--</option>" +
+        "<option value='types' selected>--Выберите тип--</option> " +
         "<option value='enterprise'>Предприятие</option>" +
         "<option value='division'>Подразделение</option>";
 
@@ -133,16 +134,19 @@ function postNew() {
 function check_null(start, end) {
     let null_field = false;
     for (i = start; i <= end; i++) {
-        if (eval("arg_" + i).tagName.toLowerCase() == 'input' && eval("arg_" + i).value == '') {
-            eval("arg_" + i).style = 'border:1px solid #ec1b0b';
+        let name = eval("arg_" + i);
+        if (name.id == 'arg_5' || name.id == 'arg_13') continue;
+        if ((name.tagName.toLowerCase() == 'input' && name.value == '') || (name.tagName.toLowerCase() == 'select' && name.options[name.selectedIndex].value == '')) {
+            name.style = 'border:1px solid #ec1b0b';
             null_field = true;
         }
     }
-    if (null_field) 
-    {
-        span = createElemWithAttr('span', {style: 'color:#ec1b0b; font-size:13px;',
-                                          innerHTML:'Заполните выделенные поля'});
-        
+    if (null_field) {
+        span = createElemWithAttr('span', {
+            style: 'color:#ec1b0b; font-size:13px;',
+            innerHTML: 'Заполните выделенные поля'
+        });
+
         document.getElementById('edit_Form').prepend(span);
     }
     return null_field;

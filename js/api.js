@@ -11,7 +11,7 @@ function request(url, requestData) {
       $.ajax({
         url: '../php/api.php',
         method: 'POST',
-        dataType: 'json',
+        dataType: !data['data'] ? 'json' : '',
         data: data,
         success: function(response) {
             return resolve(response);
