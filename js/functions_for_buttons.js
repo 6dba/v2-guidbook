@@ -26,6 +26,7 @@ function undo_edit() {
 //функция обновления кэша
 function reload_cache() {
     document.getElementById('button_change_view').onclick = null;
+    document.getElementById('reload_cache_button').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
     $.ajax({
@@ -43,6 +44,8 @@ function reload_cache() {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
+            setTimeout(()=> {document.getElementById('reload_cache_button').onclick = reload_cache;}, 20000);
+
         },
         error: function (jqxhr, status, errorMsg) {
 

@@ -179,16 +179,16 @@
                 <div class="d-flex back_title_guide">
                     <div id="title" class="w-100 p-1 title_guide">Сотрудники</div>
                     <div id="excel" class="flex-shrink-1 add_pos">
-                        <button class="img_add"><img src="../assets/excel.png" alt="" title="Экспорт в Excel" onclick="toExcel()"></button>
+                        <button class="img_add"><img src="../assets/excel.png" alt="" title="Экспорт в Excel" onclick=toExcel()></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button class="img_add"><img src="../assets/reload.png" alt="" title="Обновить" onclick="reload_cache()"></button>
+                        <button class="img_add" id='reload_cache_button' onclick=reload_cache()><img src="../assets/reload.png" alt="" title="Обновить"></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button class="img_add" id="button_change_view" title="Форма представления данных" onclick="changeView()"><img id="img_view" src="../assets/table.png" alt=""></button>
+                        <button class="img_add" id="button_change_view" title="Форма представления данных" onclick=changeView()><img id="img_view" src="../assets/table.png" alt=""></button>
                     </div>
                     <div class="flex-shrink-1 add_pos">
-                        <button class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick="createNewObject()"></button>
+                        <button class="img_add"><img src="../assets/add4.png" alt="" title="Создать" onclick=createNewObject()></button>
                     </div>
                 </div>
                 <div id='loading_view' class='loading p-2' style='text-align: center'>
