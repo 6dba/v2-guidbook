@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/dragtable.js">
-    </script>
+    <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/filter.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
     <script language="javascript" type="text/javascript" src="../js/bar.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
@@ -24,8 +21,6 @@
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/sort.js"></script>
-
 
     <title>В2</title>
 </head>
@@ -77,38 +72,38 @@
                     </label>
                   <a href="#name_place">Наименование</a>
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="place" value="Место работы">
+                        <input class="check-type-name" type="checkbox" id="place" value="Место работы">
                         <span class="checkbox__label">Место работы</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="brigade" value="Бригада">
+                        <input class="check-type-name" type="checkbox" id="brigade" value="Бригада">
                         <span class="checkbox__label">Бригада</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="division" value="Подразделение">
+                        <input class="check-type-name" type="checkbox" id="division" value="Подразделение">
                         <span class="checkbox__label">Подразделение</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="company" value="Предприятие">
+                        <input class="check-type-name" type="checkbox" id="company" value="Предприятие">
                         <span class="checkbox__label">Предприятие</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="holding" value="Холдинг">
+                        <input class="check-type-name" type="checkbox" id="holding" value="Холдинг">
                         <span class="checkbox__label">Холдинг</span>
                         </label>
 
                   <a href="#type_division">Тип подразделения</a>
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="sinking" value="Проходка">
+                        <input class="check-division-type-name" type="checkbox" id="sinking" value="Проходка">
                         <span class="checkbox__label">Проходка</span>
                         </label>
 
                         <label for="сheckbox-filter" class="checkbox">
-                        <input class="checkbox__input" type="checkbox" id="stall" value="Очистной забой">
+                        <input class="check-division-type-name" type="checkbox" id="stall" value="Очистной забой">
                         <span class="checkbox__label">Очистной забой</span>
                         </label>
 
@@ -134,7 +129,7 @@
                         <option value="not_empty">Сначала непустые</option>
                         </select>
 
-                <button type="button_Ok" class="ms-3 btn_ok" onclick="">Ок</button>
+                <button id="button_Ok" class="ms-3 btn_ok" onclick="accept_filters()">Ок</button>
     </div>
     </div>
 <div class = "main" id = "main">
@@ -176,51 +171,19 @@
                     <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                 </div>
                 <div id="view"></div>
-
                 <script>
                     freezeButton();
                     if (localStorage.getItem('view') == 'table') {
                         img_view.src = '../assets/tree.png';
                         view.classList.add('table');
                         table();
-                        filterTable(document.getElementById("tbody"), {
-                            2: new filterTable.Filter([
-                                    document.getElementById("place"),
-                                    document.getElementById("brigade"),
-                                    document.getElementById("division"),
-                                    document.getElementById("company"),
-                                    document.getElementById("holding")
-                                ],
-                                function(value, filters, i) {
-                                    if (false === filters[i].checked) return true;
-                                    return filters[0].checked && filters[0].value === value ||
-                                        filters[1].checked && filters[1].value === value ||
-                                        filters[2].checked && filters[2].value === value ||
-                                        filters[3].checked && filters[3].value === value ||
-                                        filters[4].checked && filters[4].value === value;
-                                }
-                            ),
-                            3: new filterTable.Filter([
-                                    document.getElementById("sinking"),
-                                    document.getElementById("stall")
-                                ],
-                                function(value, filters, i) {
-                                    if (false === filters[i].checked) return true;
-                                    return filters[0].checked && filters[0].value === value ||
-                                        filters[1].checked && filters[1].value === value;
-                                }
-                            ),
-                        });
                     } else {
                         view.classList.add('tree');
                         tree();
                         img_view.src = '../assets/table.png';
                         document.getElementById('excel').style.visibility = 'hidden'
                     }
-
                 </script>
-
-
             </div>
             <div class="col trap_edit edit align-self-start" id="block_edit">
                 <div class="d-flex back_title_element">
