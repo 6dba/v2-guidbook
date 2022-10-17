@@ -112,15 +112,38 @@ function createSelectList(selectlist) {
 }
 
 function postNew() {
+    if (typeof type !== 'undefined' && type.value == 'division') {
+        if (check_null(8, 16)) return;
+    } else if (typeof type !== 'undefined' && type.value == 'enterprise') {
+        if (check_null(1, 7)) return;
+    }
+
     document.getElementById('exit').style.visibility = 'hidden';
     if (typeof type !== 'undefined' && type.value == 'enterprise') {
         postEnterprise();
-        reload_cache();
+        setTimeout(reload_cache, 100);
     } else if (typeof type !== 'undefined' && type.value == 'division') {
         postDivision();
-        reload_cache();
+        setTimeout(reload_cache, 100);
     }
     document.getElementById('type').remove();
     createNewObject();
 }
 
+function check_null(start, end) {
+    let null_field = false;
+    for (i = start; i <= end; i++) {
+        if (eval("arg_" + i).tagName.toLowerCase() == 'input' && eval("arg_" + i).value == '') {
+            eval("arg_" + i).style = 'border:1px solid #ec1b0b';
+            null_field = true;
+        }
+    }
+    if (null_field) 
+    {
+        span = createElemWithAttr('span', {style: 'color:#ec1b0b; font-size:13px;',
+                                          innerHTML:'Заполните выделенные поля'});
+        
+        document.getElementById('edit_Form').prepend(span);
+    }
+    return null_field;
+}

@@ -2,11 +2,7 @@ body {
     overflow-y: inherit;
 }
 
-.container-fluid {
-    background-color:#7eecf2;
-    height: 68px;
-    color:white;
-}
+
 
 .container-fluid {
     color: white;
@@ -264,10 +260,17 @@ table {
     margin: 30% auto;
 }
 
-select {
-    width: auto;
+#ttl_el select {
+    font-size: 18px;
 }
-
+#ttl_el option {
+    font-size: 18px;
+    font-family: "monospace";
+}
+#edit_Form option {
+    font-size: 18px;
+    font-family: "monospace";
+}
 option {
     font-size: 13px;
     font-family: "monospace";
