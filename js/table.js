@@ -1,3 +1,21 @@
+/* Интерфейс реализации метода сравнения checkbox и значений аттрибутов элемента */
+function _() {
+
+}
+
+/* Проверка содержимого элемента на соответствие фильтра */
+function isAllow(item) {
+    const divTypeName = [...$('.check-division-type-name:checked')].map((item) => item.value);
+    const typeName = [...$('.check-type-name:checked')].map((item) => item.value);
+    if (!typeName.length && !divTypeName.length) return true;
+
+    if (typeName.length && divTypeName.length) {
+        return (typeName.includes(item.TYPE_NAME) && divTypeName.includes(item.DIVISION_TYPE_NAME))
+    }
+
+    return typeName.includes(item.TYPE_NAME) ? true : divTypeName.includes(item.DIVISION_TYPE_NAME);
+}
+
 /* Создание <thead> таблицы */
 function createHead() {
     if (localStorage.getItem('thead'))
@@ -17,11 +35,14 @@ function createHead() {
 }
 
 /* Создание <tbody> таблицы, заполняя данными */
-function createBody(data, backlightPattern) {
-    const tbody = createElemWithAttr('tbody', {id: 'tbody'});
+function createBody(data, tbody, backlightPattern) {
+    if (!tbody) {
+        tbody = createElemWithAttr('tbody', {id: 'tbody'});
+    }
     const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
 
     data.forEach((item) => {
+        if (!isAllow(item)) return;
         const row = tbody.appendChild(createElemWithAttr('tr', {
             id: item.ID,
             onclick: function () {getType(this)},
@@ -39,21 +60,19 @@ function createBody(data, backlightPattern) {
 }
 
 async function table(data, backlightPattern) {
+    const view = document.getElementById('view');
+    view.onscroll = '';
+
     if (!data || !data.length) {
         data = await getAll(0);
+        view.onscroll = checkLastElement;
     }
-
     page = 1; end = false; number = 1;
 
-    view.onscroll = checkLastElement;
-
-    if (backlightPattern)
-       view.onscroll = '';
-
     const table = createElemWithAttr('table', {id: 'table'});
-    document.getElementById('view').appendChild(table);
+    view.appendChild(table);
 
-    $(table).append(createHead()); $(table).append(createBody(data, backlightPattern));
+    $(table).append(createHead()); $(table).append(createBody(data, undefined, backlightPattern));
 
     $(table).dragtable({
         axis: null,

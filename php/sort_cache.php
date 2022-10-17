@@ -6,7 +6,7 @@ include 'hash.php';
 $left = 0;
 $right = apcu_cache_info( true )['num_entries']-1;
 while ( apcu_exists( "$right" ) == false )
-$right--;
+{$right--;}
 if ( $_POST['sort'] == 'a-z' || $_POST['sort'] == 'z-a' )
 sort_high_low( $left, $right );
 else if ( $_POST['sort'] == 'empty' || $_POST['sort'] == 'not_empty' )
