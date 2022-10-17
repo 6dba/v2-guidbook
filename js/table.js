@@ -22,7 +22,9 @@ function createHead() {
         return JSON.parse(localStorage.getItem('thead'));
 
     const titles = ['№', 'Название', 'Тип подразделения', 'Наименование'];
-    const thead = createElemWithAttr('thead', {id: 'thead'});
+    const thead = createElemWithAttr('thead', {
+        id: 'thead'
+    });
     const theadRow = thead.appendChild(document.createElement('tr'));
 
     titles.forEach((item) => {
@@ -35,27 +37,44 @@ function createHead() {
 }
 
 /* Создание <tbody> таблицы, заполняя данными */
-function createBody(data, tbody, backlightPattern) {
+async function createBody(data, tbody, backlightPattern) {
     if (!tbody) {
-        tbody = createElemWithAttr('tbody', {id: 'tbody'});
+        tbody = createElemWithAttr('tbody', {
+            id: 'tbody'
+        });
     }
-    const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
 
-    data.forEach((item) => {
-        if (!isAllow(item)) return;
-        const row = tbody.appendChild(createElemWithAttr('tr', {
-            id: item.ID,
-            onclick: function () {getType(this)},
-            className: item.IDENTIFIER
-        }));
-        sequence.forEach((title) => {
-            row.insertCell().innerHTML = title === '№' ? number
-                : title === 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME
-                : title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME
-                : title === 'Наименование' ? item.TYPE_NAME : '';
+    const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
+    let nRows = 0;
+    do {
+        if (!data || !data.length) {
+            data = await getAll(page);
+            if (data == null || data.length < 25) {
+                view.onscroll = '';
+                end = true;
+            }
+        }
+        data.forEach((item) => {
+            if (!isAllow(item)) return;
+            const row = tbody.appendChild(createElemWithAttr('tr', {
+                id: item.ID,
+                onclick: function () {
+                    getType(this)
+                },
+                className: item.IDENTIFIER
+            }))
+            sequence.forEach((title) => {
+                row.insertCell().innerHTML = title === '№' ? number :
+                    title === 'Название' ? backlightPattern ? searchBackLight(item.NAME, backlightPattern) : item.NAME :
+                    title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME :
+                    title === 'Наименование' ? item.TYPE_NAME : '';
+            })
+            nRows++;
+            number++;
         })
-        number++
-    })
+        page++;
+        data.length = 0;
+    } while (nRows < 25 && !backlightPattern && !end);
     return tbody;
 }
 
@@ -64,15 +83,20 @@ async function table(data, backlightPattern) {
     view.onscroll = '';
 
     if (!data || !data.length) {
-        data = await getAll(0);
         view.onscroll = checkLastElement;
     }
-    page = 1; end = false; number = 1;
+    
+    page = 0;
+    end = false;
+    number = 1;
 
-    const table = createElemWithAttr('table', {id: 'table'});
+    const table = createElemWithAttr('table', {
+        id: 'table'
+    });
     view.appendChild(table);
 
-    $(table).append(createHead()); $(table).append(createBody(data, undefined, backlightPattern));
+    $(table).append(createHead());
+    $(table).append(await createBody(data, undefined, backlightPattern));
 
     $(table).dragtable({
         axis: null,

@@ -202,34 +202,6 @@
                         img_view.src = '../assets/tree.png';
                         view.classList.add('table');
                         table();
-                        filterTable(document.getElementById("tbody"), {
-                            2: new filterTable.Filter([
-                                    document.getElementById("place"),
-                                    document.getElementById("brigade"),
-                                    document.getElementById("division"),
-                                    document.getElementById("company"),
-                                    document.getElementById("holding")
-                                ],
-                                function(value, filters, i) {
-                                    if (false === filters[i].checked) return true;
-                                    return filters[0].checked && filters[0].value === value ||
-                                        filters[1].checked && filters[1].value === value ||
-                                        filters[2].checked && filters[2].value === value ||
-                                        filters[3].checked && filters[3].value === value ||
-                                        filters[4].checked && filters[4].value === value;
-                                }
-                            ),
-                            3: new filterTable.Filter([
-                                    document.getElementById("sinking"),
-                                    document.getElementById("stall")
-                                ],
-                                function(value, filters, i) {
-                                    if (false === filters[i].checked) return true;
-                                    return filters[0].checked && filters[0].value === value ||
-                                        filters[1].checked && filters[1].value === value;
-                                }
-                            ),
-                        });
                     } else {
                         view.classList.add('tree');
                         tree();
