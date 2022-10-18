@@ -5,14 +5,11 @@ function _() {
 
 /* Проверка содержимого элемента на соответствие фильтра */
 function isAllow(item) {
-    const divTypeName = [...$('.check-division-type-name:checked')].map((item) => item.value);
-    const typeName = [...$('.check-type-name:checked')].map((item) => item.value);
     if (!typeName.length && !divTypeName.length) return true;
 
     if (typeName.length && divTypeName.length) {
-        return (typeName.includes(item.TYPE_NAME) && divTypeName.includes(item.DIVISION_TYPE_NAME))
+        return (typeName.includes(item.TYPE_NAME) && divTypeName.includes(item.DIVISION_TYPE_NAME));
     }
-
     return typeName.includes(item.TYPE_NAME) ? true : divTypeName.includes(item.DIVISION_TYPE_NAME);
 }
 
@@ -49,7 +46,9 @@ async function createBody(data, tbody, backlightPattern) {
     do {
         if (!data || !data.length) {
             data = await getAll(page);
-            if (data == null || data.length < 25) {
+
+            if (!data) return;
+            if (data.length < 25) {
                 view.onscroll = '';
                 end = true;
             }
@@ -69,8 +68,7 @@ async function createBody(data, tbody, backlightPattern) {
                     title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME :
                     title === 'Наименование' ? item.TYPE_NAME : '';
             })
-            nRows++;
-            number++;
+            nRows++; number++;
         })
         page++;
         data.length = 0;
@@ -86,9 +84,7 @@ async function table(data, backlightPattern) {
         view.onscroll = checkLastElement;
     }
     
-    page = 0;
-    end = false;
-    number = 1;
+    page = 0; end = false; number = 1;
 
     const table = createElemWithAttr('table', {
         id: 'table'

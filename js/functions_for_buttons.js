@@ -1,3 +1,6 @@
+let divTypeName = Array();
+let typeName = Array();
+
 //закрыть форму просмотра/редактирования
 function close_edit() {
     document.getElementById('block_edit').classList.add('edit');
@@ -78,6 +81,11 @@ function delete_object() {
 
 
 function accept_filters() {
+    if (document.querySelector('.button_clear')) {
+        clear(document.querySelector('.input_find'))
+    }
+    divTypeName = [...$('.check-division-type-name:checked')].map((item) => item.value);
+    typeName = [...$('.check-type-name:checked')].map((item) => item.value);
     document.getElementById('button_Ok').onclick = null;
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
