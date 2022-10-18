@@ -29,7 +29,6 @@ function get( $url ) {
 * Отправка $parameters по $url
 * Возвращается JSON обьект
 */
-
 function post( $url, $data = array() ) {
 
     $curl = curl_init();

@@ -3,6 +3,9 @@ async function search() {
    const view = document.getElementById('view');
 
    if (!input.value) return;
+   if (input.value.length < 3) {
+       clear(input);
+   }
 
    const value = input.value.replace(/(<([^>]+)>)/ig, '')
     
