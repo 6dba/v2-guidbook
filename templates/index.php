@@ -201,8 +201,11 @@
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
+                    
 
-                    <button id="button_Ok" class="ms-3 btn_ok" onclick=accept_filters()>Применить</button>
+                    <button id="button_Ok" class="btn_ok" onclick=accept_filters()>Применить</button>
+                    <button id="button_drop" class="btn_drop" onclick=drop_filters() >Сброс</button>
+                    
                 </div>
                 <script>
                     $('#name').change(function() {
@@ -222,7 +225,7 @@
                 <div class="col trap">
                     <div class="d-flex flex-shrink-1">
                         <button class="btn_filter" id='btn_filter' onClick=filter_open()><img src="../assets/filter.png" alt="" id='img_filter' /></button>
-                        <input type=text class="input_find" placeholder="Введите текст для поиска">
+                        <input type=text class="input_find" id = 'input_find' placeholder="Введите текст для поиска">
                         <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                         <script>
                             $('.input_find').on('input', function() {
