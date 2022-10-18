@@ -16,6 +16,7 @@ function changeView() {
         removeChilds(document.getElementById('view'));
         document.getElementById('view').classList.remove('tree');
         document.getElementById('view').classList.add('table');
+        document.getElementById('btn_filter').style.display = 'block';
         table();
         document.getElementById('img_view').src = '../assets/tree.png';
         localStorage.setItem('view', 'table');
@@ -24,6 +25,8 @@ function changeView() {
     } else if (view.classList.contains('table')) {
         freezeButton();
         removeChilds(document.getElementById('view'));
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById('btn_filter').style.display = 'none';
         document.getElementById('view').onscroll = '';
         document.getElementById('view').classList.remove('table');
         document.getElementById('view').classList.add('tree');

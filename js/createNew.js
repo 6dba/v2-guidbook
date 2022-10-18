@@ -1,4 +1,5 @@
 function createNewObject() {
+    document.getElementById("mySidebar").style.display = "none";
     document.getElementById('img_change').style.visibility = 'hidden';
     document.getElementById('exit').style.visibility = 'hidden';
     document.getElementById('deleteObject').style.visibility = 'hidden';

@@ -79,9 +79,11 @@ function delete_object() {
 
 function accept_filters() {
     document.getElementById('button_Ok').onclick = null;
+    setTimeout(()=> {document.getElementById('button_Ok').onclick = accept_filters}, 5000);
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
+    
     let data_sort = {
         sort: $('#name').val() ? $('#name').val() : $('#type_name').val() ? $('#type_name').val() : $('#division_type_name').val() ? $('#division_type_name').val() : '',
 
@@ -98,20 +100,18 @@ function accept_filters() {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
-            document.getElementById('button_Ok').onclick = accept_filters;
+            
         },
         error: function (jqxhr, status, errorMsg) {}
     });
 }
 
 function filter_open() {
-    //document.getElementById('img_filter').src =  '../assets/kisspng-right.png';
-    document.getElementById("mySidebar").style.display = "block";
     document.getElementById('block_edit').classList.add('edit');
+    document.getElementById("mySidebar").style.display = "block";
 }
 
 function filter_close() {
     
-    //document.getElementById('img_filter').src =  '../assets/kisspng-left.png';
     document.getElementById("mySidebar").style.display = "none";
 }
