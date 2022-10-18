@@ -221,7 +221,7 @@
                 </script>
                 <div class="col trap">
                     <div class="d-flex flex-shrink-1">
-                        <button class="btn_filter" onClick=filter_open()><img src="../assets/filter.png" alt="" id='img_filter' /></button>
+                        <button class="btn_filter" id='btn_filter' onClick=filter_open()><img src="../assets/filter.png" alt="" id='img_filter' /></button>
                         <input type=text class="input_find" placeholder="Введите текст для поиска">
                         <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                         <script>

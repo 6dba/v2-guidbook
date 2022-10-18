@@ -6,6 +6,7 @@
 //функция для отображения предприятия
 function selectItemEnterprise(id) {
     blockSelect(true);
+    document.getElementById("mySidebar").style.display = "none";
     document.getElementById('loading').classList.remove('loading');
     document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
@@ -41,6 +42,7 @@ function selectItemEnterprise(id) {
 //функция для отображения предприятия
 function selectItemDivision(id) {
     blockSelect(true);
+    document.getElementById("mySidebar").style.display = "none";
     document.getElementById('loading').classList.remove('loading');
     document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');

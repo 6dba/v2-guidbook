@@ -22,13 +22,4 @@ async function checkLastElement() {
     }
 }
 
-function find_header(header) {
-    let id = 0;
-    for (let name of thead.firstChild.childNodes) {
-        if (name.innerHTML == header) {
-            break;
-        }
-        id++;
-    }
-    return id;
-}
+
