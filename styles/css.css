@@ -367,8 +367,7 @@ a:hover {
     box-shadow: 0.1em 0.1em 12px rgba(122,122,122,1);
     overflow-y: auto;
     margin-top: 10px;
-    overflow-x: hidden ;
-
+    overflow-x: hidden;
 }
 
 .row .mySidebar a {
@@ -386,7 +385,6 @@ a:hover {
     background: none;
     cursor: default;
 }
-
 
 
 
