@@ -78,7 +78,7 @@ function delete_object() {
 
 
 function accept_filters() {
-    document.getElementById('button_Ok').onclick=null;
+    document.getElementById('button_Ok').onclick = null;
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
@@ -98,7 +98,7 @@ function accept_filters() {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
-            document.getElementById('button_Ok').onclick=accept_filters;
+            document.getElementById('button_Ok').onclick = accept_filters;
         },
         error: function (jqxhr, status, errorMsg) {}
     });
