@@ -13,7 +13,6 @@
     <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/bar.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
     <script language="javascript" type="text/javascript" src="../js/show_edit.js"></script>
     <script language="javascript" type="text/javascript" src="../js/change_view.js"></script>
@@ -66,10 +65,10 @@
     ?>
     <div class="main" id="main">
         <div class="container_information">
-            <div class="row d-flex">
+            <div class="row d-flex" style = "overflow-y: inherit">
                 <div class="mySidebar col" id="mySidebar" style='display: none;'>
                     <label for="label-bar" class="labels_bar" style='margin-left:-12px; min-width: 260px'>
-                        <button class="btn_close" onclick="w3_close()" title="Закрыть">X</button>
+                        <button class="btn_close" onClick=filter_close() title="Закрыть">X</button>
                         <span>Фильтр</span>
                     </label>
                     <a>Наименование</a>
@@ -98,7 +97,76 @@
                         <span class="checkbox__label">Холдинг</span>
                     </label>
 
+                    <a>Тип предприятия</a>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="sinking" value="Горные работы (в подземных условиях)">
+                        <span class="checkbox__label">Горные работы (в подземных условиях)</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="sinking" value="Горные работы (открытым способом)">
+                        <span class="checkbox__label">Горные работы (открытым способом)</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="sinking" value="Обогащение полезных ископаемых">
+                        <span class="checkbox__label">Обогащение полезных ископаемых</span>
+                    </label>
+
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="sinking" value="Подрядная организация">
+                        <span class="checkbox__label">Подрядная организация</span>
+                    </label>
+
                     <a>Тип подразделения</a>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="БВР">
+                        <span class="checkbox__label">БВР</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Вспомогательные работы">
+                        <span class="checkbox__label">Вспомогательные работы</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Выход готовой продукции">
+                        <span class="checkbox__label">Выход готовой продукции</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Добыча">
+                        <span class="checkbox__label">Добыча</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Дробление">
+                        <span class="checkbox__label">Дробление</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Обогащение">
+                        <span class="checkbox__label">Обогащение</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Перевозка">
+                        <span class="checkbox__label">Перевозка</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Подготовительные работы">
+                        <span class="checkbox__label">Подготовительные работы</span>
+                    </label>
+
+                    <label for="сheckbox-filter" class="checkbox">
+                        <input class="check-division-type-name form-check-input" type="checkbox" id="stall" value="Производственный контроль">
+                        <span class="checkbox__label">Производственный контроль</span>
+                    </label>
+
                     <label for="сheckbox-filter" class="checkbox">
                         <input class="check-division-type-name form-check-input" type="checkbox" id="sinking" value="Проходка">
                         <span class="checkbox__label">Проходка</span>
@@ -134,7 +202,7 @@
                         <option value="not_empty">Сначала непустые</option>
                     </select>
 
-                    <button id="button_Ok" class="ms-3 btn_ok" onclick="accept_filters()">Применить</button>
+                    <button id="button_Ok" class="ms-3 btn_ok" onclick=accept_filters()>Применить</button>
                 </div>
                 <script>
                     $('#name').change(function() {
@@ -153,7 +221,7 @@
                 </script>
                 <div class="col trap">
                     <div class="d-flex flex-shrink-1">
-                        <button class="btn_filter" onclick=w3_open()><img src="../assets/filter.png" alt="" id='img_filter'/></button>
+                        <button class="btn_filter" onClick=filter_open()><img src="../assets/filter.png" alt="" id='img_filter' /></button>
                         <input type=text class="input_find" placeholder="Введите текст для поиска">
                         <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                         <script>

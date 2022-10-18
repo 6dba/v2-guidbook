@@ -103,3 +103,15 @@ function accept_filters() {
         error: function (jqxhr, status, errorMsg) {}
     });
 }
+
+function filter_open() {
+    //document.getElementById('img_filter').src =  '../assets/kisspng-right.png';
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById('block_edit').classList.add('edit');
+}
+
+function filter_close() {
+    
+    //document.getElementById('img_filter').src =  '../assets/kisspng-left.png';
+    document.getElementById("mySidebar").style.display = "none";
+}

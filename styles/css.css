@@ -103,9 +103,8 @@ li {
 
 .btn_ok {
     border-color: #00CED1;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-right: 30%;
-    margin-bottom: 5px;
     background-color: white;
     border-radius: 10px;
     width: 95px;
@@ -127,6 +126,7 @@ li {
     border-color: #00CED1;
     margin-top: 10px;
     margin-right: 10px;
+
     background-color: white;
     width: 35px;
     height: 35px;
@@ -360,13 +360,14 @@ a:hover {
 }
 
 .row .mySidebar {
-    height: 100%;
+    max-height: 75vh;
     max-width: 260px;
     background-color: whitesmoke;
     font-family: "monospace";
     box-shadow: 0.1em 0.1em 12px rgba(122,122,122,1);
     overflow-y: auto;
     margin-top: 10px;
+    overflow-x: hidden ;
 
 }
 
@@ -377,6 +378,7 @@ a:hover {
     color: black;
     min-width: 100%;
     display: block;
+    font-weight: bold;
 }
 
 .row .mySidebar a:hover {
