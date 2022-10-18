@@ -3,7 +3,11 @@ async function search() {
    const view = document.getElementById('view');
 
    if (!input.value) return;
-
+    if (input.value.length < 3) {
+        document.getElementById('input_find').style = 'border:2px solid #ec1b0b';
+        return;
+    }
+    
    const value = input.value.replace(/(<([^>]+)>)/ig, '')
     
    const data = await getData(allUrl);
@@ -45,7 +49,7 @@ function clear(input) {
         view.classList.toggle('search'); removeChilds(view);
         table();
    }
-
+    document.getElementById('input_find').style = '';
    input.value = "";
    input.parentElement.removeChild(document.querySelector('.button_clear'));
 }

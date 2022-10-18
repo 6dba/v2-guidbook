@@ -47,7 +47,9 @@ function reload_cache() {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
-            setTimeout(()=> {document.getElementById('reload_cache_button').onclick = reload_cache;}, 20000);
+            setTimeout(() => {
+                document.getElementById('reload_cache_button').onclick = reload_cache;
+            }, 20000);
 
         },
         error: function (jqxhr, status, errorMsg) {
@@ -87,11 +89,13 @@ function accept_filters() {
     divTypeName = [...$('.check-division-type-name:checked')].map((item) => item.value);
     typeName = [...$('.check-type-name:checked')].map((item) => item.value);
     document.getElementById('button_Ok').onclick = null;
-    setTimeout(()=> {document.getElementById('button_Ok').onclick = accept_filters}, 5000);
+    setTimeout(() => {
+        document.getElementById('button_Ok').onclick = accept_filters
+    }, 5000);
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
-    
+
     let data_sort = {
         sort: $('#name').val() ? $('#name').val() : $('#type_name').val() ? $('#type_name').val() : $('#division_type_name').val() ? $('#division_type_name').val() : '',
 
@@ -108,7 +112,7 @@ function accept_filters() {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
-            
+
         },
         error: function (jqxhr, status, errorMsg) {}
     });
@@ -117,9 +121,36 @@ function accept_filters() {
 function filter_open() {
     document.getElementById('block_edit').classList.add('edit');
     document.getElementById("mySidebar").style.display = "block";
+    Array.prototype.slice.call(document.getElementsByClassName('check-type-name')).forEach((item) => {
+        if (typeName.includes(item.value)) item.checked = 'checked';
+    });
+
+    Array.prototype.slice.call(document.getElementsByClassName('check-division-type-name')).forEach((item) => {
+        if (divTypeName.includes(item.value)) item.checked = 'checked';
+    });
+
 }
 
 function filter_close() {
-    
+
     document.getElementById("mySidebar").style.display = "none";
+}
+
+function drop_filters() {
+    if (divTypeName.length || typeName.length) {
+        document.getElementById('button_change_view').onclick = null;
+        document.getElementById('loading_view').classList.remove('loading');
+        document.getElementById('view').classList.add('loading');
+        divTypeName.length = 0;
+        typeName.length = 0;
+        $('.check-division-type-name').prop('checked', false);
+        $('.check-type-name').prop('checked', false);
+        removeChilds(document.getElementById('view'));
+        document.getElementById('view').scrollTo(pageXOffset, 0);
+        table();
+        document.getElementById('button_change_view').onclick = changeView;
+        document.getElementById('view').classList.remove('loading');
+        document.getElementById('loading_view').classList.add('loading');
+    }
+    else return;
 }
