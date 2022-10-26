@@ -25,7 +25,8 @@ async function createMockBody()
     let tbody = createElemWithAttr('tbody', {
             id: 'tbody'
         });
-    const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
+    const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)];
+    
     let num = 1;
     data = await getAll('all');
     data.forEach((item) => {

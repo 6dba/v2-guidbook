@@ -56,15 +56,15 @@ function cache(type, page, url) {
 function postEnterprise() {
     let data = {
         id: findID(ttl_el),
-        name: arg_1.value,
-        fullname: arg_2.value
+        name: arg_1.value.trim(),
+        fullname: arg_2.value.trim()
     };
     data['holding'] = arg_3.options[arg_3.selectedIndex].value;
     data['type'] = arg_4.options[arg_4.selectedIndex].value;
     data['director'] = arg_5.options[arg_5.selectedIndex].value;
     if (arg_6.checked) data['isContractor'] = true;
     else data["isContractor"] = false;
-    data["sklad"] = arg_7.value;
+    data["sklad"] = arg_7.value.trim();
 
     post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', data);
 }
@@ -72,8 +72,8 @@ function postEnterprise() {
 function postDivision() {
     let data = {
         id: findID(ttl_el),
-        name: arg_8.value,
-        fullname: arg_9.value
+        name: arg_8.value.trim(),
+        fullname: arg_9.value.trim()
     };
     data['enterprise'] = arg_10.options[arg_10.selectedIndex].value;
     data['type'] = arg_11.options[arg_11.selectedIndex].value;

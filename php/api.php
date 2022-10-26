@@ -8,7 +8,7 @@ include 'cache.php';
 function get( $url ) {
 
     $curl = curl_init();
-
+    
     curl_setopt_array( $curl, array(
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
@@ -30,7 +30,6 @@ function get( $url ) {
 * Возвращается JSON обьект
 */
 function post( $url, $data = array() ) {
-
     $curl = curl_init();
     curl_setopt_array( $curl, array(
         CURLOPT_URL => $url,
@@ -42,7 +41,8 @@ function post( $url, $data = array() ) {
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json'
         ),
-        CURLOPT_POSTFIELDS => json_encode( $data, JSON_UNESCAPED_UNICODE )
+        CURLOPT_POSTFIELDS => json_encode( $data, JSON_UNESCAPED_UNICODE ),
+        CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT']
     ) );
     $response = curl_exec( $curl );
     curl_close( $curl );
@@ -54,9 +54,7 @@ if ( isset( $_POST['data'] ) and isset( $_POST['url'] ) ) {
     // Изменяем ресурс
     post( $_POST['url'], $_POST['data'] );
 
-}
-
-if ( isset( $_POST['url'] ) ) {
+} elseif ( isset( $_POST['url'] ) ) {
     echo get( $_POST['url'] );
 }
 ?>

@@ -20,7 +20,7 @@ function changeView() {
         table();
         document.getElementById('img_view').src = '../assets/tree.png';
         localStorage.setItem('view', 'table');
-        document.getElementById('excel').style.visibility = 'visible'
+        document.getElementById('excel').style.visibility = 'visible';
 
     } else if (view.classList.contains('table')) {
         freezeButton();
@@ -33,7 +33,7 @@ function changeView() {
         tree();
         document.getElementById('img_view').src = '../assets/table.png';
         localStorage.setItem('view', 'tree');
-        document.getElementById('excel').style.visibility = 'hidden'
+        document.getElementById('excel').style.visibility = 'hidden';
     }
 }
 
