@@ -45,7 +45,7 @@ async function createMockBody()
                  
 async function toExcel() {
     if (view.classList.contains('search')) {
-        createFile(document.getElementById('table'), `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xlsx`);
+        createFile(document.getElementById('table'), `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xls`);
         return;
     }
     let data = Array();
