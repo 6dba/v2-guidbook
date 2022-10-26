@@ -41,7 +41,7 @@ function reload_cache() {
                 tree();
             } else if (document.getElementById('view').classList.contains('table')) {
                 removeChilds(document.getElementById('view'));
-                document.getElementById('view').scrollTo(pageXOffset, 0);
+                document.getElementById('view').scrollTop = 0;
                 table();
             }
             document.getElementById('button_change_view').onclick = changeView;

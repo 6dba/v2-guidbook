@@ -12,7 +12,7 @@
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>

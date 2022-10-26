@@ -9,13 +9,13 @@ let number = 1;
 async function checkLastElement() {
     const view = document.getElementById('view')
     const tbody = document.getElementById('tbody')
-    if (!end && table) {
-        view.onscroll = '';
-        setTimeout(() => view.onscroll = checkLastElement, 20);
+    if (!end && tbody) {
+        document.getElementById('view').onscroll = '';
+        setTimeout(() => document.getElementById('view').onscroll = checkLastElement, 40);
         if ($('tbody tr:last').offset().top < $('#view').height() * 2 ) {
             let array = await getAll(page);
             if (array == null || array.length < 25) {
-                view.onscroll = ''; end = true;
+                document.getElementById('view').onscroll = ''; end = true;
             }
             await createBody(array, tbody, undefined);
         }
