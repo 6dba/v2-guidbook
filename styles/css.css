@@ -383,3 +383,46 @@ a:hover {
     height: 35px;
     color: black;
 }
+
+.context-menu{
+    z-index: 10;
+    width: 150px;
+    border-radius: 5px;
+    display: none;
+    font-family: "monospace";
+    font-size: 12pt;
+    background-color:#ABCDEF;
+
+}
+.context-menu div{
+        cursor: pointer;
+        border: 1px black solid;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.context-menu div:hover{
+    background-color:bisque;
+    border-radius: 5px;
+}
+
+.context-menu .dropcontext{
+    
+    position: fixed;
+    border: 1px black solid;
+    display: none;
+    background-color:#ABCDEF;
+    border-radius: 5px;
+    list-style:none;
+    padding-left:0;
+}
+.context-menu .dropcontext li{
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.context-menu .dropcontext li:hover{
+    background-color:bisque;
+    border-radius: 5px;
+}

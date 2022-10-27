@@ -22,11 +22,23 @@
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/contextmenu.js"></script>
 
     <title>В2</title>
 </head>
 
 <body>
+    <div id='context_menu' class='context-menu dropend'>
+        <div class='dropdown-toggle' id='deleteTd'>Удалить столбец 
+            <ul class='dropcontext' id='drop_delete'>
+            </ul>
+        </div>
+
+        <div class='dropdown-toggle' id='addTd'>Добавить столбец 
+            <ul class='dropcontext' id='drop_add'>
+            </ul>
+        </div>
+    </div>
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
             <div class="imgpos">
@@ -328,6 +340,7 @@
                             view.classList.add('table');
                             document.getElementById('btn_filter').style.display = 'block';
                             table();
+                            add_delete_column();
                         } else {
                             view.classList.add('tree');
                             tree();

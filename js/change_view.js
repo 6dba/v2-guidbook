@@ -8,7 +8,8 @@ function removeChilds(element) {
 function changeView() {
     if (document.querySelector('.button_clear')) {
         const input = document.querySelector('.input_find')
-        input.value = ''; input.parentElement.removeChild(document.querySelector('.button_clear'));
+        input.value = '';
+        input.parentElement.removeChild(document.querySelector('.button_clear'));
     }
 
     if (view.classList.contains('tree')) {
@@ -18,6 +19,7 @@ function changeView() {
         document.getElementById('view').classList.add('table');
         document.getElementById('btn_filter').style.display = 'block';
         table();
+        add_delete_column();
         document.getElementById('img_view').src = '../assets/tree.png';
         localStorage.setItem('view', 'table');
         document.getElementById('excel').style.visibility = 'visible';

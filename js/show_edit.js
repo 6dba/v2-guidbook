@@ -84,14 +84,14 @@ function getType(object) {
     if (object.classList.contains("DIVISION")) {
         document.getElementById('ttl_el').innerHTML = '';
         document.getElementById('img_change').style.visibility = 'visible';
-        if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png')
+        if (document.getElementById('img_change').src.includes('save'));
             document.getElementById('img_change').src = '../assets/change.png';
         removeID();
         selectItemDivision(object.id.substring(1));
     } else if (object.classList.contains("ENTERPRISE")) {
         document.getElementById('ttl_el').innerHTML = '';
         document.getElementById('img_change').style.visibility = 'visible';
-        if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png')
+        if (document.getElementById('img_change').src.includes('save'))
             document.getElementById('img_change').src = '../assets/change.png';
         removeID();
         selectItemEnterprise(object.id.substring(1));

@@ -44,6 +44,7 @@ function reload_cache() {
                 removeChilds(document.getElementById('view'));
                 document.getElementById('view').scrollTop = 0;
                 table();
+                add_delete_column();
             }
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');

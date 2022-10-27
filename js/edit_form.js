@@ -7,7 +7,7 @@ function edit() {
     document.getElementById('img_change').style.visibility = 'visible';
     setTimeout(() =>
         document.getElementById('button_change_view').onclick = changeView, 1000);
-    if (document.getElementById('img_change').src == location.protocol + "//" + location.host + '/assets/save.png') {
+    if (document.getElementById('img_change').src.includes('save')) {
         if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) {
             if (check_null(8, 16)) return;
         } else if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
