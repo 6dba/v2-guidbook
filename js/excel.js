@@ -46,6 +46,12 @@ async function createMockBody()
 async function toExcel() {
     if (view.classList.contains('search')) {
         createFile(document.getElementById('table'), `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xlsx`);
+        TableToExcel.convert(document.getElementById("table"), {
+            name: `${document.getElementById('title').innerHTML}.xlsx`,
+            sheet: {
+                name: `${document.getElementById('title').innerHTML}`
+            }
+        });
         return;
     }
     let data = Array();
@@ -58,4 +64,11 @@ async function toExcel() {
     const table = document.createElement('table');
     $(table).append(createHead()); $(table).append(await createMockBody());
     createFile(table, `${document.getElementById('title').innerHTML}`, `${document.getElementById('title').innerHTML}.xlsx`);
+
+    TableToExcel.convert(table, {
+        name: `${document.getElementById('title').innerHTML}.xlsx`,
+        sheet: {
+            name: `${document.getElementById('title').innerHTML}`
+        }
+    });
 }
