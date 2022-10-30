@@ -39,15 +39,18 @@ function createNewObject() {
                 "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
                 "<input id='arg_2' class='input_tag'>" +
                 "<p class='arg_edit'>ХОЛДИНГ</p>" +
-                "<select class='input_tag' id='arg_3'><option></option>" + createSelectList(holdings) +
+                "<select class='input_tag js-selectize' id='arg_3'><option></option>" + createSelectList(holdings) +
                 "<p class='arg_edit'>ТИП ПРЕДПРИЯТИЯ</p>" +
-                "<select class='input_tag' id='arg_4'><option></option>" + createSelectList(enterpriseType) +
+                "<select class='input_tag js-selectize' id='arg_4'><option></option>" + createSelectList(enterpriseType) +
                 "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПРЕДПРИЯТИЯ</p>" +
-                "<select class='input_tag' id='arg_5'><option></option>" + createSelectList(users) +
+                "<select class='input_tag js-selectize' id='arg_5'><option></option>" + createSelectList(users) +
                 "<p class='arg_edit'>ПОДРЯДНАЯ ОРГАНИЗАЦИЯ</p>" +
                 "<input type='checkbox' id='arg_6'>" +
                 "<p class='arg_edit'>СКЛАД</p>" +
                 "<input id='arg_7'  class='input_tag'>";
+            $('.js-selectize').selectize({
+                allowEmptyOption: true
+            });
             document.getElementById('edit_Form').classList.remove('loading');
             document.getElementById('loading').classList.add('loading');
             document.getElementById('type').disabled = false;
@@ -70,27 +73,39 @@ function createNewObject() {
                 "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
                 "<input id='arg_9' class='input_tag'>" +
                 "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
-                "<select class='input_tag' id='arg_10'><option></option>" + createSelectList(enterprise) +
+                "<select class='input_tag js-selectize' id='arg_10'><option></option>" + createSelectList(enterprise) +
                 "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-                "<select class='input_tag' id='arg_11'><option></option>" + createSelectList(divisionType) +
+                "<select class='input_tag js-selectize' id='arg_11'><option></option>" + createSelectList(divisionType) +
                 "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
-                "<select class='input_tag' id='arg_12'><option></option>" + createSelectList(divisionShift) +
-                "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag' id='arg_13'><option></option>" + createSelectList(users) +
-                "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<select class='input_tag' id='arg_14'><option> </option>" +
+                "<select class='input_tag js-selectize' id='arg_12'><option></option>" + createSelectList(divisionShift) +
+                "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag js-selectize' id='arg_13'><option></option>" + createSelectList(users) +
+                "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<select class='input_tag js-selectize' id='arg_14'><option> </option>" +
                 createSelectList(divisionAdjanced) +
                 "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
                 "<input type='checkbox' id='arg_15'>" +
                 "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
                 "<input type='checkbox' id='arg_16'>";
 
+            $('.js-selectize').selectize({
+                allowEmptyOption: true
+            });
 
             document.getElementById('edit_Form').classList.remove('loading');
             document.getElementById('loading').classList.add('loading');
             document.getElementById('type').disabled = false;
             $('#arg_10').change(async function () {
                 users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-                document.getElementById('arg_13').innerHTML = "<option></option>" +
-                    createSelectList(users);
+                users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
+                $('#arg_13')[0].selectize.clearOptions();
+                for (let i in users) {
+                    let field = users[i][getFieldName(users[i])];
+                    $('#arg_13')[0].selectize.addOption({
+                        value: users[i]['ID'],
+                        text: field
+                    })
+                }
+                $('#arg_13')[0].selectize.refreshOptions('');
+                $('#arg_13')[0].selectize.clear();
             });
 
         } else if ($(this).val() == 'types') {
@@ -137,8 +152,12 @@ function check_null(start, end) {
     for (i = start; i <= end; i++) {
         let name = eval("arg_" + i);
         if (name.id == 'arg_5' || name.id == 'arg_13') continue;
-        if ((name.tagName.toLowerCase() == 'input' && name.value == '') || (name.tagName.toLowerCase() == 'select' && name.options[name.selectedIndex].value == '')) {
-            name.style = 'border:1px solid #ec1b0b';
+        if ((name.tagName.toLowerCase() == 'input' || name.tagName.toLowerCase() == 'textarea') && name.value == '') {
+            name.style.borderColor = '#ec1b0b';
+            null_field = true;
+        } else if (name.tagName.toLowerCase() == 'select' && name.options[name.selectedIndex].value == '') {
+            name.nextSibling.firstChild.style.borderColor = '#ec1b0b';
+            //name.nextSibling.style = 'border:1px solid #ec1b0b';
             null_field = true;
         }
     }

@@ -64,7 +64,7 @@
       persistState: null,          // url or function -> plug in your custom persistState function right here. function call is persistState(originalTable)
       restoreState: null,          // JSON-Object or function:  some kind of experimental aka Quick-Hack TODO: do it better
       exact: true,                 // removes pixels, so that the overlay table width fits exactly the original table width
-      clickDelay: 10,              // ms to wait before rendering sortable list and delegating click event
+      clickDelay: 50,              // ms to wait before rendering sortable list and delegating click event
       containment: null,           // @see http://api.jqueryui.com/sortable/#option-containment, use it if you want to move in 2 dimesnions (together with axis: null)
       cursor: 'move',              // @see http://api.jqueryui.com/sortable/#option-cursor
       cursorAt: false,             // @see http://api.jqueryui.com/sortable/#option-cursorAt
