@@ -42,6 +42,9 @@ function edit() {
             //загруженными данными
             document.getElementById('edit_Form').classList.remove('loading');
             document.getElementById('loading').classList.add('loading');
+            $('.js-selectize').selectize({
+                allowEmptyOption: true
+            });
         }, 1500);
         if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) editView(8, 16);
         else if (document.getElementById('ttl_el').innerHTML.includes('Предприятие'))
@@ -63,7 +66,7 @@ function selectList(name) {
     else if (name.id == 'arg_14') list = 'divisionAdjanced';
     let url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
     get(url).then(resolve => {
-        str = "<select class='input_tag' id='" + name.id + "'><option></option>";
+        str = "<select class='input_tag js-selectize' id='" + name.id + "'><option></option>";
         //получаем массив JSON-объектов для селект листа, //перебираем 
         //каждый элемент и вставляем его имя в селект 
         //лист
@@ -77,8 +80,16 @@ function selectList(name) {
         name.outerHTML = str;
         $('#arg_10').change(async function () {
             users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-            document.getElementById('arg_13').innerHTML = "<option></option>" +
-                createSelectList(users);
+            $('#arg_13')[0].selectize.clearOptions();
+            for (let i in users) {
+                let field = users[i][getFieldName(users[i])];
+                $('#arg_13')[0].selectize.addOption({
+                    value: users[i]['ID'],
+                    text: field
+                })
+            }
+            $('#arg_13')[0].selectize.refreshOptions('');
+            $('#arg_13')[0].selectize.clear();
         });
     });
 }
@@ -104,6 +115,10 @@ function editView(start, end) {
         }
         if (name.classList.contains('selectlist')) {
             selectList(name);
+            continue;
+        }
+        if (name.classList.contains('textarea')) {
+            name.outerHTML = "<textarea class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
             continue;
         }
         name.outerHTML = "<input class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));

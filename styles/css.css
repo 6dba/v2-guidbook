@@ -218,6 +218,7 @@ li {
 
 .input_tag {
     width: 100%;
+    font-size: 16px;
 }
 
 input[type="checkbox"][readonly] {

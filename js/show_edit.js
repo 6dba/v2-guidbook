@@ -14,7 +14,7 @@ function selectItemEnterprise(id) {
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
                 "<p id='arg_1' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_2' class='arg_field'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
+                "<p id='arg_2' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ХОЛДИНГ</p>" +
                 "<p id='arg_3' class='selectlist arg_field'>" + (resolve['HOLDING_ID'] ? findName(resolve['HOLDING_ID'], holdings) : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ТИП ПРЕДПРИЯТИЯ</p>" +
@@ -48,7 +48,7 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
             "<p id='arg_8' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
-            "<p id='arg_9' class='arg_field'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
+            "<p id='arg_9' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
             "<p id='arg_10' class='selectlist arg_field'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterprise) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
@@ -80,8 +80,9 @@ function findName(id, obj) {
 
 //функции определения типа объекта
 function getType(object) {
-    document.getElementById('exit').style.visibility = 'hidden';
     if (object.classList.contains("DIVISION")) {
+            document.getElementById('exit').style.visibility = 'hidden';
+            document.getElementById('deleteObject').style.visibility = 'hidden';
         document.getElementById('ttl_el').innerHTML = '';
         document.getElementById('img_change').style.visibility = 'visible';
         if (document.getElementById('img_change').src.includes('save'));
@@ -89,6 +90,8 @@ function getType(object) {
         removeID();
         selectItemDivision(object.id.substring(1));
     } else if (object.classList.contains("ENTERPRISE")) {
+            document.getElementById('exit').style.visibility = 'hidden';
+        document.getElementById('deleteObject').style.visibility = 'hidden';
         document.getElementById('ttl_el').innerHTML = '';
         document.getElementById('img_change').style.visibility = 'visible';
         if (document.getElementById('img_change').src.includes('save'))

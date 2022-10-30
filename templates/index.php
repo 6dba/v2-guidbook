@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="../styles/jquery-ui.css">
+    <link rel="stylesheet" href="../styles/selectize.default.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/tableToExcel.js"></script>
+
+    <script language="javascript" type="text/javascript" src="../libs/selectize.min.js"></script>
+
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
@@ -25,17 +29,18 @@
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
     <script language="javascript" type="text/javascript" src="../js/contextmenu.js"></script>
 
+
     <title>В2</title>
 </head>
 
 <body>
     <div id='context_menu' class='context-menu dropend'>
-        <div class='dropdown-toggle' id='deleteTd'>Удалить столбец 
+        <div class='dropdown-toggle' id='deleteTd'>Удалить столбец
             <ul class='dropcontext' id='drop_delete'>
             </ul>
         </div>
 
-        <div class='dropdown-toggle' id='addTd'>Добавить столбец 
+        <div class='dropdown-toggle' id='addTd'>Добавить столбец
             <ul class='dropcontext' id='drop_add'>
             </ul>
         </div>
