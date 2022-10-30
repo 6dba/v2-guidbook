@@ -33,11 +33,6 @@ async function toExcel() {
         });
         return;
     }
-    let data = Array();
-    if (!divTypeName.length && !typeName.length) {
-        data = await cache('table', 'all');
-        if (!data.length) return;
-    }
     page = 0; end = false;
     
     const table = document.createElement('table');
