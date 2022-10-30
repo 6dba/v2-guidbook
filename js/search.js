@@ -49,7 +49,7 @@ function clear(input) {
         view.classList.toggle('search'); removeChilds(view);
         table();
    }
-    document.getElementById('input_find').style = '';
+   document.getElementById('input_find').style = '';
    input.value = "";
    input.parentElement.removeChild(document.querySelector('.button_clear'));
 }

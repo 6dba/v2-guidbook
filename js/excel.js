@@ -22,8 +22,10 @@ async function createMockBody()
 }
                  
 async function toExcel() {
+    if (!document.getElementById('table')) return;
+    
     if (view.classList.contains('search')) {
-        TableToExcel.convert(document.getElementById("table"), {
+        TableToExcel.convert(document.getElementById('table'), {
             name: `${document.getElementById('title').innerHTML}.xlsx`,
             sheet: {
                 name: `${document.getElementById('title').innerHTML}`
