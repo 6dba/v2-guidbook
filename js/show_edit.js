@@ -16,11 +16,11 @@ function selectItemEnterprise(id) {
                 "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
                 "<p id='arg_2' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ХОЛДИНГ</p>" +
-                "<p id='arg_3' class='selectlist arg_field'>" + (resolve['HOLDING_ID'] ? findName(resolve['HOLDING_ID'], holdings) : 'Не заполнено') + "</p>" +
+                "<p id='arg_3' class='selectlist arg_field holdings'>" + (resolve['HOLDING_ID'] ? findName(resolve['HOLDING_ID'], holdings) : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ТИП ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_4' class='selectlist arg_field'>" + (resolve['ENTERPRISE_TYPE'] ? findName(resolve['ENTERPRISE_TYPE'], enterpriseType) : 'Не заполнено') + "</p>" +
+                "<p id='arg_4' class='selectlist arg_field enterpriseTypes'>" + (resolve['ENTERPRISE_TYPE'] ? findName(resolve['ENTERPRISE_TYPE'], enterpriseType) : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПРЕДПРИЯТИЯ</p>" +
-                "<p id='arg_5' class='selectlist arg_field id" + resolve['ID'] + "'>" + (resolve['DIRECTOR_ID'] ? findName(resolve['DIRECTOR_ID'], users) : 'Не заполнено') + "</p>" +
+                "<p id='arg_5' class='selectlist arg_field users id" + resolve['ID'] + "'>" + (resolve['DIRECTOR_ID'] ? findName(resolve['DIRECTOR_ID'], users) : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ПОДРЯДНАЯ ОРГАНИЗАЦИЯ</p>" +
                 "<input type='checkbox' id='arg_6' readonly " + (resolve['ISCONTRACTOR'] ? 'checked> ' : '>') +
                 "<p class='arg_edit'>СКЛАД</p>" +
@@ -50,13 +50,13 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
             "<p id='arg_9' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +
-            "<p id='arg_10' class='selectlist arg_field'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterprise) : 'Не заполнено') + "</p>" +
+            "<p id='arg_10' class='selectlist arg_field enterprise'>" + (resolve['ENTERPRISE_ID'] ? findName(resolve['ENTERPRISE_ID'], enterprise) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
-            "<p id='arg_11' class='selectlist arg_field'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
+            "<p id='arg_11' class='selectlist arg_field divisionTypes'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
-            "<p id='arg_12' class='selectlist arg_field'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
-            "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
-            "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<p id='arg_14' class='selectlist arg_field'>" + (resolve['DIVISION_ADJANCED_ID'] ? findName(resolve['DIVISION_ADJANCED_ID'], divisionAdjanced) : 'Не заполнено') + "</p>" +
+            "<p id='arg_12' class='selectlist arg_field divisionShift'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
+            "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field users id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
+            "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<p id='arg_14' class='selectlist arg_field divisionAdjanced'>" + (resolve['DIVISION_ADJANCED_ID'] ? findName(resolve['DIVISION_ADJANCED_ID'], divisionAdjanced) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
             "<input type='checkbox' id='arg_15' readonly " + (resolve['IS_OPO'] ? 'checked> ' : '>') +
             "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +

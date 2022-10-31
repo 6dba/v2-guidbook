@@ -44,6 +44,7 @@ function post( $url, $data = array() ) {
         CURLOPT_POSTFIELDS => json_encode( $data, JSON_UNESCAPED_UNICODE ),
         CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT']
     ) );
+    echo json_encode($data);
     $response = curl_exec( $curl );
     curl_close( $curl );
     return $response;

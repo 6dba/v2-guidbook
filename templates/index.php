@@ -3,12 +3,12 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="../styles/css.css">
     <link rel="stylesheet" href="../styles/dragtable.css">
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="../styles/jquery-ui.css">
     <link rel="stylesheet" href="../styles/selectize.default.css">
+    <link rel="stylesheet" href="../styles/css.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>

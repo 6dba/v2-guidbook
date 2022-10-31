@@ -135,7 +135,6 @@ function filter_open() {
 }
 
 function filter_close() {
-
     document.getElementById("mySidebar").style.display = "none";
 }
 

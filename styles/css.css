@@ -408,7 +408,6 @@ a:hover {
 }
 
 .context-menu .dropcontext{
-    
     position: fixed;
     border: 1px black solid;
     display: none;
@@ -417,6 +416,7 @@ a:hover {
     list-style:none;
     padding-left:0;
 }
+
 .context-menu .dropcontext li{
     cursor: pointer;
     padding-left: 5px;
@@ -426,4 +426,14 @@ a:hover {
 .context-menu .dropcontext li:hover{
     background-color:bisque;
     border-radius: 5px;
+}
+.selectize-input {
+    min-height: 36px;
+    font-size: 16px;
+}
+.selectize-input>input{
+    font-size: 16px;
+}
+.selectize-dropdown-content div{
+    min-height: 36px;
 }

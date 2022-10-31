@@ -42,31 +42,52 @@ function edit() {
             //загруженными данными
             document.getElementById('edit_Form').classList.remove('loading');
             document.getElementById('loading').classList.add('loading');
-            $('.js-selectize').selectize({
-                allowEmptyOption: true
+            $('.js-selectize').selectize();
+            $('.users').selectize({
+                maxItems: null,
+                plugins: [ 'remove_button' ]
             });
         }, 1500);
-        if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) editView(8, 16);
-        else if (document.getElementById('ttl_el').innerHTML.includes('Предприятие'))
-            editView(1, 7);
+        editView();
     }
 }
+
+//функция генерации полей режима редактирования
+function editView() {
+    Array.from(document.getElementsByClassName('arg_field')).forEach((name)=>{
+        let in_tag = name.innerHTML;
+        if (name.type == 'checkbox') {
+            name.removeAttribute('readonly');
+            return;
+        }
+        if (name.classList.contains('selectlist')) {
+            selectList(name);
+            return;
+        }
+        if (name.classList.contains('textarea')) {
+            name.outerHTML = "<textarea class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
+            return;
+        }
+        name.outerHTML = "<input class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
+    })
+}
+
 //Формирование селект листов
 function selectList(name) {
     let id = '';
     let list = '';
-    if (name.id == 'arg_3') list = 'holdings';
-    else if (name.id == 'arg_4') list = 'enterpriseTypes';
-    else if (name.id == 'arg_5' || name.id == 'arg_13') {
+    if (name.classList.value.includes('holdings')) list = 'holdings';
+    else if (name.classList.value.includes('enterpriseTypes')) list = 'enterpriseTypes';
+    else if (name.classList.value.includes('users')) {
         list = 'users';
         id = '&enterprise=' + findID(name);
-    } else if (name.id == 'arg_10') list = 'enterprise';
-    else if (name.id == 'arg_11') list = 'divisionTypes';
-    else if (name.id == 'arg_12') list = 'divisionShift';
-    else if (name.id == 'arg_14') list = 'divisionAdjanced';
+    } else if (name.classList.value.includes('enterprise')) list = 'enterprise';
+    else if (name.classList.value.includes('divisionTypes')) list = 'divisionTypes';
+    else if (name.classList.value.includes('divisionShift')) list = 'divisionShift';
+    else if (name.classList.value.includes('divisionAdjanced')) list = 'divisionAdjanced';
     let url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
     get(url).then(resolve => {
-        str = "<select class='input_tag js-selectize' id='" + name.id + "'><option></option>";
+        str = "<select class='input_tag " + (name.classList.value.includes('users') ? 'users' : name.classList.value.includes('enterprise') ? 'enterprise js-selectize' : 'js-selectize') + "' id='" + name.id + "'><option></option>";
         //получаем массив JSON-объектов для селект листа, //перебираем 
         //каждый элемент и вставляем его имя в селект 
         //лист
@@ -78,18 +99,18 @@ function selectList(name) {
         }
         str += "</select>";
         name.outerHTML = str;
-        $('#arg_10').change(async function () {
+        $('.enterprise').change(async function () {
             users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-            $('#arg_13')[0].selectize.clearOptions();
+            $('.users')[0].selectize.clearOptions();
             for (let i in users) {
                 let field = users[i][getFieldName(users[i])];
-                $('#arg_13')[0].selectize.addOption({
+                $('.users')[0].selectize.addOption({
                     value: users[i]['ID'],
                     text: field
                 })
             }
-            $('#arg_13')[0].selectize.refreshOptions('');
-            $('#arg_13')[0].selectize.clear();
+            $('.users')[0].selectize.refreshOptions('');
+            $('.users')[0].selectize.clear();
         });
     });
 }
@@ -104,26 +125,6 @@ function getFieldName(obj) {
     return key;
 }
 
-//функция генерации полей режима редактирования
-function editView(start, end) {
-    for (let i = start; i <= end; i++) {
-        let name = eval("arg_" + i);
-        let in_tag = name.innerHTML;
-        if (name.type == 'checkbox') {
-            name.removeAttribute('readonly');
-            continue;
-        }
-        if (name.classList.contains('selectlist')) {
-            selectList(name);
-            continue;
-        }
-        if (name.classList.contains('textarea')) {
-            name.outerHTML = "<textarea class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
-            continue;
-        }
-        name.outerHTML = "<input class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
-    }
-}
 
 //найти ID объекта name
 function findID(name) {
