@@ -29,7 +29,9 @@ function undo_edit() {
 //функция обновления кэша
 function reload_cache() {
     clearTreeData();
-    clear(document.getElementById('input_find'));
+    if (document.getElementById('input_find').value) {
+        clear(document.getElementById('input_find'))
+    }
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('reload_cache_button').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');

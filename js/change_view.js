@@ -6,10 +6,8 @@ function removeChilds(element) {
 }
 
 function changeView() {
-    if (document.querySelector('.button_clear')) {
-        const input = document.querySelector('.input_find')
-        input.value = '';
-        input.parentElement.removeChild(document.querySelector('.button_clear'));
+    if (document.getElementById('input_find').value) {
+        clear(document.getElementById('input_find'))
     }
 
     if (view.classList.contains('tree')) {

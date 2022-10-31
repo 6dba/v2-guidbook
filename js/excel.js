@@ -22,19 +22,16 @@ async function createMockBody()
 }
                  
 async function toExcel() {
+    if (!document.getElementById('table')) return;
+    
     if (view.classList.contains('search')) {
-        TableToExcel.convert(document.getElementById("table"), {
+        TableToExcel.convert(document.getElementById('table'), {
             name: `${document.getElementById('title').innerHTML}.xlsx`,
             sheet: {
                 name: `${document.getElementById('title').innerHTML}`
             }
         });
         return;
-    }
-    let data = Array();
-    if (!divTypeName.length && !typeName.length) {
-        data = await cache('table', 'all');
-        if (!data.length) return;
     }
     page = 0; end = false;
     
