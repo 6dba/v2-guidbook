@@ -2,9 +2,11 @@ async function search() {
    const input = document.querySelector('.input_find');
    const view = document.getElementById('view');
 
+   input.style = '';
+
    if (!input.value) return;
     if (input.value.length < 3) {
-        document.getElementById('input_find').style = 'border:2px solid #ec1b0b';
+        input.style = 'border:2px solid #ec1b0b';
         return;
     }
 
