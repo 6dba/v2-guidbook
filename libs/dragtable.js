@@ -286,7 +286,7 @@
       this.sortableTable.movingRow = this.sortableTable.el.find('> li:nth-child(' + this.originalTable.startIndex + ')');
 
       // prevent the user from drag selecting "highlighting" surrounding page elements
-      disableTextSelection();
+      //disableTextSelection();
       // clone the initial event and trigger the sort with it
       this.sortableTable.movingRow.trigger($.extend($.Event(e.type), {
         which: 1,
@@ -392,7 +392,6 @@
     } else {
       $(document.body).removeAttr('unselectable');
     }
-      localStorage.setItem('thead', JSON.stringify(thead.outerHTML));
   }
 
   function swapNodes(a, b) {

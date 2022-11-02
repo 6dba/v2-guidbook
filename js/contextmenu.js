@@ -8,17 +8,21 @@ function add_delete_column() {
     sequence.forEach((title) => {
         drop_delete.append(createElemWithAttr('li', {
             innerHTML: title,
-            onclick: function() {deleteColumn(this.innerHTML)}
+            onclick: function () {
+                deleteColumn(this.innerHTML)
+            }
         }))
     })
 
     const drop_add = document.getElementById('drop_add');
     removeChilds(document.getElementById('drop_add'));
-    
+
     deletedTitles.forEach((title) => {
         drop_add.append(createElemWithAttr('li', {
             innerHTML: title,
-            onclick: function() {addColumn(this.innerHTML)}
+            onclick: function () {
+                addColumn(this.innerHTML)
+            }
         }))
     })
 
@@ -57,7 +61,7 @@ function add_delete_column() {
         drop_add.style.display = 'none';
         drop_delete.style.display = 'block';
     })
-    
+
     let addTd = document.getElementById('addTd');
 
     addTd.addEventListener('click', (event) => {
@@ -71,44 +75,51 @@ function add_delete_column() {
 }
 
 function deleteColumn(title) {
-    if (document.getElementById('drop_delete').firstChild==document.getElementById('drop_delete').lastChild)
+    if (document.getElementById('drop_delete').firstChild == document.getElementById('drop_delete').lastChild)
         return;
     titles.splice(titles.indexOf(title), 1);
     deletedTitles.push(title);
-    localStorage.setItem('deletedTitles', JSON.stringify(deletedTitles));
-    localStorage.setItem('titles', JSON.stringify(titles));
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('reload_cache_button').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
     removeChilds(document.getElementById('view'));
     document.getElementById('view').scrollTop = 0;
-    localStorage.removeItem('thead');
     table();
-    localStorage.setItem('thead', JSON.stringify(thead.outerHTML));
     add_delete_column();
     document.getElementById('button_change_view').onclick = changeView;
     document.getElementById('view').classList.remove('loading');
     document.getElementById('loading_view').classList.add('loading');
 }
 
-function addColumn(title)
-{
+function addColumn(title) {
     deletedTitles.splice(deletedTitles.indexOf(title), 1);
     titles.push(title);
-    localStorage.setItem('deletedTitles', JSON.stringify(deletedTitles));
-    localStorage.setItem('titles', JSON.stringify(titles));
     document.getElementById('button_change_view').onclick = null;
     document.getElementById('reload_cache_button').onclick = null;
     document.getElementById('loading_view').classList.remove('loading');
     document.getElementById('view').classList.add('loading');
     removeChilds(document.getElementById('view'));
     document.getElementById('view').scrollTop = 0;
-    localStorage.removeItem('thead');
     table();
-    localStorage.setItem('thead', JSON.stringify(thead.outerHTML));
     add_delete_column();
     document.getElementById('button_change_view').onclick = changeView;
     document.getElementById('view').classList.remove('loading');
     document.getElementById('loading_view').classList.add('loading');
+}
+
+
+function saveView() {
+    save_view.removeAttribute('onclick');
+    setTimeout(()=>{save_view.setAttribute('onclick','saveView()')}, 5000);
+    context_menu.style.display = 'none';
+    drop_delete.style.display = 'none';
+    drop_add.style.display = 'none';
+    data = {
+        deletedTitles: deletedTitles,
+        view: 'table',
+        titles: []
+    }
+    $('thead tr th').each((index, el) => data['titles'].push(el.innerHTML));
+    post('http://81.161.220.59:8100/api/user_view/?action=set_views', data);
 }

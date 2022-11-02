@@ -44,7 +44,6 @@ function post( $url, $data = array() ) {
         CURLOPT_POSTFIELDS => json_encode( $data, JSON_UNESCAPED_UNICODE ),
         CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT']
     ) );
-    echo json_encode($data);
     $response = curl_exec( $curl );
     curl_close( $curl );
     return $response;
@@ -52,8 +51,11 @@ function post( $url, $data = array() ) {
 
 // Вызов API методов посредством AJAX JQuery
 if ( isset( $_POST['data'] ) and isset( $_POST['url'] ) ) {
+    session_start();
     // Изменяем ресурс
-    post( $_POST['url'], $_POST['data'] );
+    if (isset($_POST['data']['view']))
+        $_POST['data']['userId'] = $_SESSION['user']['userId'];
+    echo post( $_POST['url'], $_POST['data'] );
 
 } elseif ( isset( $_POST['url'] ) ) {
     echo get( $_POST['url'] );

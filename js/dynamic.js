@@ -11,15 +11,14 @@ async function checkLastElement() {
     const tbody = document.getElementById('tbody')
     if (!end && tbody) {
         document.getElementById('view').onscroll = '';
-        setTimeout(() => document.getElementById('view').onscroll = checkLastElement, 40);
-        if ($('tbody tr:last').offset().top < $('#view').height() * 2 ) {
+        if ($('tbody tr:last').offset().top < $('#view').height() * 2) {
             let array = await getAll(page);
             if (array == null || array.length < 25) {
-                document.getElementById('view').onscroll = ''; end = true;
+                end = true;
             }
-            await createBody(array, tbody, undefined);
+            createBody(array, tbody, undefined);
         }
+        if (!end)
+            document.getElementById('view').onscroll = checkLastElement;
     }
 }
-
-

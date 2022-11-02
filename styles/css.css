@@ -427,13 +427,30 @@ a:hover {
     background-color:bisque;
     border-radius: 5px;
 }
-.selectize-input {
+#edit_Form .selectize-input {
     min-height: 36px;
     font-size: 16px;
 }
-.selectize-input>input{
+#edit_Form .selectize-input>input{
     font-size: 16px;
 }
-.selectize-dropdown-content div{
+#edit_Form .selectize-dropdown-content div{
     min-height: 36px;
+}
+
+#edit_Form .ui-slider {
+    margin-left: 8px;
+    margin-right: 14px;
+}
+#handle {
+    font-family: "monospace";
+    font-size: 14px;
+    width: 30px;
+	height: 30px;
+	top: 50%;
+	margin-top: -14px;
+    
+	text-align: center;
+	line-height: 24px;
+	outline: none;
 }

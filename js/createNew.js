@@ -79,7 +79,7 @@ function createNewObject() {
                 "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
                 "<select class='input_tag js-selectize' id='arg_11'><option></option>" + createSelectList(divisionType) +
                 "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
-                "<select class='input_tag js-selectize' id='arg_12'><option></option>" + createSelectList(divisionShift) +
+                "<div id='arg_12' class='slider'><div id='handle' class='ui-slider-handle'></div></div>" +
                 "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<select class='input_tag users' id='arg_13'><option></option>" + createSelectList(users) +
                 "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<select class='input_tag js-selectize' id='arg_14'><option> </option>" +
                 createSelectList(divisionAdjanced) +
@@ -87,7 +87,20 @@ function createNewObject() {
                 "<input type='checkbox' id='arg_15'>" +
                 "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
                 "<input type='checkbox' id='arg_16'>";
-
+            
+            $('.slider').slider({
+                min: 0,
+                max: divisionShift.length - 1,
+                create: function (event, ui) {
+                    $('#handle').val(divisionShift[$(this).slider("value")]['ID']);
+                    $('#handle').text(divisionShift[$(this).slider("value")]['NAME']);
+                },
+                slide: function (event, ui) {
+                    $('#handle').val(divisionShift[ui.value]['ID']);
+                    $('#handle').text(divisionShift[ui.value]['NAME']);
+                }
+            });
+            
             $('.js-selectize').selectize();
             $('.users').selectize({
                 maxItems: null,

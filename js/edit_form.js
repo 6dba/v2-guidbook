@@ -45,8 +45,21 @@ function edit() {
             $('.js-selectize').selectize();
             $('.users').selectize({
                 maxItems: null,
-                plugins: [ 'remove_button' ]
+                plugins: ['remove_button']
             });
+            $('.enterprise').change(async function () {
+            users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
+            $('.users')[0].selectize.clearOptions();
+            for (let i in users) {
+                let field = users[i][getFieldName(users[i])];
+                $('.users')[0].selectize.addOption({
+                    value: users[i]['ID'],
+                    text: field
+                })
+            }
+            $('.users')[0].selectize.refreshOptions('');
+            $('.users')[0].selectize.clear();
+        });
         }, 1500);
         editView();
     }
@@ -54,7 +67,7 @@ function edit() {
 
 //функция генерации полей режима редактирования
 function editView() {
-    Array.from(document.getElementsByClassName('arg_field')).forEach((name)=>{
+    Array.from(document.getElementsByClassName('arg_field')).forEach((name) => {
         let in_tag = name.innerHTML;
         if (name.type == 'checkbox') {
             name.removeAttribute('readonly');
@@ -65,7 +78,7 @@ function editView() {
             return;
         }
         if (name.classList.contains('textarea')) {
-            name.outerHTML = "<textarea class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
+            name.outerHTML = "<textarea class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : (">" + in_tag ));
             return;
         }
         name.outerHTML = "<input class='input_tag' id='" + name.id + "' " + ((in_tag == "Не заполнено") ? ">" : ("value='" + in_tag + "'>"));
@@ -87,6 +100,22 @@ function selectList(name) {
     else if (name.classList.value.includes('divisionAdjanced')) list = 'divisionAdjanced';
     let url = 'http://81.161.220.59:8100/api/' + list + '/?action=getList' + id + '&request=developer';
     get(url).then(resolve => {
+        if (name.classList.contains('slider')) {
+            name.outerHTML = '<div id="' + name.id + '" class="slider"><div id="handle" class="ui-slider-handle"></div></div>';
+            $('.slider').slider({
+                min: 0,
+                max: resolve.length - 1,
+                create: function (event, ui) {
+                    $('#handle').val(resolve[$(this).slider("value")]['ID']);
+                    $('#handle').text(resolve[$(this).slider("value")]['NAME']);
+                },
+                slide: function (event, ui) {
+                    $('#handle').val(resolve[ui.value]['ID']);
+                    $('#handle').text(resolve[ui.value]['NAME']);
+                }
+            });
+            return;
+        }
         str = "<select class='input_tag " + (name.classList.value.includes('users') ? 'users' : name.classList.value.includes('enterprise') ? 'enterprise js-selectize' : 'js-selectize') + "' id='" + name.id + "'><option></option>";
         //получаем массив JSON-объектов для селект листа, //перебираем 
         //каждый элемент и вставляем его имя в селект 
@@ -99,19 +128,6 @@ function selectList(name) {
         }
         str += "</select>";
         name.outerHTML = str;
-        $('.enterprise').change(async function () {
-            users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
-            $('.users')[0].selectize.clearOptions();
-            for (let i in users) {
-                let field = users[i][getFieldName(users[i])];
-                $('.users')[0].selectize.addOption({
-                    value: users[i]['ID'],
-                    text: field
-                })
-            }
-            $('.users')[0].selectize.refreshOptions('');
-            $('.users')[0].selectize.clear();
-        });
     });
 }
 

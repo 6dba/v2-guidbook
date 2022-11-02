@@ -11,7 +11,7 @@ function request(url, requestData) {
         $.ajax({
             url: '../php/api.php',
             method: 'POST',
-            dataType: !data['data'] ? 'json' : '',
+            dataType: 'json',
             data: data,
             success: function (response) {
                 return resolve(response);
@@ -79,8 +79,8 @@ function postDivision() {
     };
     data['enterprise'] = arg_10.options[arg_10.selectedIndex].value;
     data['type'] = arg_11.options[arg_11.selectedIndex].value;
-    data['shift'] = arg_12.options[arg_12.selectedIndex].value;
-    data['chief'] = $('#arg_13').val().join(' ')
+    data['shift'] = $('#handle').val();
+    data['chief'] = $('#arg_13').val().join(' ');
     data['adjanced'] = arg_14.options[arg_14.selectedIndex].value;
     if (arg_15.checked) data['isOpo'] = true;
     else data["isOpo"] = false;

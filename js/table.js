@@ -1,7 +1,6 @@
-let titles = localStorage.getItem('titles') ? JSON.parse(localStorage.getItem('titles')) : ['№', 'Название', 'Тип подразделения', 'Наименование'];
-if (!localStorage.getItem('titles')) localStorage.setItem('titles', JSON.stringify(titles));
+let titles;
 
-let deletedTitles = localStorage.getItem('deletedTitles') ? JSON.parse(localStorage.getItem('deletedTitles')) : [];
+let deletedTitles;
 
 /* Проверка содержимого элемента на соответствие фильтра */
 function isAllow(item) {

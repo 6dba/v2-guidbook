@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="../styles/css.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
-    <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/tableToExcel.js"></script>
 
     <script language="javascript" type="text/javascript" src="../libs/selectize.min.js"></script>
-
+    <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
@@ -44,6 +43,8 @@
             <ul class='dropcontext' id='drop_add'>
             </ul>
         </div>
+        
+        <div id='save_view' onclick=saveView()>Сохранить вид</div>
     </div>
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
@@ -59,7 +60,7 @@
                 <li><a href="#" class="nav-link px-2 link-light">Помощь</a></li>
                 <li>
                     <?php
-                if($_COOKIE['user'] == '1'):
+                if(isset($_COOKIE['PHPSESSID'])):
                 ?>
                     <a href="../php/auth.php" class="btn px-2" style='color:white'>Выход</a>
                     <?php else: ?>
@@ -131,6 +132,7 @@
         }
 
     </script>
+
     <div class="container">
         <ul class="nav col-12 col-md-auto mb-2 justify-content mb-md-0 mt-3">
             <li class="pe-4">СПРАВОЧНИКИ
@@ -142,7 +144,7 @@
         </ul>
     </div>
     <?php
-    if($_COOKIE['user'] == '1'):
+    if(isset($_COOKIE['PHPSESSID'])):
     ?>
     <div class="main" id="main">
         <div class="container_information">

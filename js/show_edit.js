@@ -54,7 +54,7 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>ТИП ПОДРАЗДЕЛЕНИЯ</p>" +
             "<p id='arg_11' class='selectlist arg_field divisionTypes'>" + (resolve['TYPE_NAME'] ? resolve['TYPE_NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>КОЛИЧЕСТВО СМЕН</p>" +
-            "<p id='arg_12' class='selectlist arg_field divisionShift'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
+            "<p id='arg_12' class='selectlist arg_field divisionShift slider'>" + (resolve['SHIFT_QT'] ? findName(resolve['SHIFT_QT'], divisionShift) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field users id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<p id='arg_14' class='selectlist arg_field divisionAdjanced'>" + (resolve['DIVISION_ADJANCED_ID'] ? findName(resolve['DIVISION_ADJANCED_ID'], divisionAdjanced) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
