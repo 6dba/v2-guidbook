@@ -22,7 +22,7 @@ function selectItemEnterprise(id) {
                 "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПРЕДПРИЯТИЯ</p>" +
                 "<p id='arg_5' class='selectlist arg_field users id" + resolve['ID'] + "'>" + (resolve['DIRECTOR_ID'] ? findName(resolve['DIRECTOR_ID'], users) : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ПОДРЯДНАЯ ОРГАНИЗАЦИЯ</p>" +
-                "<input type='checkbox' id='arg_6' readonly " + (resolve['ISCONTRACTOR'] ? 'checked> ' : '>') +
+                "<input type='checkbox' id='arg_6' class='arg_field' readonly " + (resolve['ISCONTRACTOR'] ? 'checked> ' : '>') +
                 "<p class='arg_edit'>СКЛАД</p>" +
                 "<p id='arg_7'  class='arg_field'>" + (resolve['SKLAD'] ? resolve['SKLAD'] : 'Не заполнено') + "</p>";
 
@@ -58,9 +58,9 @@ function selectItemDivision(id) {
             "<p class='arg_edit'>РУКОВОДИТЕЛЬ ПОДРАЗДЕЛЕНИЯ</p>" + "<p id='arg_13' class='selectlist arg_field users id" + resolve['ENTERPRISE_ID'] + "'>" + (resolve['CHIEF_ID'] ? findName(resolve['CHIEF_ID'], users) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>РОДИТЕЛЬСКОЕ ПОДРАЗДЕЛЕНИЕ</p>" + "<p id='arg_14' class='selectlist arg_field divisionAdjanced'>" + (resolve['DIVISION_ADJANCED_ID'] ? findName(resolve['DIVISION_ADJANCED_ID'], divisionAdjanced) : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ОПАСНЫЙ ПРОИЗВОДСТВЕННЫЙ ОБЪЕКТ</p>" +
-            "<input type='checkbox' id='arg_15' readonly " + (resolve['IS_OPO'] ? 'checked> ' : '>') +
+            "<input type='checkbox' id='arg_15' class='arg_field' readonly " + (resolve['IS_OPO'] ? 'checked> ' : '>') +
             "<p class='arg_edit'>ЖУРНАЛ СМЕННЫХ НАРЯДОВ</p>" +
-            "<input type='checkbox' id='arg_16' readonly " + (resolve['IS_ORDERS_VISIBLE'] ? 'checked> ' : '>');
+            "<input type='checkbox' id='arg_16' class='arg_field' readonly " + (resolve['IS_ORDERS_VISIBLE'] ? 'checked> ' : '>');
 
         document.getElementById('edit_Form').classList.remove('loading');
         document.getElementById('loading').classList.add('loading');
