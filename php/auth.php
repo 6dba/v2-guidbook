@@ -3,7 +3,6 @@ ini_set( 'display_errors', 1 );
 error_reporting( E_ALL ^E_NOTICE );
 include 'api.php';
 if ( isset($_COOKIE['PHPSESSID']) ) {
-    //setcookie( 'user', '', time()-1, "/" );
     setcookie('PHPSESSID', '', time()-1, '/');
     session_destroy();
     apcu_clear_cache();
@@ -12,6 +11,7 @@ if ( isset($_COOKIE['PHPSESSID']) ) {
     $response = json_decode( post( $_POST['url_login'], $_POST['data_login'] ) );
     if ( $response->code == 200 ) {
         apcu_clear_cache();
+        ini_set("session.gc_maxlifetime", 36000);
         session_start();
         $_SESSION['lastLogin'] = $_POST['data_login']['login'];
         $_SESSION['user'] = array (
@@ -32,8 +32,7 @@ if ( isset($_COOKIE['PHPSESSID']) ) {
             bp => 0
         );
         $_SESSION['settings'] = '';
-        setcookie ('PHPSESSID' , session_id() , time() + 3600, '/');
-        //setcookie( 'user', '1', time()+3600*5, "/" );
+        setcookie( 'PHPSESSID', session_id(), time()+36000, "/" );
         $data = json_decode( get( "http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer" ) );
         cache( $data );
         echo $response->code;

@@ -51,7 +51,7 @@ function post( $url, $data = array() ) {
 
 // Вызов API методов посредством AJAX JQuery
 if ( isset( $_POST['data'] ) and isset( $_POST['url'] ) ) {
-    session_start();
+    session_start(['read_and_close'  => true]);
     // Изменяем ресурс
     if (isset($_POST['data']['view']))
         $_POST['data']['userId'] = $_SESSION['user']['userId'];

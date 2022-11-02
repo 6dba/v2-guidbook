@@ -43,7 +43,7 @@
             <ul class='dropcontext' id='drop_add'>
             </ul>
         </div>
-        
+
         <div id='save_view' onclick=saveView()>Сохранить вид</div>
     </div>
     <div class="container-fluid">
@@ -119,7 +119,7 @@
                     data: data,
                     success: function(response) {
                         if (response == 200)
-                            window.location = '/templates';
+                            location.reload();
                         else
                             alert(response);
                         document.getElementById('entry').onclick = login;
@@ -311,6 +311,12 @@
                         <input type=text class="input_find" id='input_find' placeholder="Введите текст для поиска">
                         <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                         <script>
+                            let checkCoockie = setInterval(() => {
+                                if (document.cookie.indexOf("PHPSESSID") == -1)
+                                {location.reload();
+                                 clearInterval(checkCoockie);
+                                }
+                            }, 36000000);
                             $('.input_find').on('input', function() {
                                 inputEvent(this)
                             })
@@ -363,7 +369,7 @@
                 <div class="col trap_edit edit align-self-start" id="block_edit">
 
                     <div class="d-flex back_title_element">
-                        <div id="ttl_el" class="w-100 p-1 title_element" style = 'word-wrap: break-word'>
+                        <div id="ttl_el" class="w-100 p-1 title_element" style='word-wrap: break-word'>
                         </div>
                         <div class="flex-shrink-1 add_pos">
                             <button id="deleteObject" class="img_add" style="visibility : hidden;"><img src="../assets/delete.png" title="Удалить" alt="" onClick=delete_object()></button>
