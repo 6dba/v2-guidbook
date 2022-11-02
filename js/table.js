@@ -77,12 +77,11 @@ async function createBody(data, tbody, backlightPattern) {
 async function table(data, backlightPattern) {
     const view = document.getElementById('view');
     view.onscroll = '';
-
+    page = 0; end = false; number = 1;
+    
     if (!data || !data.length) {
         view.onscroll = checkLastElement;
     }
-    
-    page = 0; end = false; number = 1;
 
     const table = createElemWithAttr('table', {
         id: 'table'

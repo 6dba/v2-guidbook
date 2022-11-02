@@ -163,6 +163,7 @@ function postNew() {
 }
 
 function check_null(start, end) {
+    $('#edit_Form span').remove();
     let null_field = false;
     for (i = start; i <= end; i++) {
         let name = eval("arg_" + i);
@@ -172,7 +173,6 @@ function check_null(start, end) {
             null_field = true;
         } else if (name.tagName.toLowerCase() == 'select' && name.options[name.selectedIndex].value == '') {
             name.nextSibling.firstChild.style.borderColor = '#ec1b0b';
-            //name.nextSibling.style = 'border:1px solid #ec1b0b';
             null_field = true;
         }
     }

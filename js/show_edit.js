@@ -12,7 +12,7 @@ function selectItemEnterprise(id) {
             document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
             document.getElementById('edit_Form').innerHTML =
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
-                "<p id='arg_1' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
+                "<p id='arg_1' class='arg_field' style = 'word-wrap: break-word'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
                 "<p id='arg_2' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
                 "<p class='arg_edit'>ХОЛДИНГ</p>" +
@@ -46,7 +46,7 @@ function selectItemDivision(id) {
         document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
         document.getElementById('edit_Form').innerHTML =
             "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
-            "<p id='arg_8' class='arg_field'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
+            "<p id='arg_8' class='arg_field' style = 'word-wrap: break-word'>" + (resolve['NAME'] ? resolve['NAME'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПОЛНОЕ НАИМЕНОВАНИЕ</p>" +
             "<p id='arg_9' class='arg_field textarea' style = 'word-wrap: break-word'>" + (resolve['NAME_FULL'] ? resolve['NAME_FULL'] : 'Не заполнено') + "</p>" +
             "<p class='arg_edit'>ПРЕДПРИЯТИЕ</p>" +

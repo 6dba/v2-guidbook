@@ -363,7 +363,7 @@
                 <div class="col trap_edit edit align-self-start" id="block_edit">
 
                     <div class="d-flex back_title_element">
-                        <div id="ttl_el" class="w-100 p-1 title_element">
+                        <div id="ttl_el" class="w-100 p-1 title_element" style = 'word-wrap: break-word'>
                         </div>
                         <div class="flex-shrink-1 add_pos">
                             <button id="deleteObject" class="img_add" style="visibility : hidden;"><img src="../assets/delete.png" title="Удалить" alt="" onClick=delete_object()></button>

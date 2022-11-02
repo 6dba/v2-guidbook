@@ -114,6 +114,7 @@ function accept_filters() {
             removeChilds(document.getElementById('view'));
             document.getElementById('view').scrollTo(pageXOffset, 0);
             table();
+            add_delete_column();
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');
             document.getElementById('loading_view').classList.add('loading');
@@ -152,6 +153,7 @@ function drop_filters() {
         removeChilds(document.getElementById('view'));
         document.getElementById('view').scrollTo(pageXOffset, 0);
         table();
+        add_delete_column();
         document.getElementById('button_change_view').onclick = changeView;
         document.getElementById('view').classList.remove('loading');
         document.getElementById('loading_view').classList.add('loading');
