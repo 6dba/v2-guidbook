@@ -2,11 +2,11 @@ const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid
 const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
 
 let childs = {}
-let allData = JSON.parse(localStorage.getItem('allData'))
+let allData = JSON.parse(sessionStorage.getItem('allData'))
 
 function clearTreeData() {
     childs = {}; allData = null;
-    localStorage.removeItem('allData');
+    sessionStorage.removeItem('allData');
 }
 
 async function getData(url) {
@@ -23,7 +23,7 @@ async function hasChilds(id) {
     if (!allData) {
         allData = await getData(allUrl);
         childs = {}
-        localStorage.setItem('allData', JSON.stringify(allData));
+        sessionStorage.setItem('allData', JSON.stringify(allData));
     }
 
     if (childs[id]) return true;
