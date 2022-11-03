@@ -1,3 +1,6 @@
+let titles;
+
+let deletedTitles;
 
 /* Проверка содержимого элемента на соответствие фильтра */
 function isAllow(item) {
@@ -13,13 +16,11 @@ function isAllow(item) {
 function createHead() {
     if (localStorage.getItem('thead'))
         return JSON.parse(localStorage.getItem('thead'));
-
-    const titles = ['№', 'Название', 'Тип подразделения', 'Наименование'];
     const thead = createElemWithAttr('thead', {
         id: 'thead'
     });
     const theadRow = thead.appendChild(document.createElement('tr'));
-
+                            
     titles.forEach((item) => {
         theadRow.appendChild(createElemWithAttr('th', {
             className: item !== '№' ? 'drag_accept' : '',
@@ -38,6 +39,7 @@ async function createBody(data, tbody, backlightPattern) {
     }
 
     const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
+    
     let nRows = 0;
     do {
         if (!data || !data.length) {
@@ -75,12 +77,11 @@ async function createBody(data, tbody, backlightPattern) {
 async function table(data, backlightPattern) {
     const view = document.getElementById('view');
     view.onscroll = '';
-
+    page = 0; end = false; number = 1;
+    
     if (!data || !data.length) {
         view.onscroll = checkLastElement;
     }
-    
-    page = 0; end = false; number = 1;
 
     const table = createElemWithAttr('table', {
         id: 'table'

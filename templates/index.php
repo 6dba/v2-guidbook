@@ -3,14 +3,20 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="../styles/css.css">
     <link rel="stylesheet" href="../styles/dragtable.css">
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/jquery-ui.css">
+    <link rel="stylesheet" href="../styles/selectize.default.css">
+    <link rel="stylesheet" href="../styles/css.css">
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../libs/tableToExcel.js"></script>
+
+    <script language="javascript" type="text/javascript" src="../libs/selectize.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
-    <script language="javascript" type="text/javascript" src="../js/dynamiс.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
     <script language="javascript" type="text/javascript" src="../js/table.js"></script>
     <script language="javascript" type="text/javascript" src="../js/edit_form.js"></script>
@@ -20,11 +26,26 @@
     <script language="javascript" type="text/javascript" src="../js/search.js"></script>
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/contextmenu.js"></script>
+
 
     <title>В2</title>
 </head>
 
 <body>
+    <div id='context_menu' class='context-menu dropend'>
+        <div class='dropdown-toggle' id='deleteTd'>Удалить столбец
+            <ul class='dropcontext' id='drop_delete'>
+            </ul>
+        </div>
+
+        <div class='dropdown-toggle' id='addTd'>Добавить столбец
+            <ul class='dropcontext' id='drop_add'>
+            </ul>
+        </div>
+
+        <div id='save_view' onclick=saveView()>Сохранить вид</div>
+    </div>
     <div class="container-fluid">
         <header class="d-flex flex-wrap align-items-center justify-content-center py-1 mb-3 mb-md-0">
             <div class="imgpos">
@@ -39,16 +60,78 @@
                 <li><a href="#" class="nav-link px-2 link-light">Помощь</a></li>
                 <li>
                     <?php
-                if($_COOKIE['user'] == '1'):
+                if(isset($_COOKIE['PHPSESSID'])):
                 ?>
-                    <a href="../php/auth.php" class="btn px-2 btn-link btn_login">Выход</a>
+                    <a href="../php/auth.php" class="btn px-2" style='color:white'>Выход</a>
                     <?php else: ?>
-                    <a href="../php/auth.php" class="btn px-2 btn-link btn_login">Вход</a>
+                    <a href='#' id='login_button' class="btn ui-corner-all ui-widget">Вход</a>
                     <?php endif; ?>
                 </li>
             </ul>
         </header>
     </div>
+
+    <div class='container-login mt-4' id='dialog-form'>
+        <input type='text' class='form-control' name='login' id='login' placeholder='Введите логин'><br>
+        <input type='text' class='form-control' name='password' id='password' placeholder='Введите пароль'><br>
+        <button class='btn-login btn' id='entry' onClick=login()>Войти</button>
+    </div>
+    <script>
+        dialog = $("#dialog-form").dialog({
+            autoOpen: false,
+            draggable: false,
+            width: 500,
+            title: 'Вход',
+            hide: {
+                effect: "blind",
+                duration: 1000
+            },
+            modal: true,
+            resizable: false,
+            show: {
+                effect: "blind",
+                duration: 800
+            }
+        });
+        $("#login_button").button().on("click", function() {
+            dialog.dialog("open");
+        });
+
+        function login() {
+            let login_value = document.getElementById('login').value.trim();
+            let password_value = document.getElementById('password').value.trim();
+            if (!login_value.length)
+                document.getElementById('login').style = 'border-color: red';
+            if (!password_value.length)
+                document.getElementById('password').style = 'border-color: red';
+            if (login_value.length && password_value.length) {
+                document.getElementById('entry').onclick = '';
+                let data = {
+                    url_login: 'http://81.161.220.59:8100/api/access/?action=authorization',
+                    data_login: {
+                        login: login_value,
+                        password: password_value
+                    }
+                };
+                $.ajax({
+                    url: '../php/auth.php',
+                    method: 'POST',
+                    data: data,
+                    success: function(response) {
+                        if (response == 200)
+                            location.reload();
+                        else
+                            alert(response);
+                        document.getElementById('entry').onclick = login;
+                    },
+                    error: function(jqxhr, status, errorMsg) {
+                        alert(errorMsg)
+                    }
+                })
+            }
+        }
+
+    </script>
 
     <div class="container">
         <ul class="nav col-12 col-md-auto mb-2 justify-content mb-md-0 mt-3">
@@ -61,11 +144,11 @@
         </ul>
     </div>
     <?php
-    if($_COOKIE['user'] == '1'):
+    if(isset($_COOKIE['PHPSESSID'])):
     ?>
     <div class="main" id="main">
         <div class="container_information">
-            <div class="row d-flex" style = "overflow-y: inherit">
+            <div class="row d-flex" style="overflow-y: inherit">
                 <div class="mySidebar col" id="mySidebar" style='display: none;'>
                     <label for="label-bar" class="labels_bar" style='margin-left:-12px; min-width: 260px'>
                         <button class="btn_close" onClick=filter_close() title="Закрыть">X</button>
@@ -201,11 +284,11 @@
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
-                    
+
 
                     <button id="button_Ok" class="btn_ok" onclick=accept_filters()>Применить</button>
-                    <button id="button_drop" class="btn_drop" onclick=drop_filters() >Сброс</button>
-                    
+                    <button id="button_drop" class="btn_drop" onclick=drop_filters()>Сброс</button>
+
                 </div>
                 <script>
                     $('#name').change(function() {
@@ -224,10 +307,16 @@
                 </script>
                 <div class="col trap">
                     <div class="d-flex flex-shrink-1">
-                        <button class="btn_filter" id='btn_filter' onClick=filter_open()><img src="../assets/filter.png" alt="" id='img_filter' /></button>
-                        <input type=text class="input_find" id = 'input_find' placeholder="Введите текст для поиска">
+                        <button class="btn_filter" id='btn_filter' onClick=filter_open() style='display:none'><img src="../assets/filter.png" alt="" id='img_filter' /></button>
+                        <input type=text class="input_find" id='input_find' placeholder="Введите текст для поиска">
                         <button type="button_find" class="ms-3 btn_find" onclick=search()>Найти</button>
                         <script>
+                            let checkCoockie = setInterval(() => {
+                                if (document.cookie.indexOf("PHPSESSID") == -1)
+                                {location.reload();
+                                 clearInterval(checkCoockie);
+                                }
+                            }, 36000000);
                             $('.input_find').on('input', function() {
                                 inputEvent(this)
                             })
@@ -263,7 +352,9 @@
                         if (localStorage.getItem('view') == 'table') {
                             img_view.src = '../assets/tree.png';
                             view.classList.add('table');
+                            document.getElementById('btn_filter').style.display = 'block';
                             table();
+                            add_delete_column();
                         } else {
                             view.classList.add('tree');
                             tree();
@@ -278,7 +369,7 @@
                 <div class="col trap_edit edit align-self-start" id="block_edit">
 
                     <div class="d-flex back_title_element">
-                        <div id="ttl_el" class="w-100 p-1 title_element">
+                        <div id="ttl_el" class="w-100 p-1 title_element" style='word-wrap: break-word'>
                         </div>
                         <div class="flex-shrink-1 add_pos">
                             <button id="deleteObject" class="img_add" style="visibility : hidden;"><img src="../assets/delete.png" title="Удалить" alt="" onClick=delete_object()></button>

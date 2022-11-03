@@ -9,7 +9,7 @@ body {
     height: 68px;
 }
 
-.imgpos {
+.container-fluid .imgpos {
     background-color: #00CED1;
     margin-left: -27px;
     margin-top: -5px;
@@ -17,7 +17,7 @@ body {
     height: 68.5px;
 }
 
-.ul {
+.container-fluid .ul {
     color: white;
     margin-top: unset;
     margin-bottom: 1rem;
@@ -31,11 +31,8 @@ button:not(:disabled) {
     text-decoration: none;
 }
 
-.btn_login {
-    color: white;
-}
 
-.title {
+.container-fluid .title {
     font-family: "arial";
     font-size: 20pt;
     padding-left: 30px;
@@ -55,14 +52,20 @@ li {
     cursor: pointer;
 }
 
-.trap {
+.main .container_information {
+    width: 100%;
+    padding-left: 75px;
+    max-height: 100vh;
+}
+
+.main .container_information .trap {
     color: black;
     font-family: "monospace";
     max-height: 63vh;
     overflow-y: inherit;
 }
 
-.trap_edit {
+.main .container_information .trap_edit {
     height: auto;
     overflow-y: auto;
     box-shadow: 0.4em 0.4em 5px rgba(122, 122, 122, 0.5);
@@ -70,10 +73,64 @@ li {
     font-size: 18px;
 }
 
-.container_information {
-    width: 100%;
-    padding-left: 75px;
-    max-height: 100vh;
+.main .container_information .mySidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    min-width: 100%;
+    display: block;
+    font-weight: bold;
+}
+
+.main .container_information .mySidebar a:hover {
+    color: black;
+    background: none;
+    cursor: default;
+}
+
+.main .container_information .mySidebar .btn_drop {
+    border-color: #00CED1;
+    margin-top: 2px;
+    background-color: white;
+    border-radius: 10px;
+    width: 70px;
+    height: 35px;
+    float: right;
+    color: black;
+}
+
+.main .container_information .mySidebar .btn_ok {
+    border-color: #00CED1;
+    margin-top: 2px;
+    margin-left: 20%;
+    background-color: white;
+    border-radius: 10px;
+    width: 95px;
+    height: 35px;
+    float: right;
+    color: black;
+}
+
+.main .container_information .btn_filter {
+    border-color: #00CED1;
+    margin-top: 10px;
+    margin-right: 10px;
+
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    float: right;
+    color: black;
+}
+
+.main .container_information .btn_close {
+    border: none;
+    height: 15px;
+    background-color: #596573;
+    width: 15%;
+    color: white;
+    margin-top: 5px;
 }
 
 .guides {
@@ -82,7 +139,7 @@ li {
     height: 40px;
 }
 
-.btn_find {
+.trap .btn_find {
     border-color: #00CED1;
     margin-top: 10px;
     background-color: white;
@@ -104,62 +161,15 @@ li {
     color: darkgreen;
 }
 
-.btn_close {
-    border: none;
-    height: 15px;
-    background-color: #596573;
-    width: 15%;
-    color: white;
-    margin-top: 5px;
-}
 
-.btn_filter {
-    border-color: #00CED1;
-    margin-top: 10px;
-    margin-right: 10px;
-
-    background-color: white;
-    width: 35px;
-    height: 35px;
-    float: right;
-    color: black;
-}
-
-.back_title_guide {
+.trap .back_title_guide {
     background-color: #596573;
     margin-top: 10px;
     width: 100%;
     height: 35px;
 }
 
-.filter {
-    font-size: 13px;
-    font-family: "monospace";
-    background-color: white;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-    height: 170px;
-    border: 1px solid black;
-}
-
-.title_filter {
-    font-size: 13px;
-    font-family: "monospace";
-    background-color: white;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-}
-
-.guide_filter {
-    color: black;
-    font-size: 15px;
-    font-family: "monospace";
-    margin-left: 20px;
-}
-
-.title_guide {
+.back_title_guide .title_guide {
     color: white;
     margin-left: 20px;
 }
@@ -183,7 +193,7 @@ li {
 .back_title_element {
     background-color: #596573;
     width: 100%;
-    height: 35px;
+    min-height: 35px;
 }
 
 .title_element {
@@ -208,6 +218,7 @@ li {
 
 .input_tag {
     width: 100%;
+    font-size: 16px;
 }
 
 input[type="checkbox"][readonly] {
@@ -362,41 +373,85 @@ a:hover {
     overflow-x: hidden;
 }
 
-.row .mySidebar a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 15px;
-    color: black;
-    min-width: 100%;
-    display: block;
-    font-weight: bold;
-}
 
-.row .mySidebar a:hover {
-    color: black;
-    background: none;
-    cursor: default;
-}
-
-.row .mySidebar .btn_drop {
+.container-fluid .ui-button {
     border-color: #00CED1;
-    margin-top: 2px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-top: 3px;
+    padding-top: 7px;
     width: 70px;
     height: 35px;
-    float: right;
     color: black;
 }
 
-.row .mySidebar .btn_ok {
-    border-color: #00CED1;
-    margin-top: 2px;
-    margin-left: 20%;
-    background-color: white;
-    border-radius: 10px;
-    width: 95px;
-    height: 35px;
-    float: right;
-    color: black;
+.context-menu{
+    z-index: 10;
+    width: 150px;
+    border-radius: 5px;
+    display: none;
+    font-family: "monospace";
+    font-size: 12pt;
+    background-color:#ABCDEF;
+
+}
+.context-menu div{
+        cursor: pointer;
+        border: 1px black solid;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.context-menu div:hover{
+    background-color:bisque;
+    border-radius: 5px;
+}
+
+.context-menu .dropcontext{
+    position: fixed;
+    border: 1px black solid;
+    display: none;
+    background-color:#ABCDEF;
+    border-radius: 5px;
+    list-style:none;
+    padding-left:0;
+}
+
+.context-menu .dropcontext li{
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.context-menu .dropcontext li:hover{
+    background-color:bisque;
+    border-radius: 5px;
+}
+
+#edit_Form .selectize-input {
+    min-height: 36px;
+    font-size: 16px;
+}
+#edit_Form .selectize-input>input{
+    font-size: 16px;
+}
+#edit_Form .selectize-dropdown-content div{
+    min-height: 36px;
+}
+
+#edit_Form .ui-slider {
+    margin-left: 8px;
+    margin-right: 14px;
+}
+#handle {
+    font-family: "monospace";
+    font-size: 14px;
+    width: 30px;
+	height: 30px;
+	top: 50%;
+	margin-top: -14px;
+    
+	text-align: center;
+	line-height: 24px;
+	outline: none;
 }
