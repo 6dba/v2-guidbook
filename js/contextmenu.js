@@ -85,8 +85,10 @@ function deleteColumn(title) {
     document.getElementById('view').classList.add('loading');
     removeChilds(document.getElementById('view'));
     document.getElementById('view').scrollTop = 0;
+    if (document.getElementById('input_find').value) {
+        clear(document.getElementById('input_find'));
+    }
     table();
-    add_delete_column();
     document.getElementById('button_change_view').onclick = changeView;
     document.getElementById('view').classList.remove('loading');
     document.getElementById('loading_view').classList.add('loading');
@@ -101,8 +103,10 @@ function addColumn(title) {
     document.getElementById('view').classList.add('loading');
     removeChilds(document.getElementById('view'));
     document.getElementById('view').scrollTop = 0;
+    if (document.getElementById('input_find').value) {
+        clear(document.getElementById('input_find'));
+    }
     table();
-    add_delete_column();
     document.getElementById('button_change_view').onclick = changeView;
     document.getElementById('view').classList.remove('loading');
     document.getElementById('loading_view').classList.add('loading');

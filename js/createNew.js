@@ -152,11 +152,9 @@ function postNew() {
 
     document.getElementById('exit').style.visibility = 'hidden';
     if (typeof type !== 'undefined' && type.value == 'enterprise') {
-        postEnterprise();
-        setTimeout(reload_cache, 100);
+        postEnterprise().then(() => {reload_cache()})
     } else if (typeof type !== 'undefined' && type.value == 'division') {
-        postDivision();
-        setTimeout(reload_cache, 100);
+        postDivision().then(() => {reload_cache()})
     }
     document.getElementById('type').remove();
     createNewObject();

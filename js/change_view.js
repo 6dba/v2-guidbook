@@ -11,7 +11,6 @@ async function changeView() {
     }
 
     if (view.classList.contains('tree')) {
-        localStorage.clear();
         freezeButton();
         removeChilds(document.getElementById('view'));
         document.getElementById('view').classList.remove('tree');
@@ -24,7 +23,6 @@ async function changeView() {
         titles = head['titles'].length !=0 ? head['titles'] : ['№', 'Название', 'Тип подразделения', 'Наименование'];
         deletedTitles = head['deletedTitles'].length !=0 ? head['deletedTitles'] : [];
         table();
-        add_delete_column();
         document.getElementById('img_view').src = '../assets/tree.png';
         document.getElementById('excel').style.visibility = 'visible';
 

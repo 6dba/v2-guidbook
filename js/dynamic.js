@@ -1,7 +1,3 @@
-async function getAll(page) {
-    return await cache('table', page).then(all => all).catch(reject => reject);
-}
-
 let page = 0;
 let end = false;
 let number = 1;

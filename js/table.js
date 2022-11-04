@@ -1,5 +1,4 @@
 let titles;
-
 let deletedTitles;
 
 /* Проверка содержимого элемента на соответствие фильтра */
@@ -97,4 +96,6 @@ async function table(data, backlightPattern) {
         containment: 'parent',
         maxMovingRows: 17
     });
+
+    add_delete_column();
 }
