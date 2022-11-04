@@ -7,7 +7,9 @@ function removeChilds(element) {
 
 async function changeView() {
     if (document.getElementById('input_find').value) {
-        clear(document.getElementById('input_find'))
+        const input = document.getElementById('input_find')
+        input.value = ''; input.style = '';
+        input.parentElement.removeChild(document.querySelector('.button_clear'));
     }
 
     if (view.classList.contains('tree')) {
