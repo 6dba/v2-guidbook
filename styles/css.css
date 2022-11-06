@@ -267,6 +267,22 @@ table {
     height: 35px;
 }
 
+.table .sortUp:hover::after{
+    content: '\25B2';
+    float: right;
+    font-size: 10px;
+    padding-top: 3px;
+    cursor: pointer;
+}
+
+.table .sortDown:hover::after{
+    content: '\25BC';
+    float: right;
+    font-size: 10px;
+    padding-top: 3px;
+    cursor: pointer;
+}
+
 #view {
     overflow-y: auto;
     max-height: 100%;

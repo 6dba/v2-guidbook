@@ -27,6 +27,8 @@
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
     <script language="javascript" type="text/javascript" src="../js/contextmenu.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/sortTable.js"></script>
+
 
 
     <title>В2</title>
@@ -263,24 +265,18 @@
                     <a>Сортировка</a>
                     <select id="name">
                         <option value="" selected>--Название--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
 
                     <select id="type_name">
                         <option value="" selected>--Наименование--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
 
                     <select id="division_type_name">
                         <option value="" selected>--Тип подразделения--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>

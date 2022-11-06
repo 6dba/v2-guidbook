@@ -3,7 +3,7 @@ function edit() {
     document.getElementById('img_change').onclick = null;
     setTimeout(() => {
         document.getElementById('img_change').onclick = edit;
-    }, 1000);
+    }, 500);
     document.getElementById('img_change').style.visibility = 'visible';
     setTimeout(() =>
         document.getElementById('button_change_view').onclick = changeView, 1000);
