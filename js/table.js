@@ -1,5 +1,4 @@
 let titles;
-
 let deletedTitles;
 
 /* Проверка содержимого элемента на соответствие фильтра */
@@ -14,17 +13,18 @@ function isAllow(item) {
 
 /* Создание <thead> таблицы */
 function createHead() {
-    if (localStorage.getItem('thead'))
-        return JSON.parse(localStorage.getItem('thead'));
     const thead = createElemWithAttr('thead', {
         id: 'thead'
     });
     const theadRow = thead.appendChild(document.createElement('tr'));
-                            
+
     titles.forEach((item) => {
         theadRow.appendChild(createElemWithAttr('th', {
-            className: item !== '№' ? 'drag_accept' : '',
-            innerHTML: item
+            className: item !== '№' ? `drag_accept ${currentSort[item]}` : '',
+            innerHTML: item,
+            onclick: function () {
+                sort(this)
+            }
         }));
     })
     return thead;
@@ -39,7 +39,7 @@ async function createBody(data, tbody, backlightPattern) {
     }
 
     const sequence = ['№', ...Array.prototype.slice.call(document.getElementsByClassName('drag_accept')).map((item) => item.innerHTML)]
-    
+
     let nRows = 0;
     do {
         if (!data || !data.length) {
@@ -66,7 +66,8 @@ async function createBody(data, tbody, backlightPattern) {
                     title === 'Тип подразделения' ? item.DIVISION_TYPE_NAME :
                     title === 'Наименование' ? item.TYPE_NAME : '';
             })
-            nRows++; number++;
+            nRows++;
+            number++;
         })
         page++;
         data.length = 0;
@@ -77,8 +78,10 @@ async function createBody(data, tbody, backlightPattern) {
 async function table(data, backlightPattern) {
     const view = document.getElementById('view');
     view.onscroll = '';
-    page = 0; end = false; number = 1;
-    
+    page = 0;
+    end = false;
+    number = 1;
+
     if (!data || !data.length) {
         view.onscroll = checkLastElement;
     }
@@ -97,4 +100,6 @@ async function table(data, backlightPattern) {
         containment: 'parent',
         maxMovingRows: 17
     });
+
+    add_delete_column();
 }

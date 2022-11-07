@@ -27,6 +27,8 @@
     <script language="javascript" type="text/javascript" src="../js/functions_for_buttons.js"></script>
     <script language="javascript" type="text/javascript" src="../js/excel.js"></script>
     <script language="javascript" type="text/javascript" src="../js/contextmenu.js"></script>
+    <script language="javascript" type="text/javascript" src="../js/sortTable.js"></script>
+
 
 
     <title>В2</title>
@@ -263,24 +265,18 @@
                     <a>Сортировка</a>
                     <select id="name">
                         <option value="" selected>--Название--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
 
                     <select id="type_name">
                         <option value="" selected>--Наименование--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
 
                     <select id="division_type_name">
                         <option value="" selected>--Тип подразделения--</option>
-                        <option value="a-z">По возрастанию</option>
-                        <option value="z-a">По убыванию</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
                     </select>
@@ -346,22 +342,12 @@
                     <div id='loading_view' class='loading p-2' style='text-align: center'>
                         <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                     </div>
-                    <div id="view"></div>
+                <div id="view" class='tree'></div>
                     <script>
                         freezeButton();
-                        if (localStorage.getItem('view') == 'table') {
-                            img_view.src = '../assets/tree.png';
-                            view.classList.add('table');
-                            document.getElementById('btn_filter').style.display = 'block';
-                            table();
-                            add_delete_column();
-                        } else {
-                            view.classList.add('tree');
-                            tree();
-                            img_view.src = '../assets/table.png';
-                            document.getElementById('excel').style.visibility = 'hidden'
-                        }
-
+                        tree();
+                        img_view.src = '../assets/table.png';
+                        document.getElementById('excel').style.visibility = 'hidden'
                     </script>
                 </div>
 

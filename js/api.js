@@ -55,6 +55,10 @@ function cache(type, page, url) {
     });
 }
 
+async function getAll(page) {
+    return await cache('table', page).then(all => all).catch(reject => reject);
+}
+
 function postEnterprise() {
     let data = {
         id: findID(ttl_el),
@@ -68,7 +72,7 @@ function postEnterprise() {
     else data["isContractor"] = false;
     data["sklad"] = arg_7.value.trim().replace(/(<([^>]+)>)/ig, '');
 
-    post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', data);
+    return post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', data);
 }
 
 function postDivision() {
@@ -87,5 +91,5 @@ function postDivision() {
     if (arg_16.checked) data['is_order_visible'] = true;
     else data["is_order_visible"] = false;
 
-    post('http://81.161.220.59:8100/api/division/?action=setVariables&request=developer', data);
+    return post('http://81.161.220.59:8100/api/division/?action=setVariables&request=developer', data);
 }

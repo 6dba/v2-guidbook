@@ -3,7 +3,7 @@ function edit() {
     document.getElementById('img_change').onclick = null;
     setTimeout(() => {
         document.getElementById('img_change').onclick = edit;
-    }, 1000);
+    }, 500);
     document.getElementById('img_change').style.visibility = 'visible';
     setTimeout(() =>
         document.getElementById('button_change_view').onclick = changeView, 1000);
@@ -16,19 +16,17 @@ function edit() {
         document.getElementById('exit').style.visibility = 'hidden';
         document.getElementById('deleteObject').style.visibility = 'hidden';
         if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
-            postEnterprise();
-            setTimeout(() => {
+            postEnterprise().then(() => {
                 selectItemEnterprise(findID(document.getElementById('ttl_el')));
                 reload_cache();
-            }, 300);
-            document.getElementById('img_change').src = '../assets/change.png';
+                document.getElementById('img_change').src = '../assets/change.png';
+            })
         } else if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) {
-            postDivision();
-            setTimeout(() => {
+            postDivision().then(() => {
                 selectItemDivision(findID(document.getElementById('ttl_el')));
                 reload_cache();
-            }, 300);
-            document.getElementById('img_change').src = '../assets/change.png';
+                document.getElementById('img_change').src = '../assets/change.png';
+            })
         }
     } else {
         document.getElementById('img_change').src = '../assets/save.png';
