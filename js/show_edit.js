@@ -5,8 +5,12 @@ function selectItemEnterprise(id) {
     document.getElementById('loading').classList.remove('loading');
     document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
+    // TO DO: Change dynamic URL
     get('http://81.161.220.59:8100/api/enterprise/?action=getVariables&id=+' + id + '&request=developer')
-        .then(resolve => get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer').then(holdings => get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer').then(enterpriseType => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ID'] + '&request=developer').then(users => {
+    .then(resolve => get(URLS.holdings)
+    .then(holdings => get(URLS.enterpriseTypes)
+    .then(enterpriseType => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ID'] + '&request=developer')
+    .then(users => {
 
             document.getElementById('ttl_el').innerHTML = 'Предприятие ' + resolve['NAME'];
             document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
@@ -41,7 +45,12 @@ function selectItemDivision(id) {
     document.getElementById('loading').classList.remove('loading');
     document.getElementById('edit_Form').classList.add('loading');
     document.getElementById('block_edit').classList.remove('edit');
-    get('http://81.161.220.59:8100/api/division/?action=getVariables&id=' + id + '&request=developer').then(resolve => get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer').then(enterprise => get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer').then(divisionShift => get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer').then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ENTERPRISE_ID'] + '&request=developer').then(users => {
+    get('http://81.161.220.59:8100/api/division/?action=getVariables&id=' + id + '&request=developer')
+    .then(resolve => get(URLS. enterpriseList)
+    .then(enterprise => get(URLS.divisionShift)
+    .then(divisionShift => get(URLS.divisionAdjanced)
+    .then(divisionAdjanced => get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + resolve['ENTERPRISE_ID'] + '&request=developer')
+    .then(users => {
         document.getElementById('ttl_el').innerHTML = 'Подразделение ' + resolve['NAME'];
         document.getElementById('ttl_el').classList.add('id' + resolve['ID']);
         document.getElementById('edit_Form').innerHTML =

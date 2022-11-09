@@ -4,13 +4,13 @@ function request(url, requestData, method) {
     }
 
     if (requestData) {
-        data["data"] = requestData;
+        data.data = requestData;
     }
 
     return new Promise(function (resolve, reject) {
         $.ajax({
             url: '../php/api.php',
-            method: method,
+            method: 'POST',
             dataType: 'json',
             data: data,
             success: function (response) {
@@ -24,11 +24,11 @@ function request(url, requestData, method) {
 }
 
 function get(url) {
-    return request(url, null, 'GET');
+    return request(url);
 }
 
 function post(url, data) {
-    return request(url, data, 'POST');
+    return request(url, data);
 }
 
 function cache(type, page, url) {
@@ -74,7 +74,7 @@ function postEnterprise() {
     else data["isContractor"] = false;
     data["sklad"] = arg_7.value.trim().replace(/(<([^>]+)>)/ig, '');
 
-    return post('http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer', data);
+    return post(URLS.enterprise_set, data);
 }
 
 function postDivision() {
@@ -93,5 +93,5 @@ function postDivision() {
     if (arg_16.checked) data['is_order_visible'] = true;
     else data["is_order_visible"] = false;
 
-    return post('http://81.161.220.59:8100/api/division/?action=setVariables&request=developer', data);
+    return post(URLS.division_set, data);
 }

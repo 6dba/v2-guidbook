@@ -29,9 +29,9 @@ function createNewObject() {
             document.getElementById('loading').classList.remove('loading');
             document.getElementById('edit_Form').classList.add('loading');
 
-            holdings = await get('http://81.161.220.59:8100/api/holdings/?action=getList&request=developer');
-            enterpriseType = await get('http://81.161.220.59:8100/api/enterpriseTypes/?action=getList&request=developer');
-            users = await get('http://81.161.220.59:8100/api/users/?action=getList&request=developer');
+            holdings = await get(URLS.holdings);
+            enterpriseType = await get(URLS.enterpriseTypes);
+            users = await get(URLS.users);
 
             document.getElementById('edit_Form').innerHTML =
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
@@ -64,10 +64,10 @@ function createNewObject() {
             document.getElementById('loading').classList.remove('loading');
             document.getElementById('edit_Form').classList.add('loading');
 
-            divisionType = await get('http://81.161.220.59:8100/api/divisionTypes/?action=getList&request=developer');
-            enterprise = await get('http://81.161.220.59:8100/api/enterprise/?action=getList&request=developer');
-            divisionShift = await get('http://81.161.220.59:8100/api/divisionShift/?action=getList&request=developer');
-            divisionAdjanced = await get('http://81.161.220.59:8100/api/divisionAdjanced/?action=getList&request=developer');
+            divisionType = await get(URLS.divisionTypes);
+            enterprise = await get(URLS.enterpriseList);
+            divisionShift = await get(URLS.divisionShift);
+            divisionAdjanced = await get(URLS.divisionAdjanced);
             users = '';
             document.getElementById('edit_Form').innerHTML =
                 "<p class='arg_edit'>НАИМЕНОВАНИЕ</p>" +
@@ -111,6 +111,7 @@ function createNewObject() {
             document.getElementById('loading').classList.add('loading');
             document.getElementById('type').disabled = false;
             $('.enterprise').change(async function () {
+                // TO DO: Change dynamic URL
                 users = await get('http://81.161.220.59:8100/api/users/?action=getList&enterprise=' + $(this).val() + '&request=developer');
                 $('.users')[0].selectize.clearOptions();
                 for (let i in users) {

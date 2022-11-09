@@ -12,9 +12,10 @@
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/tableToExcel.js"></script>
-
     <script language="javascript" type="text/javascript" src="../libs/selectize.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
+
+    <script language="javascript" type="text/javascript" src="../js/urls.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>

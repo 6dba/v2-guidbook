@@ -1,6 +1,3 @@
-const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
-const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
-
 let childs = {}
 let allData = JSON.parse(sessionStorage.getItem('allData'))
 
@@ -21,7 +18,7 @@ function createElemWithAttr(item, attributes) {
 // Поиск дочерних элементов
 async function hasChilds(id) {
     if (!allData) {
-        allData = await getData(allUrl);
+        allData = await getData(URLS.structureTest);
         childs = {};
         sessionStorage.setItem('allData', JSON.stringify(allData));
     }
@@ -137,7 +134,7 @@ function createView(className, arr, searchPattern) {
 // Создание древовидного отображения подразделений и предприятий компании
 async function tree(data, backlightPattern) {
     if (!data || !data.length)
-        data = await getData(rootUrl);
+        data = await getData(URLS.structureRoot);
 	createView('root', data, backlightPattern);
 
 }

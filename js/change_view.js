@@ -21,13 +21,12 @@ async function changeView() {
         data = {
             view: 'table'
         };
-        let head = await post('http://81.161.220.59:8100/api/user_view/?action=get_views', data);
+        let head = await post(URLS.userView_get, data);
         titles = head['titles'].length != 0 ? head['titles'] : ['№', 'Название', 'Тип подразделения', 'Наименование'];
         deletedTitles = head['deletedTitles'].length !=0 ? head['deletedTitles'] : [];
         table();
         document.getElementById('img_view').src = '../assets/tree.png';
         document.getElementById('excel').style.visibility = 'visible';
-
     } else if (view.classList.contains('table')) {
         freezeButton();
         removeChilds(document.getElementById('view'));

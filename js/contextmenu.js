@@ -125,5 +125,5 @@ function saveView() {
         titles: []
     }
     $('thead tr th').each((index, el) => data['titles'].push(el.innerHTML));
-    post('http://81.161.220.59:8100/api/user_view/?action=set_views', data);
+    post(URLS.userView_set, data);
 }
