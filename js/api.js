@@ -1,4 +1,4 @@
-function request(url, requestData) {
+function request(url, requestData, method) {
     let data = {
         url: url
     }
@@ -10,7 +10,7 @@ function request(url, requestData) {
     return new Promise(function (resolve, reject) {
         $.ajax({
             url: '../php/api.php',
-            method: 'POST',
+            method: method,
             dataType: 'json',
             data: data,
             success: function (response) {
@@ -24,21 +24,23 @@ function request(url, requestData) {
 }
 
 function get(url) {
-    return request(url);
+    return request(url, null, 'GET');
 }
 
 function post(url, data) {
-    return request(url, data);
+    return request(url, data, 'POST');
 }
 
 function cache(type, page, url) {
-    if (!url) url = "";
+    if (!url) url = '';
+
     data = {
         type: type,
         page: page
     };
-    if (type == 'tree')
-        data["path"] = url;
+
+    if (type == 'tree') data.path = url;
+
     return new Promise(function (resolve, reject) {
         $.ajax({
             url: '../php/get_cache.php',

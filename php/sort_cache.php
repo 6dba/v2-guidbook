@@ -28,29 +28,29 @@ function sort_high_low( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mb_strtolower(mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->$_POST['name']);
+    $center = mb_strtolower( apcu_fetch( "$center_index" )->$_POST['name'] );
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
         if ( $_POST['sort'] == 'a-z' ) {
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$r" )->$_POST['name'] ), $center ) >= 1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$l" )->$_POST['name'] ), $center ) <= -1 ) {
                 $l++;
 
             }
         } else if ( $_POST['sort'] == 'z-a' ) {
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$r" )->$_POST['name'] ), $center ) <= -1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$l" )->$_POST['name'] ), $center ) >= 1 ) {
                 $l++;
             }
         }
@@ -98,29 +98,29 @@ function sort_null_not( $left, $right ) {
 
     //Вычисляем 'центр', на который будем опираться. Берем значение ~центральной ячейки массива.
     $center_index = ( int )( ( $left + $right ) / 2 );
-    $center = mb_strtolower(mc_decrypt( apcu_fetch( "$center_index" ), ENCRYPTION_KEY )->$_POST['name']);
+    $center = mb_strtolower( apcu_fetch( "$center_index" )->$_POST['name'] );
 
     //Цикл, начинающий саму сортировку
     do {
 
         //Ищем значения больше 'центра'
         if ( $_POST['sort'] == 'empty' ) {
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$r" )->$_POST['name'] ), $center ) >= 1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$l" )->$_POST['name'] ), $center ) <= -1 ) {
                 $l++;
 
             }
         } else if ( $_POST['sort'] == 'not_empty' ) {
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$r" ), ENCRYPTION_KEY )->$_POST['name']), $center ) <= -1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$r" )->$_POST['name'] ), $center ) <= -1 ) {
                 $r--;
             }
 
             //Ищем значения меньше 'центра'
-            while ( strnatcmp( mb_strtolower(mc_decrypt( apcu_fetch( "$l" ), ENCRYPTION_KEY )->$_POST['name']), $center ) >= 1 ) {
+            while ( strnatcmp( mb_strtolower( apcu_fetch( "$l" )->$_POST['name'] ), $center ) >= 1 ) {
                 $l++;
             }
         }

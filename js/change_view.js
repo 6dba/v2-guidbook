@@ -22,7 +22,7 @@ async function changeView() {
             view: 'table'
         };
         let head = await post('http://81.161.220.59:8100/api/user_view/?action=get_views', data);
-        titles = head['titles'].length !=0 ? head['titles'] : ['№', 'Название', 'Тип подразделения', 'Наименование'];
+        titles = head['titles'].length != 0 ? head['titles'] : ['№', 'Название', 'Тип подразделения', 'Наименование'];
         deletedTitles = head['deletedTitles'].length !=0 ? head['deletedTitles'] : [];
         table();
         document.getElementById('img_view').src = '../assets/tree.png';

@@ -22,7 +22,7 @@ function createElemWithAttr(item, attributes) {
 async function hasChilds(id) {
     if (!allData) {
         allData = await getData(allUrl);
-        childs = {}
+        childs = {};
         sessionStorage.setItem('allData', JSON.stringify(allData));
     }
 
@@ -34,8 +34,7 @@ async function hasChilds(id) {
     return false;
 }
 
-/* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
- * в кэшэ запрашиваются его дети, грузятся, выводятся */
+/* Запрос дочерних узлов, подгрузка, вывод */
 async function openChilds(element, button) {
 	const div = element.parentElement;
 	if (div.classList.contains('open')) {

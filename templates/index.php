@@ -343,11 +343,28 @@
                         <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                     </div>
                 <div id="view" class='tree'></div>
+                    <a href="#" id="scroll_top" title="Наверх"></a>
+
                     <script>
                         freezeButton();
                         tree();
                         img_view.src = '../assets/table.png';
                         document.getElementById('excel').style.visibility = 'hidden'
+
+                        $(function(){
+                            $('#view').scroll(function() {
+                                if($('#view').scrollTop() > 25) {
+                                    $('#scroll_top').show();
+                                } else {
+                                    $('#scroll_top').hide();
+                                }
+                            });
+
+                            $('#scroll_top').click(function(){
+                                $('#view').animate({scrollTop: 0}, 500);
+                                return false;
+                            });
+                        });
                     </script>
                 </div>
 
