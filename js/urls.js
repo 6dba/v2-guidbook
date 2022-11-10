@@ -1,6 +1,6 @@
 const URLS = {
 	/* api.js */
-	enterprise_set: 'http://81.161.220.59:8100/api/enterprise/?action=setVariables&request=developer',
+	setObjectValues: 'http://81.161.220.59:8100/api/{objName}/?action=setVariables&request=developer',
 	division_set: 'http://81.161.220.59:8100/api/division/?action=setVariables&request=developer',
 
 	/* change_view.js */
@@ -20,5 +20,17 @@ const URLS = {
 
 	/* tree.js */
 	structureRoot: 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer',
-	structureTest: 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
+	structureTest: 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer',
+    
+    /* dynamic URLs */
+    usersEnterprise: 'http://81.161.220.59:8100/api/users/?action=getList&enterprise={id}&request=developer',
+    
+    /* show_edit.js */
+    enterprise: 'http://81.161.220.59:8100/api/enterprise/?action=getVariables&id={id}&request=developer',
+    division: 'http://81.161.220.59:8100/api/division/?action=getVariables&id={id}&request=developer',
+    
+    /* delete_object */
+    deleteEnterprise: 'http://81.161.220.59:8100/api/enterprise/?action=drop&id={id}&request=developer',
+    deleteDivision: 'http://81.161.220.59:8100/api/division/?action=drop&id={id}&request=developer'
+    
 };

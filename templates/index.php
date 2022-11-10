@@ -264,7 +264,7 @@
                     </label>
 
                     <a>Сортировка</a>
-                    <select id="name">
+                    <select id="short_name">
                         <option value="" selected>--Название--</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
@@ -347,8 +347,8 @@
                     <a href="#" id="scroll_top" title="Наверх"></a>
 
                     <script>
-                        freezeButton();
-                        tree();
+                        document.getElementById('button_change_view').onclick = null;
+                        tree().then(()=>{document.getElementById('button_change_view').onclick = changeView});
                         img_view.src = '../assets/table.png';
                         document.getElementById('excel').style.visibility = 'hidden'
 

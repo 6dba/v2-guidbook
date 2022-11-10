@@ -12,7 +12,7 @@ async function search() {
 
    const value = input.value.replace(/(<([^>]+)>)/ig, '')
     
-   const data = await getData(allUrl);
+   const data = await getData(URLS.structureTest);
 
    /* Соотвествует совпадениям по наименованию (предприятия, подразделения)
     * и наименованию типа подразделения */
