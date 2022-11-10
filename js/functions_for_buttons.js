@@ -50,7 +50,6 @@ function reload_cache() {
                 tree();
             } else if (document.getElementById('view').classList.contains('table')) {
                 removeChilds(document.getElementById('view'));
-                document.getElementById('view').scrollTop = 0;
                 table();
             }
 
@@ -113,7 +112,6 @@ function accept_filters() {
         data: data_sort,
         complete: function () {
             removeChilds(document.getElementById('view'));
-            document.getElementById('view').scrollTop = 0;
             table().then(() => {
                 document.getElementById('view').classList.remove('loading');
                 document.getElementById('loading_view').classList.add('loading');
@@ -157,7 +155,6 @@ function drop_filters() {
         $('.check-type-name').prop('checked', false);
 
         removeChilds(document.getElementById('view'));
-        document.getElementById('view').scrollTop = 0;
         table().then(() => {
             document.getElementById('button_change_view').onclick = changeView;
             document.getElementById('view').classList.remove('loading');

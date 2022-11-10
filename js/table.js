@@ -81,11 +81,7 @@ async function table(data, backlightPattern) {
     page = 0;
     end = false;
     number = 1;
-
-    if (!data || !data.length) {
-        view.onscroll = checkLastElement;
-    }
-
+                
     const table = createElemWithAttr('table', {
         id: 'table'
     });
@@ -93,6 +89,9 @@ async function table(data, backlightPattern) {
 
     $(table).append(createHead());
     $(table).append(await createBody(data, undefined, backlightPattern));
+    if (!data || !data.length) {
+        view.onscroll = checkLastElement;
+    }
 
     $(table).dragtable({
         axis: null,
@@ -102,4 +101,5 @@ async function table(data, backlightPattern) {
     });
 
     add_delete_column();
+    $('#view').animate({scrollTop: 0}, 500);
 }
