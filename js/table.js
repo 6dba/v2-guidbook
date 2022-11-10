@@ -45,7 +45,7 @@ async function createBody(data, tbody, backlightPattern) {
         if (!data || !data.length) {
             data = await getAll(page);
 
-            if (!data) return;
+            if (!data) break;
             if (data.length < 25) {
                 view.onscroll = '';
                 end = true;
