@@ -21,6 +21,7 @@ const URLS = {
 	/* tree.js */
 	structureRoot: 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer',
 	structureTest: 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer',
+    childUrl: 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid={id}&request=developer',
     
     /* dynamic URLs */
     usersEnterprise: 'http://81.161.220.59:8100/api/users/?action=getList&enterprise={id}&request=developer',

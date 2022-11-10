@@ -41,7 +41,7 @@ async function openChilds(element, button) {
 		return;
 	}
 
-	const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${element.id}&request=developer`
+	const childUrl = URLS.childUrl.replace('{id}', element.id);
 
     button.onclick = null
     button.querySelector('img').src = '../assets/tree-loader.gif';

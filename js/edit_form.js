@@ -38,28 +38,30 @@ function edit() {
 }
 
 function postChangedObject() {
+    if (check_null()) return;
     document.getElementById('img_change').onclick = null;
     document.getElementById('exit').style.visibility = 'hidden';
     document.getElementById('deleteObject').style.visibility = 'hidden';
+    let type;
     if (document.getElementById('ttl_el').innerHTML.includes('Предприятие')) {
-        if (check_null(1, 7)) return;
         postObject('enterprise').then(() => {
             document.getElementById('img_change').src = '../assets/change.png';
             selectItemEnterprise(findID(document.getElementById('ttl_el')));
             reload_cache();
         })
+        document.getElementById('img_change').onclick = edit;
         return;
     }
     if (document.getElementById('ttl_el').innerHTML.includes('Подразделение')) {
-        if (check_null(8, 16)) return;
         postObject('division').then(() => {
             document.getElementById('img_change').src = '../assets/change.png';
             selectItemDivision(findID(document.getElementById('ttl_el')));
             reload_cache();
         })
+        document.getElementById('img_change').onclick = edit;
         return;
     }
-    document.getElementById('img_change').onclick = edit;
+    
 }
 
 //функция генерации полей режима редактирования
