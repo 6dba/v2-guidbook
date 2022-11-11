@@ -25,7 +25,7 @@ async function search() {
    if (!matches.length) {
       view.innerHTML =
       `<div class="card">
-         <div class="card-body"><h5 class="card-title">Совпадений для <b>${value}</b> не найдено :(</h5></div>
+         <div class="card-body"><h5 class="card-title">Совпадений для <b>${value}</b> не найдено</h5></div>
       </div>`
       return;
    }

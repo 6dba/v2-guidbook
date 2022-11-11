@@ -344,8 +344,9 @@
                         <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                     </div>
                 <div id="view" class='tree'></div>
-                    <a href="#" id="scroll_top" title="Наверх"></a>
-
+                <div class="flex-shrink-1 add_pos">
+                    <button href="#" id="scroll_top" title="Наверх"></button>
+                </div>
                     <script>
                         document.getElementById('button_change_view').onclick = null;
                         tree().then(()=>{document.getElementById('button_change_view').onclick = changeView});
