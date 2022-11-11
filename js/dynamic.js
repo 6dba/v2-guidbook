@@ -12,7 +12,7 @@ async function checkLastElement() {
             if (array == null || array.length < 25) {
                 end = true;
             }
-            createBody(array, tbody, undefined);
+            await createBody(array, tbody, undefined);
         }
         if (!end)
             document.getElementById('view').onscroll = checkLastElement;

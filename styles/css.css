@@ -296,13 +296,13 @@ table {
     margin: 30% auto;
 }
 
-#name {
+#short_name {
     margin-top: 5px;
     margin-left: 25px;
     margin-bottom: 5px;
 }
 
-#name option {
+#short_name option {
     font-size: 14px;
     font-family: "monospace";
 }
@@ -458,7 +458,7 @@ a:hover {
     margin-left: 8px;
     margin-right: 14px;
 }
-#handle {
+#slider #shift {
     font-family: "monospace";
     font-size: 14px;
     width: 30px;
@@ -469,4 +469,17 @@ a:hover {
 	text-align: center;
 	line-height: 24px;
 	outline: none;
+}
+
+#scroll_top {
+    display: none;
+    position: sticky;
+    width: 32px;
+    height: 32px;
+    background: url(../assets/scroll_top.png) 50% 50% no-repeat;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+#scroll_top:hover {
+    opacity: 1;
 }

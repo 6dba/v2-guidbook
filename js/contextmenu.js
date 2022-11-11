@@ -88,10 +88,12 @@ function deleteColumn(title) {
     if (document.getElementById('input_find').value) {
         clear(document.getElementById('input_find'));
     }
-    table();
-    document.getElementById('button_change_view').onclick = changeView;
-    document.getElementById('view').classList.remove('loading');
-    document.getElementById('loading_view').classList.add('loading');
+    table().then(() => {
+        document.getElementById('button_change_view').onclick = changeView;
+        document.getElementById('view').classList.remove('loading');
+        document.getElementById('loading_view').classList.add('loading');
+    });
+
 }
 
 function addColumn(title) {
@@ -106,16 +108,16 @@ function addColumn(title) {
     if (document.getElementById('input_find').value) {
         clear(document.getElementById('input_find'));
     }
-    table();
-    document.getElementById('button_change_view').onclick = changeView;
-    document.getElementById('view').classList.remove('loading');
-    document.getElementById('loading_view').classList.add('loading');
+    table().then(() => {
+        document.getElementById('button_change_view').onclick = changeView;
+        document.getElementById('view').classList.remove('loading');
+        document.getElementById('loading_view').classList.add('loading');
+    });
 }
 
 
 function saveView() {
     save_view.removeAttribute('onclick');
-    setTimeout(()=>{save_view.setAttribute('onclick','saveView()')}, 5000);
     context_menu.style.display = 'none';
     drop_delete.style.display = 'none';
     drop_add.style.display = 'none';
@@ -125,5 +127,7 @@ function saveView() {
         titles: []
     }
     $('thead tr th').each((index, el) => data['titles'].push(el.innerHTML));
-    post('http://81.161.220.59:8100/api/user_view/?action=set_views', data);
+    post(URLS.userView_set, data).then(() => {
+        save_view.setAttribute('onclick', 'saveView()')
+    });
 }

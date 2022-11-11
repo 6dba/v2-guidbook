@@ -1,6 +1,3 @@
-const rootUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&pid=root&request=developer'
-const allUrl = 'http://81.161.220.59:8100/api/structureTest/?action=getData&request=developer'
-
 let childs = {}
 let allData = JSON.parse(sessionStorage.getItem('allData'))
 
@@ -21,8 +18,8 @@ function createElemWithAttr(item, attributes) {
 // Поиск дочерних элементов
 async function hasChilds(id) {
     if (!allData) {
-        allData = await getData(allUrl);
-        childs = {}
+        allData = await getData(URLS.structureTest);
+        childs = {};
         sessionStorage.setItem('allData', JSON.stringify(allData));
     }
 
@@ -34,8 +31,7 @@ async function hasChilds(id) {
     return false;
 }
 
-/* Загрузка всех родителкй, вывод, кэширование. При нажатии на родителя,
- * в кэшэ запрашиваются его дети, грузятся, выводятся */
+/* Запрос дочерних узлов, подгрузка, вывод */
 async function openChilds(element, button) {
 	const div = element.parentElement;
 	if (div.classList.contains('open')) {
@@ -45,7 +41,7 @@ async function openChilds(element, button) {
 		return;
 	}
 
-	const childUrl = `http://81.161.220.59:8100/api/structureTest/?action=getData&pid=${element.id}&request=developer`
+	const childUrl = URLS.childUrl.replace('{id}', element.id);
 
     button.onclick = null
     button.querySelector('img').src = '../assets/tree-loader.gif';
@@ -138,7 +134,7 @@ function createView(className, arr, searchPattern) {
 // Создание древовидного отображения подразделений и предприятий компании
 async function tree(data, backlightPattern) {
     if (!data || !data.length)
-        data = await getData(rootUrl);
+        data = await getData(URLS.structureRoot);
 	createView('root', data, backlightPattern);
 
 }

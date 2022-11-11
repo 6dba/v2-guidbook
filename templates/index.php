@@ -12,9 +12,10 @@
     <script language="javascript" type="text/javascript" src="../libs/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/jquery-ui.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/tableToExcel.js"></script>
-
     <script language="javascript" type="text/javascript" src="../libs/selectize.min.js"></script>
     <script language="javascript" type="text/javascript" src="../libs/dragtable.js"></script>
+
+    <script language="javascript" type="text/javascript" src="../js/urls.js"></script>
     <script language="javascript" type="text/javascript" src="../js/api.js"></script>
     <script language="javascript" type="text/javascript" src="../js/dynamic.js"></script>
     <script language="javascript" type="text/javascript" src="../js/tree.js"></script>
@@ -263,7 +264,7 @@
                     </label>
 
                     <a>Сортировка</a>
-                    <select id="name">
+                    <select id="short_name">
                         <option value="" selected>--Название--</option>
                         <option value="empty">Сначала пустые</option>
                         <option value="not_empty">Сначала непустые</option>
@@ -343,11 +344,29 @@
                         <div class='spinner-border text-primary' id='loader_icon' style='margin: 150px 0 0 0'></div>
                     </div>
                 <div id="view" class='tree'></div>
+                <div class="flex-shrink-1 add_pos">
+                    <button href="#" id="scroll_top" title="Наверх"></button>
+                </div>
                     <script>
-                        freezeButton();
-                        tree();
+                        document.getElementById('button_change_view').onclick = null;
+                        tree().then(()=>{document.getElementById('button_change_view').onclick = changeView});
                         img_view.src = '../assets/table.png';
                         document.getElementById('excel').style.visibility = 'hidden'
+
+                        $(function(){
+                            $('#view').scroll(function() {
+                                if($('#view').scrollTop() > 25) {
+                                    $('#scroll_top').show();
+                                } else {
+                                    $('#scroll_top').hide();
+                                }
+                            });
+
+                            $('#scroll_top').click(function(){
+                                $('#view').animate({scrollTop: 0}, 500);
+                                return false;
+                            });
+                        });
                     </script>
                 </div>
 
