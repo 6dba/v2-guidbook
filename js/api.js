@@ -1,4 +1,4 @@
-function request(url, requestData, method) {
+function request(url, requestData) {
     let data = {
         url: url
     }
